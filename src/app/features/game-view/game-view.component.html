@@ -1,0 +1,45 @@
+<svg width="0" height="0">
+  <svg:defs>
+    <svg:filter id="dropShadow" height="130%">
+      <svg:feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <svg:feOffset dx="0" dy="2" result="offsetblur"/>
+      <svg:feComponentTransfer>
+        <feFuncA type="linear" slope="0.6"/>
+      </feComponentTransfer>
+      <svg:feMerge> 
+        <svg:feMergeNode/>
+        <svg:feMergeNode in="SourceGraphic"/> 
+      </feMerge>
+    </filter>
+  </defs>
+</svg>
+
+<div class="container main">
+  <h1 routerLink="/dev-log">
+    <span class="title">{{title}}</span>
+  </h1>
+
+  <dlp-grid-container></dlp-grid-container>
+</div>
+
+<div class="container appendix">
+    <div class="header">
+      <p class="author"><span class="label">@Author: </span>Abhijit Kumar Kar</p>
+      <span class="links">
+        <a href="https://abhijit-kar.github.io/" target="_blank">(Portfolio)</a>
+        <a href="https://github.com/Abhijit-Kar/dont-let-him-poo" target="_blank">{{'{'}}Git{{'}'}}</a>
+      </span>
+    </div>
+    <div class="clearfix"></div>
+
+    <hr>
+
+    <p class="instructions">How to play <br class="breakpoint"> [as a control freak manager]</p>
+
+    <ol>
+      <li>Don't Let'im reach his target</li>
+      <li>Keep his hope alive</li>
+      <li>If you can't convince him, confuse him</li>
+      <li>Paint a fake picture of the world</li>
+    </ol>
+</div>
