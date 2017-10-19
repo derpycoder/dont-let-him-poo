@@ -2,15 +2,28 @@
   "name": "dont-let-him-poo",
   "version": "0.0.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abhijit-kar/dont-let-him-poo"
+  },
+  "contributors": [
+    "Abhijit Kar"
+  ],
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy-to-github-pages": "ng build --prod --aot --base-href http://www.abhijit-kar.com/dont-let-him-poo/ && ngh --dir=dist/browser/",
+    "build-for-heroku": "ng build --prod --aot && ng build --prod --aot --app 1 --output-hashing=false"
   },
   "private": true,
+  "engines": {
+    "node": "6.11.4",
+    "npm": "3.10.10"
+  },
   "dependencies": {
     "@angular/animations": "^4.4.5",
     "@angular/common": "^4.4.5",
@@ -20,18 +33,24 @@
     "@angular/http": "^4.4.5",
     "@angular/platform-browser": "^4.4.5",
     "@angular/platform-browser-dynamic": "^4.4.5",
+    "@angular/platform-server": "^4.4.6",
     "@angular/router": "^4.4.5",
+    "@nguniversal/express-engine": "^1.0.0-beta.3",
+    "@nguniversal/module-map-ngfactory-loader": "^1.0.0-beta.3",
+    "compression": "^1.7.1",
     "core-js": "^2.5.1",
+    "express": "^4.16.2",
+    "gsap": "^1.20.2",
+    "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.3",
-    "zone.js": "^0.8.18",
-	"gsap": "^1.20.2"
+    "zone.js": "^0.8.18"
   },
   "devDependencies": {
     "@angular/cli": "1.4.7",
     "@angular/compiler-cli": "^4.4.5",
     "@angular/language-service": "^4.4.5",
     "@types/node": "~8.0.34",
-	"codelyzer": "~3.2.1",
+    "codelyzer": "~3.2.1",
     "ts-node": "~3.3.0",
     "tslint": "~5.7.0",
     "typescript": "~2.3.3"
