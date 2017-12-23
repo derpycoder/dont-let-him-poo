@@ -7,6 +7,7 @@
 
   display: inline-block;
   width: 40%;
+  height: 50px;
   float: right;
 
   padding: 0px 10px 5px 10px;
@@ -22,6 +23,8 @@
 .fa.fa-usd {
   border-right: 1px solid #646363;
   padding-right: 7%;
+  float: left;
+  margin-top: 7%;
 }
 
 .score {
@@ -37,3 +40,16 @@
   position: absolute;
   opacity: 0;
 }
+
+@media screen and (max-width: 520px) {
+  .gauge-container {
+    height: 40px;
+  }
+  .fa.fa-usd, .score {
+    margin-top: 12%;
+  }
+  .fa.fa-usd, .score, .vfx {
+    font-size: 0.4em;
+  }
+}
+
