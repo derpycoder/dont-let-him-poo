@@ -26,12 +26,15 @@
 .container h1 {
   outline: none;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .title {
   font-family: "Pacifico", cursive;
   color: #5ac8fa;
   text-align: center;
+  font-size: 0.7em;
+  vertical-align: inherit;
 }
 
 .pou {

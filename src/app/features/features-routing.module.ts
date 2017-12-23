@@ -5,7 +5,7 @@ import { GameViewComponent } from './game-view/game-view.component';
 
 const featureRoutes: Routes = [
   { path: '', component: GameViewComponent },
-  { path: 'dev-log', loadChildren: './dev-log/dev-log.module#DevLogModule' }
+  { path: 'rankings', loadChildren: './rankings/rankings.module#RankingsModule' }
 ];
 
 @NgModule({

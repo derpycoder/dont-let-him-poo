@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Routing Module
-import { DevLogRoutingModule } from './dev-log-routing.module';
+import { RankingsRoutingModule } from './rankings-routing.module';
 
 // Components
-import { LogViewComponent } from './';
+import { LeaderboardComponent } from './';
 
 @NgModule({
   imports: [
     CommonModule,
-    DevLogRoutingModule
+    RankingsRoutingModule
   ],
   declarations: [
-    LogViewComponent
+    LeaderboardComponent
   ]
 })
-export class DevLogModule { }
+export class RankingsModule { }
