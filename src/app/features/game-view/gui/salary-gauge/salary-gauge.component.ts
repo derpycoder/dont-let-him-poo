@@ -1,9 +1,4 @@
-import {
-  Component,
-  ViewChild,
-  ElementRef,
-  OnInit
-} from "@angular/core";
+import { Component, ViewChild, ElementRef, OnInit } from "@angular/core";
 
 import { TimelineMax } from "gsap";
 
@@ -19,19 +14,13 @@ export class SalaryGaugeComponent implements OnInit {
   @ViewChild("vfx") vfx: ElementRef;
   updatedSalary: string;
 
-  salarySubscription: Observable<number>;
-
   constructor(public salaryService: SalaryService) {}
 
   ngOnInit() {
-    if (!this.salarySubscription) {
-      this.salarySubscription = this.salaryService.salaryUpdate.subscribe(
-        (salary: number) => {
-          this.updatedSalary = salary.toLocaleString();
-          this.updateView();
-        }
-      );
-    }
+    this.salaryService.salaryUpdate.subscribe((salary: number) => {
+      this.updatedSalary = salary.toLocaleString();
+      this.updateView();
+    });
   }
 
   updateView() {
