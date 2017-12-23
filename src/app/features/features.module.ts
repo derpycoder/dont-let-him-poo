@@ -4,7 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 
 // Routing Module
 import { FeaturesRoutingModule } from "./features-routing.module";
-import {  } from "./rankings/rankings-routing.module";
+import {} from "./rankings/rankings-routing.module";
 
 import { SharedModule } from "../shared/shared.module";
 
@@ -13,10 +13,11 @@ import {
   GameViewComponent,
   GridContainerComponent,
   CellContainerComponent,
+  TrashCanComponent,
+  SalaryGaugeComponent,
   GridCreationService,
   InteractionService,
-  TrashCanComponent,
-  SalaryGaugeComponent
+  SalaryService
 } from "./game-view";
 
 @NgModule({
@@ -33,6 +34,6 @@ import {
     TrashCanComponent,
     SalaryGaugeComponent
   ],
-  providers: [GridCreationService, InteractionService]
+  providers: [GridCreationService, InteractionService, SalaryService]
 })
 export class FeaturesModule {}
