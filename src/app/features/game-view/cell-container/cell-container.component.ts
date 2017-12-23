@@ -26,15 +26,32 @@ export class CellContainerComponent {
 
   private onPointerDown() {
     if (this.cellData.tileType === TILE_TYPES.NONE) {
-      if (this.interactionService.selectedTileType !== TILE_TYPES.WALL && this.interactionService.selectedTileType !== TILE_TYPES.NONE) {
-        this.cellData.tileType = this.interactionService.selectedTileType;
+      if (
+        this.interactionService.selectedTileType !== TILE_TYPES.WALL &&
+        this.interactionService.selectedTileType !== TILE_TYPES.NONE
+      ) {
+        if (
+          this.interactionService.remainingQuantity[
+            this.interactionService.selectedTileType
+          ] > 0
+        ) {
+          this.cellData.tileType = this.interactionService.selectedTileType;
+          this.interactionService.updateQuantity(
+            this.interactionService.selectedTileType
+          );
+        }
         this.interactionService.selectedTileType = TILE_TYPES.NONE;
       } else {
-        this.interactionService.selectedTileType = this.cellData.tileType = TILE_TYPES.WALL;
+        this.interactionService.selectedTileType = this.cellData.tileType =
+          TILE_TYPES.WALL;
       }
     } else if (this.cellData.tileType === TILE_TYPES.WALL) {
-      if (this.interactionService.selectedTileType === TILE_TYPES.WALL || this.interactionService.selectedTileType === TILE_TYPES.NONE) {
-        this.interactionService.selectedTileType = this.cellData.tileType = TILE_TYPES.NONE;
+      if (
+        this.interactionService.selectedTileType === TILE_TYPES.WALL ||
+        this.interactionService.selectedTileType === TILE_TYPES.NONE
+      ) {
+        this.interactionService.selectedTileType = this.cellData.tileType =
+          TILE_TYPES.NONE;
       }
     }
   }
