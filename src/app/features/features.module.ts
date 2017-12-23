@@ -14,7 +14,8 @@ import {
   GridContainerComponent,
   CellContainerComponent,
   GridCreationService,
-  InteractionService
+  InteractionService,
+  TrashCanComponent
 } from "./game-view";
 
 @NgModule({
@@ -27,7 +28,8 @@ import {
   declarations: [
     GameViewComponent,
     GridContainerComponent,
-    CellContainerComponent
+    CellContainerComponent,
+    TrashCanComponent
   ],
   providers: [GridCreationService, InteractionService]
 })

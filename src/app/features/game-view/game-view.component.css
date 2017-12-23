@@ -105,14 +105,16 @@ ol {
 .btn:active {
   background-color: #323332;
   color: #5ac8fa;
-  margin-top: 20px;
+  margin-top: 30px;
   float: right;
 
   box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.3),
     0 1px 0 rgba(255, 255, 255, 0.1), 0 -1px 0 rgba(0, 0, 0, 0.5);
+  
+  border: 0;
 }
 
-.btn-dark:not(:nth-child(3)) {
+.btn-dark:not(:first-of-type) {
   margin-right: 10px;
 }
 

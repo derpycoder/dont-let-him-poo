@@ -21,6 +21,8 @@
 
   <dlp-grid-container></dlp-grid-container>
 
+  <dlp-trash-can></dlp-trash-can>
+
   <ng-container *ngIf="!env.production">
     <button type="button" class="btn btn-dark" (click)="gridCreationService.clearGrid()">Clear</button>
     <button type="button" class="btn btn-dark" (click)="gridCreationService.resetGrid()">Reset</button>
