@@ -35,6 +35,11 @@
         margin-right: 0;
     }
 
+.get-loader {
+    width: 50px;
+    margin-left: 42%;
+}
+
 @media screen and (max-width: 520px) {
     .grid-container {
         padding: 9px;
