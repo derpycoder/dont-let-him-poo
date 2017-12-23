@@ -10,7 +10,7 @@ export class InteractionService {
   };
 
   // Selected tile type
-  selectedTileType: string = TILE_TYPES.PIZZA;
+  selectedTileType: string = TILE_TYPES.NONE;
 
   updateQuantity(tileType) {
     if(this.remainingQuantity[tileType] > 0) {
