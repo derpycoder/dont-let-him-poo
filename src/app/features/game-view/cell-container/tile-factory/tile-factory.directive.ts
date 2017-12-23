@@ -23,7 +23,7 @@ import { TILE_TYPES } from "../../shared-services/";
 })
 export class TileFactoryDirective implements OnInit {
   private _tileType: string;
-  @Input("dlp-tile-factory") set tileType(value: string) {
+  @Input("dlp-tile-factory") set cellData(value: string) {
     this._tileType = value;
 
     this.renderComponent();

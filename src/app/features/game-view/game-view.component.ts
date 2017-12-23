@@ -4,6 +4,8 @@ import { Component, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@
 
 import { TILE_TYPES } from './shared-services/grid/grid.model';
 
+import {GridCreationService} from './shared-services/';
+
 @Component({
   selector: 'dlp-game-view',
   templateUrl: './game-view.component.html',
@@ -16,6 +18,8 @@ export class GameViewComponent implements AfterViewInit {
 
   tile_types = TILE_TYPES;
 
+  constructor(private gridCreationService: GridCreationService) {}
+  
   ngAfterViewInit() {
     // var tl = new TimelineMax();
 
@@ -24,5 +28,9 @@ export class GameViewComponent implements AfterViewInit {
     // });
 
     // tl.play();
+  }
+
+  serializeLevel() {
+    console.log(this.gridCreationService.serializeGrid());
   }
 }
