@@ -2,33 +2,36 @@ import {
   Component,
   ViewChild,
   ElementRef,
-  OnInit,
-  OnDestroy
+  OnInit
 } from "@angular/core";
 
 import { TimelineMax } from "gsap";
 
 import { SalaryService } from "../../services/";
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: "dlp-salary-gauge",
   templateUrl: "./salary-gauge.component.html",
   styleUrls: ["./salary-gauge.component.css"]
 })
-export class SalaryGaugeComponent implements OnInit, OnDestroy {
+export class SalaryGaugeComponent implements OnInit {
   @ViewChild("vfx") vfx: ElementRef;
   updatedSalary: string;
+
+  salarySubscription: Observable<number>;
 
   constructor(public salaryService: SalaryService) {}
 
   ngOnInit() {
-    this.salaryService.salaryUpdate.subscribe((salary: number) => {
-      this.updatedSalary = salary.toLocaleString();
-      this.updateView();
-    });
-  }
-  ngOnDestroy() {
-    this.salaryService.salaryUpdate.unsubscribe();
+    if (!this.salarySubscription) {
+      this.salarySubscription = this.salaryService.salaryUpdate.subscribe(
+        (salary: number) => {
+          this.updatedSalary = salary.toLocaleString();
+          this.updateView();
+        }
+      );
+    }
   }
 
   updateView() {

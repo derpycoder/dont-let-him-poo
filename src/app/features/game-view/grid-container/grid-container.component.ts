@@ -11,6 +11,8 @@ export class GridContainerComponent implements OnInit {
   constructor(public gridService: GridCreationService) { }
 
   ngOnInit() {
-    this.gridService.initGrid();
+    if(!this.gridService.gameGrid) {
+      this.gridService.initGrid();
+    }
   }
 }
