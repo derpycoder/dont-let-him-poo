@@ -1,17 +1,17 @@
 <svg width="0" height="0">
   <svg:defs>
     <svg:filter id="dropShadow" height="130%">
-      <svg:feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
-      <svg:feOffset dx="0" dy="2" result="offsetblur"/>
+      <svg:feGaussianBlur in="SourceAlpha" stdDeviation="2" />
+      <svg:feOffset dx="0" dy="2" result="offsetblur" />
       <svg:feComponentTransfer>
-        <feFuncA type="linear" slope="0.6"/>
-      </feComponentTransfer>
-      <svg:feMerge> 
-        <svg:feMergeNode/>
-        <svg:feMergeNode in="SourceGraphic"/> 
-      </feMerge>
-    </filter>
-  </defs>
+        <feFuncA type="linear" slope="0.6" />
+        </feComponentTransfer>
+        <svg:feMerge>
+          <svg:feMergeNode/>
+          <svg:feMergeNode in="SourceGraphic" />
+          </feMerge>
+          </filter>
+          </defs>
 </svg>
 
 <div class="container main">
@@ -21,27 +21,33 @@
 
   <dlp-grid-container></dlp-grid-container>
 
-  <button type="button" class="btn btn-dark" (click)="serializeLevel()">Serialize</button>
+  <ng-container *ngIf="!env.production">
+    <button type="button" class="btn btn-dark" (click)="gridCreationService.clearGrid()">Clear</button>
+    <button type="button" class="btn btn-dark" (click)="gridCreationService.resetGrid()">Reset</button>
+    <button type="button" class="btn btn-dark" (click)="gridCreationService.serializeGrid()">Serialize</button>
+  </ng-container>
 </div>
 
 <div class="container appendix">
-    <div class="header">
-      <p class="author"><span class="label">@Author: </span>Abhijit Kumar Kar</p>
-      <span class="links">
-        <a href="http://www.abhijit-kar.com/" target="_blank">(Portfolio)</a>
-        <a href="https://github.com/abhijit-kar/dont-let-him-poo" target="_blank">{{'{'}}Git{{'}'}}</a>
-      </span>
-    </div>
-    <div class="clearfix"></div>
+  <div class="header">
+    <p class="author">
+      <span class="label">@Author: </span>Abhijit Kumar Kar</p>
+    <span class="links">
+      <a href="http://www.abhijit-kar.com/" target="_blank">(Portfolio)</a>
+      <a href="https://github.com/abhijit-kar/dont-let-him-poo" target="_blank">{{'{'}}Git{{'}'}}</a>
+    </span>
+  </div>
+  <div class="clearfix"></div>
 
-    <hr>
+  <hr>
 
-    <p class="instructions">How to play <br class="breakpoint"> [as a control freak manager]</p>
+  <p class="instructions">How to play
+    <br class="breakpoint"> [as a control freak manager]</p>
 
-    <ol>
-      <li>Don't Let'im reach his target</li>
-      <li>Keep his hope alive</li>
-      <li>If you can't convince him, confuse him</li>
-      <li>Paint a fake picture of the world</li>
-    </ol>
+  <ol>
+    <li>Don't Let'im reach his target</li>
+    <li>Keep his hope alive</li>
+    <li>If you can't convince him, confuse him</li>
+    <li>Paint a fake picture of the world</li>
+  </ol>
 </div>

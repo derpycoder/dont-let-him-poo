@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { GridCreationService } from '../shared-services/grid/grid-creation.service';
+import { GridCreationService } from '../services/grid/grid-creation.service';
 
 @Component({
   selector: 'dlp-grid-container',

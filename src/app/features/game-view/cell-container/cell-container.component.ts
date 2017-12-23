@@ -1,8 +1,8 @@
 import { Component, HostListener, Input } from "@angular/core";
 
-import { InteractionService } from "../shared-services/interaction.service";
+import { InteractionService } from "../services/interaction.service";
 
-import { TILE_TYPES, CellData } from "../shared-services/";
+import { TILE_TYPES, CellData } from "../services/";
 
 @Component({
   selector: "dlp-cell-container",

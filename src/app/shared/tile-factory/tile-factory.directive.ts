@@ -16,7 +16,7 @@ import {
   PoopComponent
 } from "./";
 
-import { TILE_TYPES } from "../../shared-services/";
+import { TILE_TYPES } from "../../features/game-view/services/";
 
 @Directive({
   selector: "[dlp-tile-factory]"

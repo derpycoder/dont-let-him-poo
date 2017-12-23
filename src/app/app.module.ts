@@ -9,7 +9,6 @@ import { FeaturesModule } from './features/features.module';
 
 // Routing Modules
 import { AppRoutingModule } from './app.routing';
-import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,8 +17,7 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule.withServerTransition({ appId: 'dont-let-him-pou' }),
     FeaturesModule,
-    AppRoutingModule,
-    SharedModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

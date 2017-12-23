@@ -6,59 +6,28 @@ import { HttpClientModule } from "@angular/common/http";
 import { FeaturesRoutingModule } from "./features-routing.module";
 import { DevLogRoutingModule } from "./dev-log/dev-log-routing.module";
 
+import { SharedModule } from "../shared/shared.module";
+
 // Components & Services
 import {
   GameViewComponent,
   GridContainerComponent,
   CellContainerComponent,
-  TileFactoryDirective,
   GridCreationService,
   InteractionService
 } from "./game-view";
 
-import {
-  LooComponent,
-  MoneyComponent,
-  PizzaComponent,
-  NoneComponent,
-
-  SleepingComponent,
-  PlayerComponent,
-
-  WallComponent,
-  PoopComponent
-} from "./game-view/cell-container/tile-factory/";
-
 @NgModule({
-  imports: [CommonModule, FeaturesRoutingModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    FeaturesRoutingModule,
+    HttpClientModule,
+    SharedModule
+  ],
   declarations: [
     GameViewComponent,
     GridContainerComponent,
-    CellContainerComponent,
-    TileFactoryDirective,
-
-    LooComponent,
-    MoneyComponent,
-    NoneComponent,
-    PizzaComponent,
-
-    SleepingComponent,
-    PlayerComponent,
-    
-    PoopComponent,
-    WallComponent
-  ],
-  entryComponents: [
-    LooComponent,
-    MoneyComponent,
-    NoneComponent,
-    PizzaComponent,
-
-    SleepingComponent,
-    PlayerComponent,
-    
-    PoopComponent,
-    WallComponent
+    CellContainerComponent
   ],
   providers: [GridCreationService, InteractionService]
 })
