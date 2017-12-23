@@ -8,4 +8,24 @@
   display: inline-block;
   width: 50%;
   float: right;
+
+  padding: 0px 10px 5px 10px;
+}
+
+.fa.fa-usd,
+.score {
+  color: #66c9fa;
+  font-size: 0.7em;
+  text-shadow: 0 1px 0 rgba(133, 221, 255, 0.4);
+}
+
+.fa.fa-usd {
+  border-right: 1px solid #646363;
+  padding-right: 7%;
+}
+
+.score {
+  float: right;
+  font-weight: bold;
+  margin-top: 9px;
 }
