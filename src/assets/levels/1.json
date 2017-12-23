@@ -1,0 +1,15 @@
+{
+    "gameGrid": [
+        ["none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none"],
+        ["none", "none", "none", "none", "none", "none", "none", "brown_poop", "none", "none", "none"],
+        ["none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none"],
+        ["none", "pink_poop", "none", "none", "none", "none", "none", "none", "none", "none", "none"],
+        ["none", "none", "none", "none", "player", "none", "none", "none", "none", "none", "none"],
+        ["none", "none", "none", "none", "none", "none", "none", "none", "loo", "none", "none"],
+        ["none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none"],
+        ["none", "pizza", "none", "none", "wall", "poop", "none", "none", "none", "none", "none"],
+        ["none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none"],
+        ["none", "none", "none", "none", "none", "none", "none", "none", "none", "money", "none"],
+        ["none", "none", "none", "none", "none", "none", "none", "none", "none", "none", "none"]
+    ]
+}

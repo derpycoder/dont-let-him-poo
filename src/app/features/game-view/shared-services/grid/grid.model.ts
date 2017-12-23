@@ -1,17 +1,17 @@
 import { EventEmitter } from '@angular/core';
 
-export enum TILE_TYPES {
-    NONE, WALL,
-    PIZZA, BURGER, POOP, WIDE_EYED_POOP,
-    PLAYER,
-    LOO
-}
+export const TILE_TYPES = {
+    wall: "wall",
+    brown_poop: "brown_poop",
+    none: "none",
+    loo: "loo",
 
-export class CellData {
-    x: number;
-    y: number;
-    tileType: TILE_TYPES;
-}
+    pink_poop: "pink_poop",
+    pizza: "pizza",
+    money: "money",
+
+    player: "player"
+};
 
 export class Vector {
     x: number;

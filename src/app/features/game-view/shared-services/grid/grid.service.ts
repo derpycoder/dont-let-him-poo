@@ -1,41 +1,30 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
-import { TimelineMax } from 'gsap';
+import { TimelineMax } from "gsap";
 
-import { CellData, TILE_TYPES } from './grid.model';
+import { TILE_TYPES } from "./grid.model";
 
 @Injectable()
 export class GridService {
-  // The main grid
-  gameGrid: CellData[][];
+  gameGrid: string[][];
 
   // Depicts, if the user has mouse down, or touch down on a cell
   pointerDown: boolean;
 
   // Selected tile type
-  selectedTileType: TILE_TYPES = TILE_TYPES.PLAYER;
+  selectedTileType: string = TILE_TYPES.player;
 
   timeLineHandle: TimelineMax;
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
     this.timeLineHandle = new TimelineMax();
   }
 
   initGrid() {
-    this.gameGrid = [];
-
-    for (let i = 0; i < 11; i++) {
-      this.gameGrid.push([]);
-      for (let j = 0; j < 11; j++) {
-        this.gameGrid[i].push({
-          x: i,
-          y: j,
-          tileType: TILE_TYPES.NONE
-        });
-      }
-    }
-  }
-  private checkViewPort() {
-
+    this.httpClient.get(`${window.location.href.slice(0, -1)}/assets/levels/1.json`).subscribe((data: any) => {
+      console.log(data.gameGrid);
+      this.gameGrid = data.gameGrid;
+    });
   }
 }

@@ -1,0 +1,13 @@
+.grid-tile {
+  background-color: #3c3c3c;
+  width: 37px;
+  height: 37px;
+  border-radius: 3px;
+}
+
+@media screen and (max-width: 520px) {
+  .grid-tile {
+    width: 24px;
+    height: 24px;
+  }
+}
