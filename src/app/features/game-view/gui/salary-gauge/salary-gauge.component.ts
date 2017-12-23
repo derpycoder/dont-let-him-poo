@@ -32,7 +32,7 @@ export class SalaryGaugeComponent implements OnInit, OnDestroy {
   }
 
   updateView() {
-    let tl = new TimelineMax();
+    const tl = new TimelineMax();
     tl.set(this.vfx.nativeElement, { y: 50, alpha: 0 });
 
     tl

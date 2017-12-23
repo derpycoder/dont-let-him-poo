@@ -4,7 +4,7 @@ import { Injectable, EventEmitter } from "@angular/core";
 export class SalaryService {
     salaryUpdate: EventEmitter<number> = new EventEmitter<number>();
 
-    private _salary: number = 1000;
+    private _salary = 1000;
     get salary(): string {
         return this._salary.toLocaleString();
     }
