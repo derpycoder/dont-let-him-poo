@@ -13,7 +13,7 @@ export class GridCreationService {
 
   initGrid() {
     this.httpClient
-      .get(`${window.location.href.slice(0, -1)}/assets/levels/1.json`)
+      .get(`./assets/levels/1.json`)
       .subscribe((data: any) => {
         this.gameGrid = data.gameGrid.map(row => {
           return row.map(cell => {
