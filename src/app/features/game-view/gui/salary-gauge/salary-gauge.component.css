@@ -29,3 +29,11 @@
   font-weight: bold;
   margin-top: 9px;
 }
+
+.vfx {
+  color: #66fabd;
+  font-size: 0.7em;
+  font-weight: bold;
+  position: absolute;
+  opacity: 0;
+}

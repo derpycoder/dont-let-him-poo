@@ -1,6 +1,6 @@
 import { Component, HostListener, Input } from "@angular/core";
 
-import { InteractionService } from "../services/interaction.service";
+import { InteractionService, SalaryService } from "../services/";
 
 import { TILE_TYPES, CellData } from "../services/";
 
@@ -12,15 +12,20 @@ import { TILE_TYPES, CellData } from "../services/";
 export class CellContainerComponent {
   @Input() cellData: CellData;
 
-  constructor(public interactionService: InteractionService) {}
+  constructor(
+    public interactionService: InteractionService,
+    private salaryService: SalaryService
+  ) {}
 
   @HostListener("mousedown")
   onMouseDown() {
     this.onPointerDown();
+    this.salaryService.updateSalary(100);
   }
   @HostListener("touchstart")
   onTouchStart() {
     this.onPointerDown();
+    this.salaryService.updateSalary(100);
     event.preventDefault();
   }
 
