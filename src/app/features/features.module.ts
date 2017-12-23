@@ -24,9 +24,8 @@ import {
   SleepingComponent,
   PlayerComponent,
 
-  PinkPoop,
   WallComponent,
-  BrownPoopComponent
+  PoopComponent
 } from "./game-view/cell-container/tile-factory/";
 
 @NgModule({
@@ -45,9 +44,8 @@ import {
     SleepingComponent,
     PlayerComponent,
     
-    PinkPoop,
-    WallComponent,
-    BrownPoopComponent
+    PoopComponent,
+    WallComponent
   ],
   entryComponents: [
     LooComponent,
@@ -58,9 +56,8 @@ import {
     SleepingComponent,
     PlayerComponent,
     
-    PinkPoop,
-    WallComponent,
-    BrownPoopComponent
+    PoopComponent,
+    WallComponent
   ],
   providers: [GridService]
 })

@@ -12,9 +12,8 @@ import {
   MoneyComponent,
   PizzaComponent,
   PlayerComponent,
-  PinkPoop,
   WallComponent,
-  BrownPoopComponent
+  PoopComponent
 } from "./";
 
 import { TILE_TYPES } from "../../shared-services/";
@@ -28,12 +27,11 @@ export class TileFactoryComponent implements OnInit {
 
   tiles = {
     wall: WallComponent, // Unpassable
-    brown_poop: BrownPoopComponent, // Unhealthy
+    poop: PoopComponent, // Unhealthy
     none: NoneComponent, // Drop zone, Passable
     loo: LooComponent, // Long Term Goal
 
     // Short Term Goals
-    pink_poop: PinkPoop,
     pizza: PizzaComponent,
     money: MoneyComponent,
 
