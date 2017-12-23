@@ -159,4 +159,10 @@ ol {
   .container.appendix {
     margin-bottom: 15%;
   }
+  .btn-dark {
+    margin-top: 20px;
+  }
+  .btn-dark:not(:first-of-type) {
+    margin-right: 5px;
+  }
 }

@@ -4,7 +4,7 @@
   border-radius: 50%;
   display: inline-block;
   height: 50px;
-  width: 10%;
+  width: 50px;
   position: relative;
 
   box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.3),
@@ -48,4 +48,11 @@
 
 .trash:first-child {
   margin-right: 10px;
+}
+
+@media screen and (max-width: 520px) {
+  .trash {
+    width: 35px;
+    height: 35px;
+  }
 }
