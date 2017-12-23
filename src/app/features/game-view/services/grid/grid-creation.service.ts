@@ -13,7 +13,7 @@ export class GridCreationService {
 
   initGrid() {
     this.httpClient
-      .get(`./assets/levels/1.json`)
+      .get(`./assets/levels/${this.getRandomNumber(1, 6)}.json`)
       .subscribe((data: any) => {
         this.gameGrid = data.gameGrid.map(row => {
           return row.map(cell => {
@@ -21,8 +21,50 @@ export class GridCreationService {
           });
         });
 
+        this.randomlyPlacePlayerAndLoo();
+
         this.gameGridBackup = _.cloneDeep(this.gameGrid);
       });
+  }
+
+  private randomlyPlacePlayerAndLoo() {
+    let playerPlaced: boolean;
+    let looPlaced: boolean;
+    let i, j, x, y;
+
+    let count = 0;
+
+    while (true) {
+      console.log(count++);
+
+      if (!playerPlaced) {
+        i = this.getRandomNumber(0, 10);
+        j = this.getRandomNumber(0, 10);
+      }
+      if (!looPlaced) {
+        x = this.getRandomNumber(0, 10);
+        y = this.getRandomNumber(0, 10);
+      }
+
+      if (!playerPlaced && this.gameGrid[i][j].tileType === TILE_TYPES.NONE) {
+        this.gameGrid[i][j].tileType = TILE_TYPES.PLAYER;
+        playerPlaced = true;
+      }
+
+      if (!looPlaced && this.gameGrid[x][y].tileType === TILE_TYPES.NONE) {
+        this.gameGrid[x][y].tileType = TILE_TYPES.LOO;
+        looPlaced = true;
+      }
+
+      if (playerPlaced && looPlaced) {
+        break;
+      }
+    }
+  }
+
+  private getRandomNumber(min: number, max: number): number {
+    // Inclusive of both min and max
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   resetGrid() {
