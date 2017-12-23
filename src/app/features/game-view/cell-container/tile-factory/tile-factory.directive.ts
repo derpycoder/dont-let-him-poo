@@ -1,5 +1,5 @@
 import {
-  Component,
+  Directive,
   Input,
   OnInit,
   ViewContainerRef,
@@ -18,12 +18,16 @@ import {
 
 import { TILE_TYPES } from "../../shared-services/";
 
-@Component({
-  selector: "dlp-tile-factory",
-  templateUrl: "./tile-factory.component.html"
+@Directive({
+  selector: "[dlp-tile-factory]"
 })
-export class TileFactoryComponent implements OnInit {
-  @Input() tileType: string;
+export class TileFactoryDirective implements OnInit {
+  private _tileType: string;
+  @Input("dlp-tile-factory") set tileType(value: string) {
+    this._tileType = value;
+
+    this.renderComponent();
+  }
 
   tiles = {
     wall: WallComponent, // Unpassable
@@ -44,6 +48,10 @@ export class TileFactoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.renderComponent();
+  }
+
+  private renderComponent() {
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(
       this.getComponents()
     );
@@ -52,10 +60,10 @@ export class TileFactoryComponent implements OnInit {
   }
 
   private getComponents() {
-    let tileComponent = this.tiles[this.tileType];
-    
+    let tileComponent = this.tiles[this._tileType];
+
     if (!tileComponent) {
-      return this.tiles[TILE_TYPES.none];
+      return this.tiles[TILE_TYPES.NONE];
     }
 
     return tileComponent;

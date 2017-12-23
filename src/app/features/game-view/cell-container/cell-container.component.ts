@@ -1,6 +1,8 @@
 import { Component, HostListener, Input } from "@angular/core";
 
-import { GridService } from "../shared-services/grid/grid.service";
+import { InteractionService } from "../shared-services/interaction.service";
+
+import { TILE_TYPES } from "../shared-services/";
 
 @Component({
   selector: "dlp-cell-container",
@@ -10,7 +12,7 @@ import { GridService } from "../shared-services/grid/grid.service";
 export class CellContainerComponent {
   @Input() tileType: string;
 
-  constructor(public gridService: GridService) {}
+  constructor(public interactionService: InteractionService) {}
 
   @HostListener("mousedown")
   onMouseDown() {
@@ -23,17 +25,17 @@ export class CellContainerComponent {
   }
 
   private onPointerDown() {
-    // if (this.cellData.tileType === TILE_TYPES.NONE) {
-    //   if (this.gridService.selectedTileType !== TILE_TYPES.WALL && this.gridService.selectedTileType !== TILE_TYPES.NONE) {
-    //     this.cellData.tileType = this.gridService.selectedTileType;
-    //     this.gridService.selectedTileType = TILE_TYPES.NONE;
-    //   } else {
-    //     this.gridService.selectedTileType = this.cellData.tileType = TILE_TYPES.WALL;
-    //   }
-    // } else if (this.cellData.tileType === TILE_TYPES.WALL) {
-    //   if (this.gridService.selectedTileType === TILE_TYPES.WALL || this.gridService.selectedTileType === TILE_TYPES.NONE) {
-    //     this.gridService.selectedTileType = this.cellData.tileType = TILE_TYPES.NONE;
-    //   }
-    // }
+    if (this.tileType === TILE_TYPES.NONE) {
+      if (this.interactionService.selectedTileType !== TILE_TYPES.WALL && this.interactionService.selectedTileType !== TILE_TYPES.NONE) {
+        this.tileType = this.interactionService.selectedTileType;
+        // this.interactionService.selectedTileType = TILE_TYPES.NONE;
+      } else {
+        this.interactionService.selectedTileType = this.tileType = TILE_TYPES.WALL;
+      }
+    } else if (this.tileType === TILE_TYPES.WALL) {
+      if (this.interactionService.selectedTileType === TILE_TYPES.WALL || this.interactionService.selectedTileType === TILE_TYPES.NONE) {
+        this.interactionService.selectedTileType = this.tileType = TILE_TYPES.NONE;
+      }
+    }
   }
 }

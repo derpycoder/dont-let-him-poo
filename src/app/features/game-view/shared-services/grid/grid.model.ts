@@ -1,15 +1,15 @@
 import { EventEmitter } from '@angular/core';
 
 export const TILE_TYPES = {
-    wall: "wall",
-    poop: "poop",
-    none: "none",
-    loo: "loo",
+    WALL: "wall",
+    POOP: "poop",
+    NONE: "none",
+    LOO: "loo",
 
-    pizza: "pizza",
-    money: "money",
+    PIZZA: "pizza",
+    MONEY: "money",
 
-    player: "player"
+    PLAYER: "player"
 };
 
 export class Vector {

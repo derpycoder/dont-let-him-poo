@@ -11,8 +11,9 @@ import {
   GameViewComponent,
   GridContainerComponent,
   CellContainerComponent,
-  TileFactoryComponent,
-  GridService
+  TileFactoryDirective,
+  GridCreationService,
+  InteractionService
 } from "./game-view";
 
 import {
@@ -34,7 +35,7 @@ import {
     GameViewComponent,
     GridContainerComponent,
     CellContainerComponent,
-    TileFactoryComponent,
+    TileFactoryDirective,
 
     LooComponent,
     MoneyComponent,
@@ -59,6 +60,6 @@ import {
     PoopComponent,
     WallComponent
   ],
-  providers: [GridService]
+  providers: [GridCreationService, InteractionService]
 })
 export class FeaturesModule {}
