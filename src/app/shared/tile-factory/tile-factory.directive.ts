@@ -52,7 +52,7 @@ export class TileFactoryDirective implements OnInit {
   }
 
   private renderComponent() {
-    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
       this.getComponents()
     );
     this.viewContainerRef.clear();
@@ -60,7 +60,7 @@ export class TileFactoryDirective implements OnInit {
   }
 
   private getComponents() {
-    let tileComponent = this.tiles[this._tileType];
+    const tileComponent = this.tiles[this._tileType];
 
     if (!tileComponent) {
       return this.tiles[TILE_TYPES.NONE];

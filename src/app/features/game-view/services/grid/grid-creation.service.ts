@@ -38,7 +38,7 @@ export class GridCreationService {
   }
 
   serializeGrid() {
-    let serializedGrid = JSON.stringify({
+    const serializedGrid = JSON.stringify({
       gameGrid: this.gameGrid.map(row => {
         return row.map((cell: any) => {
           return cell.tileType;

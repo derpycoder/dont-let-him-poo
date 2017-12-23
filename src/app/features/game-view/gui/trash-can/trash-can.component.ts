@@ -11,17 +11,17 @@ import { InteractionService } from "../../services/interaction.service";
 export class TrashCanComponent {
   tile_types = TILE_TYPES;
 
-  constructor(private interactionService: InteractionService) {}
+  constructor(public interactionService: InteractionService) {}
 
   selectMoney() {
-      if(this.interactionService.remainingQuantity[TILE_TYPES.MONEY] > 0) {
-        this.interactionService.selectedTileType = TILE_TYPES.MONEY
-      }
+    if (this.interactionService.remainingQuantity[TILE_TYPES.MONEY] > 0) {
+      this.interactionService.selectedTileType = TILE_TYPES.MONEY;
+    }
   }
 
   selectPizza() {
-    if(this.interactionService.remainingQuantity[TILE_TYPES.PIZZA] > 0) {
-      this.interactionService.selectedTileType = TILE_TYPES.PIZZA
+    if (this.interactionService.remainingQuantity[TILE_TYPES.PIZZA] > 0) {
+      this.interactionService.selectedTileType = TILE_TYPES.PIZZA;
     }
-}
+  }
 }

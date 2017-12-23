@@ -13,7 +13,7 @@ export class InteractionService {
   selectedTileType: string = TILE_TYPES.NONE;
 
   updateQuantity(tileType) {
-    if(this.remainingQuantity[tileType] > 0) {
+    if (this.remainingQuantity[tileType] > 0) {
       this.remainingQuantity[tileType]--;
     }
   }
