@@ -155,8 +155,8 @@ export class GridService {
 
   getCost(source: Node, destination: Node): number {
     return destination.x - source.x === 0 || destination.y - source.x === 0
-      ? 10
-      : 14;
+      ? 1
+      : Math.SQRT2;
   }
 
   private checkBounds(x, y): boolean {

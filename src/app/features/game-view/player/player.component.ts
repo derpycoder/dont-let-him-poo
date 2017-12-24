@@ -6,6 +6,9 @@ import {
   ChangeDetectorRef
 } from "@angular/core";
 
+import { TimelineMax } from "gsap";
+
+import { Node } from "../services/grid/grid.model";
 import { GridService } from "../services/grid/grid.service";
 import { PathFindingService } from "../services/path-finding/path-finding.service";
 import { PLAYER_TYPES } from "../services/choreographer/choreographer.model";
@@ -28,10 +31,14 @@ export class PlayerComponent implements OnInit {
   playerPixelPos: Vector = new Vector();
   playerGridPos: Vector = new Vector();
 
+  path: Node[];
+
   measurements: Measurements = new Measurements();
 
   playerType: PLAYER_TYPES = PLAYER_TYPES.NONE;
   player_types = PLAYER_TYPES;
+
+  animatedOnce: boolean;
 
   constructor(
     private pathFindingService: PathFindingService,
@@ -48,15 +55,15 @@ export class PlayerComponent implements OnInit {
         this.playerGridPos.x = sourceAndDestination.source.x;
         this.playerGridPos.y = sourceAndDestination.source.y;
 
-        console.log(
-          this.pathFindingService.findPath(
-            sourceAndDestination.source,
-            sourceAndDestination.destination
-          )
-        );
-
         console.log("Grid Position: ", this.playerGridPos);
         this.setPlayerPosition();
+
+        this.path = this.pathFindingService.findPath(
+          sourceAndDestination.source,
+          sourceAndDestination.destination
+        );
+
+        this.animatePlayer();
       }
     );
 
@@ -65,8 +72,34 @@ export class PlayerComponent implements OnInit {
         this.measurements = measurements;
         console.log("Measurements: ", this.measurements);
         this.setPlayerPosition();
+        this.animatePlayer();
       }
     );
+  }
+
+  animatePlayer() {
+    if (!this.animatedOnce && (!this.path || !this.measurements || !this.playerGridPos)) {
+      return;
+    }
+    
+    const tl = new TimelineMax();
+
+    this.path.forEach(node => {
+      // tl.set(this.playerRef.nativeElement, { y: 50, alpha: 0 });
+      let targetPos = this.calculatePixelPosition({
+        x: node.x,
+        y: node.y
+      });
+
+      tl.to(this.playerRef.nativeElement, 0.5, {
+        left: targetPos.y,
+        top: targetPos.x
+      });
+
+      tl.play();
+    });
+
+    this.animatedOnce = true;
   }
 
   setPlayerPosition() {
@@ -74,15 +107,24 @@ export class PlayerComponent implements OnInit {
       return;
     }
 
-    this.playerPixelPos.x =
-      this.measurements.gridContainerPadding +
-      this.measurements.cellMargin * this.playerGridPos.x +
-      this.measurements.cellSize * this.playerGridPos.x;
-    this.playerPixelPos.y =
-      this.measurements.gridContainerPadding +
-      this.measurements.cellMargin * this.playerGridPos.y +
-      this.measurements.cellSize * this.playerGridPos.y;
+    this.playerPixelPos = this.calculatePixelPosition(this.playerGridPos);
+  }
 
-    console.log("Calculated Pixel Pos: ", this.playerPixelPos);
+  calculatePixelPosition(targetPos: Vector): Vector {
+    console.log(this.measurements);
+
+    const x =
+      this.measurements.gridContainerPadding +
+      this.measurements.cellMargin * targetPos.x +
+      this.measurements.cellSize * targetPos.x;
+
+    const y =
+      this.measurements.gridContainerPadding +
+      this.measurements.cellMargin * targetPos.y +
+      this.measurements.cellSize * targetPos.y;
+
+    console.log("Calculated Pixel Pos: ", x, y);
+
+    return { x, y };
   }
 }
