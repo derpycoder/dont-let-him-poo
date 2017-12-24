@@ -12,10 +12,14 @@ export const TILE_TYPES = {
     PLAYER: "player"
 };
 
-export class CellData {
-    tileType: string;
-}
-export class Vector {
+export class Node {
     x: number;
     y: number;
+    tileType: string;
+    
+    f?: number;
+    g?: number;
+    h?: number;
+    opened?: boolean;
+    closed?: boolean;
 }

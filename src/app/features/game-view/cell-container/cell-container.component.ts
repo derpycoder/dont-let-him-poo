@@ -2,7 +2,7 @@ import { Component, HostListener, Input } from "@angular/core";
 
 import { InteractionService, SalaryService } from "../services/";
 
-import { TILE_TYPES, CellData } from "../services/";
+import { TILE_TYPES, Node } from "../services/";
 
 @Component({
   selector: "dlp-cell-container",
@@ -10,7 +10,7 @@ import { TILE_TYPES, CellData } from "../services/";
   styleUrls: ["./cell-container.component.css"]
 })
 export class CellContainerComponent {
-  @Input() cellData: CellData;
+  @Input() node: Node;
 
   constructor(
     public interactionService: InteractionService,
@@ -30,7 +30,7 @@ export class CellContainerComponent {
   }
 
   private onPointerDown() {
-    if (this.cellData.tileType === TILE_TYPES.NONE) {
+    if (this.node.tileType === TILE_TYPES.NONE) {
       if (
         this.interactionService.selectedTileType !== TILE_TYPES.WALL &&
         this.interactionService.selectedTileType !== TILE_TYPES.NONE
@@ -40,22 +40,22 @@ export class CellContainerComponent {
             this.interactionService.selectedTileType
           ] > 0
         ) {
-          this.cellData.tileType = this.interactionService.selectedTileType;
+          this.node.tileType = this.interactionService.selectedTileType;
           this.interactionService.updateQuantity(
             this.interactionService.selectedTileType
           );
         }
         this.interactionService.selectedTileType = TILE_TYPES.NONE;
       } else {
-        this.interactionService.selectedTileType = this.cellData.tileType =
+        this.interactionService.selectedTileType = this.node.tileType =
           TILE_TYPES.WALL;
       }
-    } else if (this.cellData.tileType === TILE_TYPES.WALL) {
+    } else if (this.node.tileType === TILE_TYPES.WALL) {
       if (
         this.interactionService.selectedTileType === TILE_TYPES.WALL ||
         this.interactionService.selectedTileType === TILE_TYPES.NONE
       ) {
-        this.interactionService.selectedTileType = this.cellData.tileType =
+        this.interactionService.selectedTileType = this.node.tileType =
           TILE_TYPES.NONE;
       }
     }

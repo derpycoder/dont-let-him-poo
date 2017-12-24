@@ -9,6 +9,8 @@ export class InteractionService {
     money: 5
   };
 
+  diagonalMovementAllowed: boolean = true;
+
   // Selected tile type
   selectedTileType: string = TILE_TYPES.NONE;
 

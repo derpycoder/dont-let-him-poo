@@ -3,6 +3,6 @@
       <img class="get-loader" src="./assets/images/loader.gif" alt="Loader">
   </div>
   <div class="grid-row" *ngFor="let row of gridService.gameGrid">
-    <dlp-cell-container [cellData]="cell" class="grid-cell" *ngFor="let cell of row"></dlp-cell-container>
+    <dlp-cell-container [node]="cell" class="grid-cell" *ngFor="let cell of row"></dlp-cell-container>
   </div>
 </div>

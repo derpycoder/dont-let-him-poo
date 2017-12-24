@@ -15,7 +15,7 @@ import {
   CellContainerComponent,
   TrashCanComponent,
   SalaryGaugeComponent,
-  GridCreationService,
+  GridService,
   InteractionService,
   SalaryService
 } from "./game-view";
@@ -34,6 +34,6 @@ import {
     TrashCanComponent,
     SalaryGaugeComponent
   ],
-  providers: [GridCreationService, InteractionService, SalaryService]
+  providers: [GridService, InteractionService, SalaryService]
 })
 export class FeaturesModule {}

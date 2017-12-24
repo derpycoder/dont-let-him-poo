@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 
 import { environment } from "../../../environments/environment";
 import { TILE_TYPES } from "./services/grid/grid.model";
-import { GridCreationService } from "./services/";
+import { GridService } from "./services/";
 
 @Component({
   selector: "dlp-game-view",
@@ -14,5 +14,5 @@ export class GameViewComponent {
   tile_types = TILE_TYPES;
   env = environment;
 
-  constructor(private gridCreationService: GridCreationService) {}
+  constructor(private gridCreationService: GridService) {}
 }

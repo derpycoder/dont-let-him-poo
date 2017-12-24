@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { GridCreationService } from '../services/grid/grid-creation.service';
+import { GridService } from '../services/grid/grid.service';
 
 @Component({
   selector: 'dlp-grid-container',
@@ -8,7 +8,7 @@ import { GridCreationService } from '../services/grid/grid-creation.service';
   styleUrls: ['./grid-container.component.css']
 })
 export class GridContainerComponent implements OnInit {
-  constructor(public gridService: GridCreationService) { }
+  constructor(public gridService: GridService) { }
 
   ngOnInit() {
     if(!this.gridService.gameGrid) {
