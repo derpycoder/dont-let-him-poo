@@ -10,6 +10,14 @@
     position: relative;
 }
 
+.fa.fa-play {
+    color: #5ac8fa;
+    font-size: 50px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
 .grid-row {
     margin: 0 auto;
     margin-bottom: 4px;
@@ -53,5 +61,8 @@
         width: 24px;
         height: 24px;
         margin-right: 2px;
+    }
+    .fa.fa-play {
+        font-size: 25px;
     }
 }

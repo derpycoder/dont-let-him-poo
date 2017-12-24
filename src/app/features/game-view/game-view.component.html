@@ -15,9 +15,12 @@
 </svg>
 
 <div class="container main">
-  <h1 routerLink="/rankings">
-    <span class="title">{{title}}</span>
-    <dlp-salary-gauge></dlp-salary-gauge>
+  <h1>
+    <ng-container>
+      <span class="title">{{title}}</span>
+      <span class="fa fa-refresh"></span>
+    </ng-container>
+    <dlp-salary-gauge routerLink="/rankings"></dlp-salary-gauge>
   </h1>
 
   <dlp-grid-container></dlp-grid-container>
@@ -25,9 +28,9 @@
   <dlp-trash-can></dlp-trash-can>
 
   <ng-container *ngIf="!env.production">
-    <button type="button" class="btn btn-dark" (click)="gridService.clearGrid()">Clear</button>
-    <button type="button" class="btn btn-dark" (click)="gridService.resetGrid()">Reset</button>
-    <button type="button" class="btn btn-dark" (click)="gridService.serializeGrid()">Serialize</button>
+    <button type="button" class="btn btn-dark hidden-sm hidden-xs" (click)="gridService.clearGrid()">Clear</button>
+    <button type="button" class="btn btn-dark hidden-sm hidden-xs" (click)="gridService.resetGrid()">Reset</button>
+    <button type="button" class="btn btn-dark hidden-sm hidden-xs" (click)="gridService.serializeGrid()">Serialize</button>
   </ng-container>
 </div>
 

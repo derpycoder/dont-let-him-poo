@@ -11,6 +11,11 @@
   float: right;
 
   padding: 0px 10px 5px 10px;
+  position: relative;
+}
+
+.gauge-container:focus, .gauge-container:active {
+  outline: none !important;
 }
 
 .fa.fa-usd,
@@ -18,6 +23,15 @@
   color: #66c9fa;
   font-size: 0.7em;
   text-shadow: 0 1px 0 rgba(133, 221, 255, 0.4);
+}
+
+.high-score {
+  right: 10px;
+  top: -24px;
+  font-size: 0.5em;
+  color: #66c9fa;
+  font-weight: bold;
+  position: absolute;
 }
 
 .fa.fa-usd {
@@ -30,7 +44,7 @@
 .score {
   float: right;
   font-weight: bold;
-  margin-top: 9px;
+  margin-top: 6%;
 }
 
 .vfx {
@@ -45,11 +59,19 @@
   .gauge-container {
     height: 40px;
   }
-  .fa.fa-usd, .score {
+  .fa.fa-usd,
+  .score {
     margin-top: 12%;
   }
-  .fa.fa-usd, .score, .vfx {
+  .fa.fa-usd,
+  .score,
+  .vfx {
     font-size: 0.4em;
   }
-}
 
+  .high-score {
+    right: 10px;
+    top: -17px;
+    font-size: 0.3em;
+  }
+}

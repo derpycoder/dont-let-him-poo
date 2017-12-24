@@ -1,9 +1,17 @@
 <div class="grid-container">
-  <div *ngIf="!gridService.gameGrid">
-      <img class="get-loader" src="./assets/images/loader.gif" alt="Loader">
+  <div *ngIf="!gridService.gameGrid; else showPlayButton">
+    <img class="get-loader" src="./assets/images/loader.gif" alt="Loader">
   </div>
-  <dlp-player></dlp-player>
-  <div class="grid-row" *ngFor="let row of gridService.gameGrid">
-    <dlp-cell-container [node]="cell" class="grid-cell" *ngFor="let cell of row"></dlp-cell-container>
-  </div>
+
+  <ng-template #showPlayButton>
+    <span *ngIf="!showGrid" class="fa fa-play" (click)="showGrid = true"></span>
+  </ng-template>
+
+  <dlp-player [hidden]="!showGrid"></dlp-player>
+
+  <ng-container *ngIf="showGrid">
+    <div class="grid-row" *ngFor="let row of gridService.gameGrid">
+      <dlp-cell-container [node]="cell" class="grid-cell" *ngFor="let cell of row"></dlp-cell-container>
+    </div>
+  </ng-container>
 </div>
