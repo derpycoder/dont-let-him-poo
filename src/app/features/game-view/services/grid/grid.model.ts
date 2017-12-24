@@ -22,4 +22,5 @@ export class Node {
     h?: number;
     opened?: boolean;
     closed?: boolean;
+    parent?: Node;
 }

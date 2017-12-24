@@ -17,7 +17,9 @@ import {
   SalaryGaugeComponent,
   GridService,
   InteractionService,
-  SalaryService
+  SalaryService,
+  PathFindingService,
+  HeuristicService
 } from "./game-view";
 
 @NgModule({
@@ -34,6 +36,12 @@ import {
     TrashCanComponent,
     SalaryGaugeComponent
   ],
-  providers: [GridService, InteractionService, SalaryService]
+  providers: [
+    GridService,
+    InteractionService,
+    SalaryService,
+    PathFindingService,
+    HeuristicService
+  ]
 })
 export class FeaturesModule {}

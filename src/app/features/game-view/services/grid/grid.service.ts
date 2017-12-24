@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Node, TILE_TYPES } from "./grid.model";
 
@@ -9,6 +9,8 @@ import { InteractionService } from "../interaction.service";
 export class GridService {
   gameGridBackup: Node[][];
   gameGrid: Node[][];
+
+  onGridReady: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private httpClient: HttpClient,
@@ -39,6 +41,8 @@ export class GridService {
         this.gameGridBackup = _.cloneDeep(this.gameGrid);
 
         console.log(this.getNeighbors({ x: 5, y: 5, tileType: "meh" }));
+
+        this.onGridReady.emit(true);
       });
   }
 
@@ -108,7 +112,7 @@ export class GridService {
   }
 
   getNeighbors(target: Node): Node[] {
-    if (!this.gameGrid && !this.checkBounds(target.x, target.y)) {
+    if (!this.gameGrid || !this.checkBounds(target.x, target.y)) {
       return;
     }
 
@@ -124,7 +128,7 @@ export class GridService {
     dirs.forEach(dir => {
       i = target.x + dir[0];
       j = target.y + dir[1];
-
+      
       if (
         this.checkBounds(i, j) &&
         this.gameGrid[i][j].tileType !== TILE_TYPES.WALL
@@ -138,8 +142,8 @@ export class GridService {
 
   getCost(source: Node, destination: Node): number {
     return destination.x - source.x === 0 || destination.y - source.x === 0
-      ? 1
-      : Math.SQRT2;
+      ? 10
+      : 14;
   }
 
   private checkBounds(x, y): boolean {

@@ -11,7 +11,6 @@ export class InteractionService {
 
   diagonalMovementAllowed: boolean = true;
 
-  // Selected tile type
   selectedTileType: string = TILE_TYPES.NONE;
 
   updateQuantity(tileType) {
