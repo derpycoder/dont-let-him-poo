@@ -9,7 +9,7 @@ export class InteractionService {
     money: 5
   };
 
-  diagonalMovementAllowed: boolean;
+  diagonalMovementAllowed: boolean = true;
 
   selectedTileType: string = TILE_TYPES.NONE;
 

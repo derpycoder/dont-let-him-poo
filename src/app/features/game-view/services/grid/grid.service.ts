@@ -129,14 +129,14 @@ export class GridService {
       return;
     }
 
-    let dirs: any[][] = [[-1, 0], [0, 1], [1, 0], [-1, 0]];
+    const dirs: any[][] = [[-1, 0], [0, 1], [1, 0], [-1, 0]];
     let i, j;
 
     if (this.interactionService.diagonalMovementAllowed) {
       dirs.push([-1, 1], [1, 1], [1, -1], [-1, -1]);
     }
 
-    let neighbors: Node[] = [];
+    const neighbors: Node[] = [];
 
     dirs.forEach(dir => {
       i = target.x + dir[0];

@@ -16,7 +16,6 @@ export class PathFindingService {
   ) {}
 
   findPath(source: Node, destination: Node) {
-    //   if(this.interactionService.diagonalMovementAllowed)
     return this.aStarPathFinder(source, destination);
   }
 
@@ -27,7 +26,7 @@ export class PathFindingService {
       return;
     }
     let q: Node = head;
-    let path: Node[] = [];
+    const path: Node[] = [];
 
     while (q) {
       path.push(q);
@@ -38,7 +37,7 @@ export class PathFindingService {
   }
 
   private aStarPathFinder(source: Node, destination: Node) {
-    let openList = new heap((nodeA, nodeB) => {
+    const openList = new heap((nodeA, nodeB) => {
       return nodeA.f - nodeB.f;
     });
 
@@ -48,14 +47,14 @@ export class PathFindingService {
     source.opened = true;
 
     while (!openList.empty()) {
-      let curr: Node = openList.pop();
+      const curr: Node = openList.pop();
       curr.closed = true;
 
       if (curr === destination) {
         return this.backTrack(destination);
       }
 
-      let neighbors = this.gridService.getNeighbors(curr);
+      const neighbors = this.gridService.getNeighbors(curr);
       if (!neighbors) {
         continue;
       }
@@ -64,7 +63,7 @@ export class PathFindingService {
           return;
         }
 
-        let ng = this.gridService.getCost(curr, neighbor);
+        const ng = this.gridService.getCost(curr, neighbor);
 
         if (!neighbor.opened || ng < neighbor.g) {
           neighbor.g = ng;

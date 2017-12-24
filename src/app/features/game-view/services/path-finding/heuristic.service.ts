@@ -8,8 +8,8 @@ export class HeuristicService {
   constructor(private interactionService: InteractionService) {}
 
   heuristic(source: Node, destination: Node): number {
-    let dx = Math.abs(source.x - destination.x);
-    let dy = Math.abs(source.y - destination.y);
+    const dx = Math.abs(source.x - destination.x);
+    const dy = Math.abs(source.y - destination.y);
 
     return this.interactionService.diagonalMovementAllowed
       ? this.octileDistance(dx, dy)
