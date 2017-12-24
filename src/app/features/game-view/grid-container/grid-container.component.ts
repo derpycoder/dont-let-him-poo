@@ -18,14 +18,5 @@ export class GridContainerComponent implements OnInit {
     if (!this.gridService.gameGrid) {
       this.gridService.initGrid();
     }
-
-    this.gridService.onGridReady.subscribe(bool => {
-      console.log(
-        this.pathFindingService.findPath(
-          this.gridService.gameGrid[0][0],
-          this.gridService.gameGrid[10][10]
-        )
-      );
-    });
   }
 }

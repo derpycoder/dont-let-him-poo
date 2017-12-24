@@ -8,8 +8,6 @@ import {
   MoneyComponent,
   PizzaComponent,
   NoneComponent,
-  SleepingComponent,
-  PlayerComponent,
   WallComponent,
   PoopComponent
 } from "./tile-factory";
@@ -23,9 +21,7 @@ import {
     NoneComponent,
     PizzaComponent,
     PoopComponent,
-    WallComponent,
-    PlayerComponent,
-    SleepingComponent
+    WallComponent
   ],
   exports: [
     TileFactoryDirective
@@ -36,9 +32,7 @@ import {
     NoneComponent,
     PizzaComponent,
     PoopComponent,
-    WallComponent,
-    PlayerComponent,
-    SleepingComponent
+    WallComponent
   ]
 })
 export class SharedModule {}

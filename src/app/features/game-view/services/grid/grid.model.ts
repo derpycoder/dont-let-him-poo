@@ -1,26 +1,31 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter } from "@angular/core";
 
 export const TILE_TYPES = {
-    WALL: "wall",
-    POOP: "poop",
-    NONE: "none",
-    LOO: "loo",
+  WALL: "wall",
+  POOP: "poop",
+  NONE: "none",
+  LOO: "loo",
 
-    PIZZA: "pizza",
-    MONEY: "money",
+  PIZZA: "pizza",
+  MONEY: "money",
 
-    PLAYER: "player"
+  PLAYER: "player"
 };
 
 export class Node {
-    x: number;
-    y: number;
-    tileType: string;
-    
-    f?: number;
-    g?: number;
-    h?: number;
-    opened?: boolean;
-    closed?: boolean;
-    parent?: Node;
+  x: number;
+  y: number;
+  tileType: string;
+
+  f?: number;
+  g?: number;
+  h?: number;
+  opened?: boolean;
+  closed?: boolean;
+  parent?: Node;
+}
+
+export class SourceAndDestination {
+  source: Node;
+  destination: Node;
 }

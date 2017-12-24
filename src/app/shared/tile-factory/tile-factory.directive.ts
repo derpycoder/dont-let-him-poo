@@ -11,7 +11,6 @@ import {
   NoneComponent,
   MoneyComponent,
   PizzaComponent,
-  PlayerComponent,
   WallComponent,
   PoopComponent
 } from "./";
@@ -37,9 +36,7 @@ export class TileFactoryDirective implements OnInit {
 
     // Short Term Goals
     pizza: PizzaComponent,
-    money: MoneyComponent,
-
-    player: PlayerComponent
+    money: MoneyComponent
   };
 
   constructor(

@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Node, TILE_TYPES } from "./grid.model";
+import { Node, TILE_TYPES, SourceAndDestination } from "./grid.model";
 
 import * as _ from "lodash";
 import { InteractionService } from "../interaction.service";
@@ -9,6 +9,13 @@ import { InteractionService } from "../interaction.service";
 export class GridService {
   gameGridBackup: Node[][];
   gameGrid: Node[][];
+
+  private player: Node;
+  private loo: Node;
+
+  onPlayerAndLooPlaced: EventEmitter<SourceAndDestination> = new EventEmitter<
+    SourceAndDestination
+  >();
 
   onGridReady: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -36,7 +43,7 @@ export class GridService {
           this.gameGrid.push(row);
         }
 
-        this.randomlyPlacePlayerAndLoo();
+        this.randomlyPlaceLoo();
 
         this.gameGridBackup = _.cloneDeep(this.gameGrid);
 
@@ -46,7 +53,7 @@ export class GridService {
       });
   }
 
-  private randomlyPlacePlayerAndLoo() {
+  private randomlyPlaceLoo() {
     let playerPlaced: boolean;
     let looPlaced: boolean;
     let i, j, x, y;
@@ -66,17 +73,23 @@ export class GridService {
       }
 
       if (!playerPlaced && this.gameGrid[i][j].tileType === TILE_TYPES.NONE) {
-        this.gameGrid[i][j].tileType = TILE_TYPES.PLAYER;
+        this.player = this.gameGrid[i][j];
+        this.player.tileType = TILE_TYPES.PLAYER;
         playerPlaced = true;
       }
 
       if (!looPlaced && this.gameGrid[x][y].tileType === TILE_TYPES.NONE) {
-        this.gameGrid[x][y].tileType = TILE_TYPES.LOO;
+        this.loo = this.gameGrid[x][y];
+        this.loo.tileType = TILE_TYPES.LOO;
         looPlaced = true;
       }
 
       if (playerPlaced && looPlaced) {
-        break;
+        this.onPlayerAndLooPlaced.emit({
+          source: this.player,
+          destination: this.loo
+        });
+        return;
       }
     }
   }
@@ -128,7 +141,7 @@ export class GridService {
     dirs.forEach(dir => {
       i = target.x + dir[0];
       j = target.y + dir[1];
-      
+
       if (
         this.checkBounds(i, j) &&
         this.gameGrid[i][j].tileType !== TILE_TYPES.WALL

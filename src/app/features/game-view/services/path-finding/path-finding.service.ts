@@ -33,7 +33,7 @@ export class PathFindingService {
       path.push(q);
       q = q.parent;
     }
-
+    path.splice(-1, 1);
     return path.reverse();
   }
 

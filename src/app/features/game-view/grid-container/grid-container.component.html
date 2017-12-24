@@ -2,6 +2,7 @@
   <div *ngIf="!gridService.gameGrid">
       <img class="get-loader" src="./assets/images/loader.gif" alt="Loader">
   </div>
+  <dlp-player></dlp-player>
   <div class="grid-row" *ngFor="let row of gridService.gameGrid">
     <dlp-cell-container [node]="cell" class="grid-cell" *ngFor="let cell of row"></dlp-cell-container>
   </div>
