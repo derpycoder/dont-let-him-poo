@@ -1,0 +1,15 @@
+.measuring-stick {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+@media screen and (max-width: 520px) {
+  .measuring-stick {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    width: 2px;
+  }
+}

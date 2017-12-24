@@ -1,17 +1,22 @@
 export enum PLAYER_TYPES {
-    NONE,
-    SLEEPING,
-    HAPPY,
-    ANGRY
-};
+  NONE,
+  SLEEPING,
+  HAPPY,
+  ANGRY
+}
 
 export class Vector {
-    x: number;
-    y: number;
+  x: number;
+  y: number;
 }
 
 export class Measurements {
-    cellSize: number;
-    cellMargin: number;
-    gridContainerPadding: number;
+  cellSize: number;
+  cellMargin: number;
+  gridContainerPadding: number;
+}
+
+export enum BREAKPOINTS {
+  DESKTOP = 1,
+  MOBILE = 2
 }

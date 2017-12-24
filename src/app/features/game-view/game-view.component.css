@@ -121,13 +121,6 @@ ol {
   margin-right: 10px;
 }
 
-.measuring-stick {
-  visibility: hidden;
-  position: absolute;
-  top: 0;
-  width: 37px;
-}
-
 @media screen and (max-width: 768px) {
   .container {
     width: 527px;
@@ -141,13 +134,6 @@ ol {
   }
 }
 @media screen and (max-width: 520px) {
-  .measuring-stick {
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    width: 24px;
-  }
-
   .author,
   .links {
     float: none;

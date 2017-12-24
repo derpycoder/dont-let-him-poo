@@ -63,7 +63,7 @@ export class PlayerComponent implements OnInit {
           sourceAndDestination.destination
         );
 
-        this.animatePlayer();
+        // this.animatePlayer();
       }
     );
 
@@ -72,7 +72,7 @@ export class PlayerComponent implements OnInit {
         this.measurements = measurements;
         console.log("Measurements: ", this.measurements);
         this.setPlayerPosition();
-        this.animatePlayer();
+        // this.animatePlayer();
       }
     );
   }
@@ -84,20 +84,20 @@ export class PlayerComponent implements OnInit {
     
     const tl = new TimelineMax();
 
-    this.path.forEach(node => {
-      // tl.set(this.playerRef.nativeElement, { y: 50, alpha: 0 });
-      let targetPos = this.calculatePixelPosition({
-        x: node.x,
-        y: node.y
-      });
+    // this.path.forEach(node => {
+    //   // tl.set(this.playerRef.nativeElement, { y: 50, alpha: 0 });
+    //   let targetPos = this.calculatePixelPosition({
+    //     x: node.x,
+    //     y: node.y
+    //   });
 
-      tl.to(this.playerRef.nativeElement, 0.5, {
-        left: targetPos.y,
-        top: targetPos.x
-      });
+    //   tl.to(this.playerRef.nativeElement, 0.5, {
+    //     left: targetPos.y,
+    //     top: targetPos.x
+    //   });
 
-      tl.play();
-    });
+    //   tl.play();
+    // });
 
     this.animatedOnce = true;
   }

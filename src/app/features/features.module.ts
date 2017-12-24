@@ -16,6 +16,7 @@ import {
   TrashCanComponent,
   SalaryGaugeComponent,
   PlayerComponent,
+  MeasuringStickComponent,
   GridService,
   InteractionService,
   SalaryService,
@@ -37,7 +38,8 @@ import {
     CellContainerComponent,
     TrashCanComponent,
     SalaryGaugeComponent,
-    PlayerComponent
+    PlayerComponent,
+    MeasuringStickComponent
   ],
   providers: [
     GridService,

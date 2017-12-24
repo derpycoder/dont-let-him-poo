@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from "@angular/core";
 
-import { Measurements } from "./choreographer.model";
+import { Measurements, BREAKPOINTS } from "./choreographer.model";
 
 @Injectable()
 export class ChoreographerService {
@@ -12,14 +12,14 @@ export class ChoreographerService {
 
   takeMeasurements(token: number) {
     switch (token) {
-      case 37:
+      case BREAKPOINTS.DESKTOP:
         this._crucialMeasurements = {
           cellSize: 37,
           cellMargin: 4,
           gridContainerPadding: 20
         };
         break;
-      case 24:
+      case BREAKPOINTS.MOBILE:
         this._crucialMeasurements = {
           cellSize: 24,
           cellMargin: 2,
