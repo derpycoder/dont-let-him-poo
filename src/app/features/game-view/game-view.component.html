@@ -25,9 +25,9 @@
   <dlp-trash-can></dlp-trash-can>
 
   <ng-container *ngIf="!env.production">
-    <button type="button" class="btn btn-dark" (click)="gridCreationService.clearGrid()">Clear</button>
-    <button type="button" class="btn btn-dark" (click)="gridCreationService.resetGrid()">Reset</button>
-    <button type="button" class="btn btn-dark" (click)="gridCreationService.serializeGrid()">Serialize</button>
+    <button type="button" class="btn btn-dark" (click)="gridService.clearGrid()">Clear</button>
+    <button type="button" class="btn btn-dark" (click)="gridService.resetGrid()">Reset</button>
+    <button type="button" class="btn btn-dark" (click)="gridService.serializeGrid()">Serialize</button>
   </ng-container>
 </div>
 
@@ -40,7 +40,6 @@
       <a href="https://github.com/abhijit-kar/dont-let-him-poo" target="_blank">{{'{'}}Git{{'}'}}</a>
     </span>
   </div>
-  <div class="clearfix"></div>
 
   <hr>
 
@@ -54,3 +53,5 @@
     <li>Paint a fake picture of the world</li>
   </ol>
 </div>
+
+<div class="measuring-stick" #measuringStick></div>

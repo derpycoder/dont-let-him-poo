@@ -20,7 +20,8 @@ import {
   InteractionService,
   SalaryService,
   PathFindingService,
-  HeuristicService
+  HeuristicService,
+  ChoreographerService
 } from "./game-view";
 
 @NgModule({
@@ -43,7 +44,8 @@ import {
     InteractionService,
     SalaryService,
     PathFindingService,
-    HeuristicService
+    HeuristicService,
+    ChoreographerService
   ]
 })
 export class FeaturesModule {}

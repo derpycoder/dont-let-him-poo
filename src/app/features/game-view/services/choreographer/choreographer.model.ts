@@ -1,0 +1,17 @@
+export enum PLAYER_TYPES {
+    NONE,
+    SLEEPING,
+    HAPPY,
+    ANGRY
+};
+
+export class Vector {
+    x: number;
+    y: number;
+}
+
+export class Measurements {
+    cellSize: number;
+    cellMargin: number;
+    gridContainerPadding: number;
+}

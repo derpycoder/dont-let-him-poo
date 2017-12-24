@@ -3,3 +3,10 @@
   height: 37px;
   position: absolute;
 }
+
+@media screen and (max-width: 520px) {
+  .player {
+    width: 24px;
+    height: 24px;
+  }
+}
