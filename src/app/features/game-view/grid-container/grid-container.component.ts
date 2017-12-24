@@ -9,6 +9,8 @@ import { PathFindingService } from "../services/path-finding/path-finding.servic
   styleUrls: ["./grid-container.component.css"]
 })
 export class GridContainerComponent implements OnInit {
+  showGrid: boolean;
+  
   constructor(
     public gridService: GridService,
     private pathFindingService: PathFindingService
