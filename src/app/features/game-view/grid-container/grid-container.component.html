@@ -7,6 +7,8 @@
     <span *ngIf="choreographerService.currentGameState === game_states.START" class="fa fa-play" (click)="startGame()"></span>
   </ng-template>
 
+  <dlp-line-renderer></dlp-line-renderer>
+
   <div class="game-over" *ngIf="choreographerService.currentGameState === game_states.GAME_OVER">
     <h1>Game Over!</h1>
   </div>

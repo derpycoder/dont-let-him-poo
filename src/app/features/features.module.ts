@@ -17,6 +17,7 @@ import {
   SalaryGaugeComponent,
   PlayerComponent,
   MeasuringStickComponent,
+  LineRendererComponent,
   GridService,
   InteractionService,
   SalaryService,
@@ -40,7 +41,8 @@ import {
     TrashCanComponent,
     SalaryGaugeComponent,
     PlayerComponent,
-    MeasuringStickComponent
+    MeasuringStickComponent,
+    LineRendererComponent
   ],
   providers: [
     GridService,

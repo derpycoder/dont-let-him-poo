@@ -69,6 +69,7 @@
   width: 50%;
   left: 29%;
   font-weight: bold;
+  z-index: 10;
 }
 
 @media screen and (max-width: 520px) {

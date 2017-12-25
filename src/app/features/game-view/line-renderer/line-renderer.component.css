@@ -1,0 +1,10 @@
+svg {
+  position: absolute;
+  pointer-events: none;
+}
+
+svg .polyline {
+  fill: none;
+  stroke: #89fa5a;
+  stroke-width: 3;
+}
