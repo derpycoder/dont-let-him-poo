@@ -26,7 +26,7 @@ export class LineRendererComponent implements OnInit {
 
   tl: TimelineMax;
 
-  constructor(private choreographerService: ChoreographerService) {}
+  constructor(public choreographerService: ChoreographerService) {}
 
   ngOnInit() {
     this.tl = new TimelineMax();
