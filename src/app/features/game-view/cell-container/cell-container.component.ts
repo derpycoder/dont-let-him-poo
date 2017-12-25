@@ -33,7 +33,7 @@ export class CellContainerComponent {
       this.onPointerDown();
       this.salaryService.updateSalary(100);
     }
-    
+
     event.preventDefault();
   }
 

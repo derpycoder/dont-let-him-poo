@@ -64,6 +64,12 @@
 }
 
 @media screen and (max-width: 520px) {
+  .vfx {
+    top: 39%;
+    left: 24%;
+    width: 50%;
+    font-size: 50px;
+  }
   .grid-container {
     padding: 9px;
   }

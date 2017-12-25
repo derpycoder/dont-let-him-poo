@@ -55,7 +55,7 @@ export class PlayerComponent implements OnInit {
         this.playerGridPos.x = sourceAndDestination.source.x;
         this.playerGridPos.y = sourceAndDestination.source.y;
 
-        console.log("Grid Position: ", this.playerGridPos);
+        // console.log("Grid Position: ", this.playerGridPos);
         this.setPlayerPosition();
 
         this.path = this.pathFindingService.findPath(
@@ -68,7 +68,7 @@ export class PlayerComponent implements OnInit {
     this.choreographerService.onMeasurementsChange.subscribe(
       (measurements: Measurements) => {
         this.measurements = measurements;
-        console.log("Measurements: ", this.measurements);
+        // console.log("Measurements: ", this.measurements);
         this.setPlayerPosition();
       }
     );
@@ -100,7 +100,7 @@ export class PlayerComponent implements OnInit {
     const tl = new TimelineMax();
 
     this.path.forEach(node => {
-      let targetPos = this.calculatePixelPosition({
+      const targetPos = this.calculatePixelPosition({
         x: node.x,
         y: node.y
       });
@@ -125,7 +125,7 @@ export class PlayerComponent implements OnInit {
   }
 
   calculatePixelPosition(targetPos: Vector): Vector {
-    console.log(this.measurements);
+    // console.log(this.measurements);
 
     const x =
       this.measurements.gridContainerPadding +
@@ -137,7 +137,7 @@ export class PlayerComponent implements OnInit {
       this.measurements.cellMargin * targetPos.y +
       this.measurements.cellSize * targetPos.y;
 
-    console.log("Calculated Pixel Pos: ", x, y);
+    // console.log("Calculated Pixel Pos: ", x, y);
 
     return { x, y };
   }

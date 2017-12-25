@@ -128,7 +128,7 @@ ol {
   left: 10px;
   border: 1px solid rgb(36, 35, 35);
   border-radius: 50%;
-  padding: 3.5px 0 0 5.5px;
+  padding: 0.7% 0 0 1%;
   width: 30px;
   height: 30px;
   font-size: 20px;
@@ -163,6 +163,17 @@ ol {
   }
 }
 @media screen and (max-width: 520px) {
+  .fa.fa-power-off {
+    left: 5px;
+    top: 5px;
+    padding: 0.8% 0 0 1%;
+    width: 20px;
+    height: 20px;
+    font-size: 13px;
+  }
+  .fa.fa-power-off.active {
+    padding: 0.7% 0 0 1%;
+  }
   .author,
   .links {
     float: none;
