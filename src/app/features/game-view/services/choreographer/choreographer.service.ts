@@ -119,8 +119,8 @@ export class ChoreographerService {
     if (!this.path) {
       return;
     }
-
-    if (this.path.indexOf(roadBlock)) {
+    
+    if (this.path.indexOf(roadBlock) !== -1) {
       this.path = this.pathFindingService.findPath(this.player, this.loo);
 
       if (this.path) {
