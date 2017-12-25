@@ -83,7 +83,6 @@ export class ChoreographerService {
       if (playerPlaced && looPlaced) {
         this.onPlayerPlaced.emit(this.player);
         this.path = this.pathFindingService.findPath(this.player, this.loo);
-        console.log("Initial Path: ", this.path);
         
         if (this.path && this.path.length > 3) {
           this.onPlayerPlaced.emit(this.player);
@@ -122,11 +121,9 @@ export class ChoreographerService {
       return;
     }
 
-    console.log("Collision Check");
     if (this.path.indexOf(roadBlock)) {
-      console.log("Yup");
       this.path = this.pathFindingService.findPath(this.player, this.loo);
-      console.log("Path: ", this.path);
+      
       if (this.path) {
         this.onPathChange.emit(this.path);
       }

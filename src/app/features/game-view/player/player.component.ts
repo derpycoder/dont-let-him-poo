@@ -95,14 +95,11 @@ export class PlayerComponent implements OnInit {
     if (!this.path || !this.measurements || !this.playerGridPos) {
       return;
     }
-    
+
     this.tl.kill();
     this.tl.clear();
 
     this.path.forEach(node => {
-      // if(node.tileType === TILE_TYPES.WALL) {
-        console.log("shit: ", node);
-
       const targetPos = this.calculatePixelPosition({
         x: node.x,
         y: node.y

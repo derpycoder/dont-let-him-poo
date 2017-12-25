@@ -17,7 +17,7 @@ export class HeuristicService {
       ? this.octileDistance(dx, dy)
       : this.manhattanDistance(dx, dy);
 
-      return heuristic *= (1.0 + 1 / 50);
+      return heuristic *= (1.0 + 1 / 100);
   }
 
   private manhattanDistance(dx: number, dy: number): number {

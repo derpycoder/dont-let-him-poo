@@ -1,6 +1,6 @@
 <div class="trash" (click)="selectMoney()" [ngClass]="{'active': interactionService.selectedTileType === tile_types.MONEY}">
     <div class="trash-badge" [ngClass]="{'active': interactionService.selectedTileType === tile_types.MONEY}">{{interactionService.remainingQuantity[tile_types.MONEY]}}</div>
-    <img class="trash-image" src="./assets/images/money-1.png" alt="Money" [ngClass]="{'deactive': interactionService.remainingQuantity[tile_types.MONEY] === 0}">
+    <img class="trash-image" src="./assets/images/money.png" alt="Money" [ngClass]="{'deactive': interactionService.remainingQuantity[tile_types.MONEY] === 0}">
 </div>
 
 <div class="trash" (click)="selectPizza()" [ngClass]="{'active': interactionService.selectedTileType === tile_types.PIZZA}">
