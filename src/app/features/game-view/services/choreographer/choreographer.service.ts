@@ -82,7 +82,7 @@ export class ChoreographerService {
       if (playerPlaced && looPlaced) {
         this.onPlayerPlaced.emit(this.player);
         this.path = this.pathFindingService.findPath(this.player, this.loo);
-        
+
         if (this.path && this.path.length > 3) {
           this.onPlayerPlaced.emit(this.player);
           this.onPathChange.emit(this.path);
@@ -122,7 +122,7 @@ export class ChoreographerService {
 
     if (this.path.indexOf(roadBlock)) {
       this.path = this.pathFindingService.findPath(this.player, this.loo);
-      
+
       if (this.path) {
         this.onPathChange.emit(this.path);
       }
