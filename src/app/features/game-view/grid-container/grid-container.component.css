@@ -63,7 +63,18 @@
   width: 32%;
 }
 
+.game-over h1 {
+  position: absolute;
+  color: #66c9fa;
+  width: 50%;
+  left: 29%;
+  font-weight: bold;
+}
+
 @media screen and (max-width: 520px) {
+  .game-over h1 {
+    font-size: 1.5em;
+  }
   .vfx {
     top: 39%;
     left: 24%;

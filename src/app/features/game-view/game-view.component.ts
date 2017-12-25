@@ -37,7 +37,7 @@ export class GameViewComponent implements OnInit {
   }
 
   restartGame() {
-    if(this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
+    if(this.choreographerService.currentGameState === GAME_STATES.RUNNING || this.choreographerService.currentGameState === GAME_STATES.GAME_OVER) {
       this.choreographerService.currentGameState = GAME_STATES.START;
       this.salaryService.salary = 0;
     }

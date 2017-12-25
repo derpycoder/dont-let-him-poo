@@ -7,6 +7,10 @@
     <span *ngIf="choreographerService.currentGameState === game_states.START" class="fa fa-play" (click)="startGame()"></span>
   </ng-template>
 
+  <div class="game-over" *ngIf="choreographerService.currentGameState === game_states.GAME_OVER">
+    <h1>Game Over!</h1>
+  </div>
+
   <dlp-player></dlp-player>
 
   <ng-container *ngIf="showGrid">

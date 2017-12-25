@@ -7,6 +7,7 @@ import { ChoreographerService } from "../services/choreographer/choreographer.se
 import { GAME_STATES } from "../services/choreographer/choreographer.model";
 
 import { TimelineMax } from "gsap";
+import { SalaryService } from "../services/salary.service";
 
 @Component({
   selector: "dlp-grid-container",
@@ -23,7 +24,8 @@ export class GridContainerComponent implements OnInit {
   constructor(
     public gridService: GridService,
     private pathFindingService: PathFindingService,
-    public choreographerService: ChoreographerService
+    public choreographerService: ChoreographerService,
+    public salaryService: SalaryService
   ) {}
 
   ngOnInit() {

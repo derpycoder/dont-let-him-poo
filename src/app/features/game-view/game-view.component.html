@@ -17,7 +17,8 @@
 <div class="container main">
   <h1>
     <ng-container>
-      <span class="fa fa-power-off" [ngClass]="{'active': choreographerService.currentGameState === game_states.RUNNING}" (click)="restartGame()"></span>
+      <span class="fa fa-power-off" [ngClass]="{'active': choreographerService.currentGameState === game_states.RUNNING || choreographerService.currentGameState === game_states.GAME_OVER}"
+        (click)="restartGame()"></span>
       <span class="title">{{title}}</span>
     </ng-container>
     <dlp-salary-gauge routerLink="/rankings"></dlp-salary-gauge>

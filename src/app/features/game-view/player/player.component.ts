@@ -64,6 +64,7 @@ export class PlayerComponent implements OnInit {
       this.path = path;
 
       if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
+        this.salaryService.updateSalary(10);
         this.animatePlayer();
       }
     });
@@ -102,6 +103,12 @@ export class PlayerComponent implements OnInit {
     this.tl.kill();
     this.tl.clear();
 
+    if(this.path.length === 0) {
+      this.choreographerService.currentGameState === GAME_STATES.GAME_OVER;
+      console.log("Game Over");
+      return;
+    }
+
     this.path.forEach(node => {
       const targetPos = this.calculatePixelPosition({
         x: node.x,
@@ -110,7 +117,7 @@ export class PlayerComponent implements OnInit {
 
       this.tl
         .add($ => {
-          
+          this.showExpression(node.tileType);
 
           this.choreographerService.player.tileType = TILE_TYPES.NONE;
           node.tileType = TILE_TYPES.PLAYER;
@@ -150,6 +157,7 @@ export class PlayerComponent implements OnInit {
     switch (tileType) {
       case TILE_TYPES.LOO:
         this.playerType = PLAYER_TYPES.TARGET_ACQUIRED;
+        this.choreographerService.currentGameState = GAME_STATES.GAME_OVER;
         break;
       case TILE_TYPES.PIZZA:
         this.playerType = PLAYER_TYPES.GOT_FED;
