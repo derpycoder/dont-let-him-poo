@@ -8,7 +8,7 @@ import {
 
 import { TimelineMax, TweenMax } from "gsap";
 
-import { Node } from "../services/grid/grid.model";
+import { Node, TILE_TYPES } from "../services/grid/grid.model";
 import { GridService } from "../services/grid/grid.service";
 import { PathFindingService } from "../services/path-finding/path-finding.service";
 import { PLAYER_TYPES } from "../services/choreographer/choreographer.model";
@@ -19,7 +19,8 @@ import {
   Vector,
   GAME_STATES
 } from "../services/choreographer/choreographer.model";
-import { TILE_TYPES } from "../services/grid/grid.model";
+
+import { SalaryService } from "../services/salary.service";
 
 @Component({
   selector: "dlp-player",
@@ -45,7 +46,8 @@ export class PlayerComponent implements OnInit {
     private pathFindingService: PathFindingService,
     private gridService: GridService,
     private choreographerService: ChoreographerService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private salaryService: SalaryService
   ) {}
 
   ngOnInit() {
@@ -55,7 +57,6 @@ export class PlayerComponent implements OnInit {
       this.playerGridPos.x = position.x;
       this.playerGridPos.y = position.y;
 
-      // console.log("Grid Position: ", this.playerGridPos);
       this.setPlayerPosition();
     });
 
@@ -70,7 +71,6 @@ export class PlayerComponent implements OnInit {
     this.choreographerService.onMeasurementsChange.subscribe(
       (measurements: Measurements) => {
         this.measurements = measurements;
-        // console.log("Measurements: ", this.measurements);
         this.setPlayerPosition();
       }
     );
@@ -84,6 +84,7 @@ export class PlayerComponent implements OnInit {
           this.playerType = PLAYER_TYPES.SLEEPING;
           break;
         case GAME_STATES.RUNNING:
+          this.playerType = PLAYER_TYPES.HAPPY;
           this.animatePlayer();
           break;
         default:
@@ -96,6 +97,8 @@ export class PlayerComponent implements OnInit {
       return;
     }
 
+    this.playerType = PLAYER_TYPES.ANGRY;
+
     this.tl.kill();
     this.tl.clear();
 
@@ -107,6 +110,8 @@ export class PlayerComponent implements OnInit {
 
       this.tl
         .add($ => {
+          
+
           this.choreographerService.player.tileType = TILE_TYPES.NONE;
           node.tileType = TILE_TYPES.PLAYER;
           this.choreographerService.player = node;
@@ -130,10 +135,36 @@ export class PlayerComponent implements OnInit {
             scale: 1
           },
           "-=0.25"
-        );
+        )
+        .add($ => {
+          if (this.playerType !== PLAYER_TYPES.TARGET_ACQUIRED) {
+            this.playerType = PLAYER_TYPES.HAPPY;
+          }
+        });
 
       this.tl.play();
     });
+  }
+
+  showExpression(tileType) {
+    switch (tileType) {
+      case TILE_TYPES.LOO:
+        this.playerType = PLAYER_TYPES.TARGET_ACQUIRED;
+        break;
+      case TILE_TYPES.PIZZA:
+        this.playerType = PLAYER_TYPES.GOT_FED;
+        break;
+      case TILE_TYPES.MONEY:
+        this.playerType = PLAYER_TYPES.GOT_MONEY;
+        break;
+      case TILE_TYPES.NONE:
+        this.playerType = PLAYER_TYPES.HAPPY;
+        break;
+      case TILE_TYPES.POOP:
+        this.salaryService.updateSalary(100);
+        this.playerType = PLAYER_TYPES.NAUSEATED;
+        break;
+    }
   }
 
   setPlayerPosition() {

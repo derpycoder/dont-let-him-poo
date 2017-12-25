@@ -2,6 +2,10 @@ export enum PLAYER_TYPES {
   NONE,
   SLEEPING,
   HAPPY,
+  NAUSEATED,
+  GOT_FED,
+  GOT_MONEY,
+  TARGET_ACQUIRED,
   ANGRY
 }
 

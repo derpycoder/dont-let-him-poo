@@ -25,7 +25,6 @@ export class CellContainerComponent {
     if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
       this.onPointerDown();
       this.choreographerService.checkPathCollision(this.node);
-      this.salaryService.updateSalary(100);
     }
   }
   @HostListener("touchstart")
@@ -33,7 +32,6 @@ export class CellContainerComponent {
     if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
       this.onPointerDown();
       this.choreographerService.checkPathCollision(this.node);
-      this.salaryService.updateSalary(100);
     }
 
     event.preventDefault();

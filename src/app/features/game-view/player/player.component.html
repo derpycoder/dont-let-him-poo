@@ -1,4 +1,11 @@
 <div [ngSwitch]="playerType" class="player" #player [style.left.px]="playerPixelPos.y" [style.top.px]="playerPixelPos.x">
-    <img *ngSwitchCase="player_types.SLEEPING" src="./assets/images/sleeping.png" alt="Sleeping Player">
-    <!-- <img *ngSwitchCase="player_types.SLEEPING" src="./assets/images/sleeping.png" alt="Sleeping Player"> -->
+    <img *ngSwitchCase="player_types.SLEEPING" src="./assets/images/sleeping.png">
+    <img *ngSwitchCase="player_types.HAPPY" src="./assets/images/happy.png">
+
+    <img *ngSwitchCase="player_types.NAUSEATED" src="./assets/images/nauseated.png">
+    <img *ngSwitchCase="player_types.GOT_FED" src="./assets/images/got-fed.png">
+    <img *ngSwitchCase="player_types.GOT_MONEY" src="./assets/images/got-money.png">
+
+    <img *ngSwitchCase="player_types.TARGET_ACQUIRED" src="./assets/images/target-acquired.png">
+    <img *ngSwitchCase="player_types.ANGRY" src="./assets/images/angry.png">
 </div>
