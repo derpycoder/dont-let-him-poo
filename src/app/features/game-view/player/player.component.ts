@@ -103,7 +103,6 @@ export class PlayerComponent implements OnInit {
     this.tl.clear();
 
     if (this.path.length === 0) {
-      console.log("shilk");
       this.choreographerService.currentGameState = GAME_STATES.GAME_OVER;
       return;
     }

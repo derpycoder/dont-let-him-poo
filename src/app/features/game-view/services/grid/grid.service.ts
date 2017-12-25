@@ -104,8 +104,8 @@ export class GridService {
       s2 = true;
     }
     // ←
-    if (this.isWalkable(x - 1, y)) {
-      neighbors.push(this.gameGrid[x - 1][y]);
+    if (this.isWalkable(x, y - 1)) {
+      neighbors.push(this.gameGrid[x][y - 1]);
       s3 = true;
     }
 
