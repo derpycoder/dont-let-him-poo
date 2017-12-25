@@ -6,3 +6,4 @@ export * from "./path-finding/path-finding.service";
 export * from "./path-finding/heuristic.service";
 export * from "./choreographer/choreographer.service";
 export * from "./choreographer/choreographer.model";
+export * from "./utils.service";

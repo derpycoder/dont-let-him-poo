@@ -12,7 +12,6 @@ import { Node } from "../services/grid/grid.model";
 import { GridService } from "../services/grid/grid.service";
 import { PathFindingService } from "../services/path-finding/path-finding.service";
 import { PLAYER_TYPES } from "../services/choreographer/choreographer.model";
-import { SourceAndDestination } from "../services/grid/grid.model";
 
 import { ChoreographerService } from "../services/choreographer/choreographer.service";
 import {
@@ -49,19 +48,21 @@ export class PlayerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.gridService.onPlayerAndLooPlaced.subscribe(
-      (sourceAndDestination: SourceAndDestination) => {
-        // this.playerType = PLAYER_TYPES.SLEEPING;
-        this.playerGridPos.x = sourceAndDestination.source.x;
-        this.playerGridPos.y = sourceAndDestination.source.y;
+    this.choreographerService.onPlayerPlaced.subscribe((position: Node) => {
+      this.playerGridPos.x = position.x;
+      this.playerGridPos.y = position.y;
 
-        // console.log("Grid Position: ", this.playerGridPos);
-        this.setPlayerPosition();
+      // console.log("Grid Position: ", this.playerGridPos);
+      this.setPlayerPosition();
+    });
 
-        this.path = this.pathFindingService.findPath(
-          sourceAndDestination.source,
-          sourceAndDestination.destination
-        );
+    this.choreographerService.onPathChange.subscribe(
+      (path: Node[]) => {
+        this.path = path;
+
+        if(this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
+          this.animatePlayer();
+        }
       }
     );
 

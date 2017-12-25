@@ -24,8 +24,3 @@ export class Node {
   closed?: boolean;
   parent?: Node;
 }
-
-export class SourceAndDestination {
-  source: Node;
-  destination: Node;
-}

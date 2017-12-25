@@ -1,32 +1,28 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Node, TILE_TYPES, SourceAndDestination } from "./grid.model";
+import { Node, TILE_TYPES } from "./grid.model";
 
 import * as _ from "lodash";
 import { InteractionService } from "../interaction.service";
+
+import { UtilsService } from "../utils.service";
 
 @Injectable()
 export class GridService {
   gameGridBackup: Node[][];
   gameGrid: Node[][];
 
-  private player: Node;
-  private loo: Node;
-
-  onPlayerAndLooPlaced: EventEmitter<SourceAndDestination> = new EventEmitter<
-    SourceAndDestination
-  >();
-
   onGridReady: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private httpClient: HttpClient,
-    private interactionService: InteractionService
+    private interactionService: InteractionService,
+    private utilsService: UtilsService
   ) {}
 
   initGrid() {
     this.httpClient
-      .get(`./assets/levels/${this.getRandomNumber(1, 6)}.json`)
+      .get(`./assets/levels/${this.utilsService.getRandomNumber(1, 6)}.json`)
       .subscribe((data: any) => {
         this.gameGrid = [];
         let row: Node[];
@@ -43,60 +39,12 @@ export class GridService {
           this.gameGrid.push(row);
         }
 
-        this.randomlyPlaceLoo();
-
         this.gameGridBackup = _.cloneDeep(this.gameGrid);
 
         console.log(this.getNeighbors({ x: 5, y: 5, tileType: "meh" }));
 
         this.onGridReady.emit(true);
       });
-  }
-
-  private randomlyPlaceLoo() {
-    let playerPlaced: boolean;
-    let looPlaced: boolean;
-    let i, j, x, y;
-
-    let count = 0;
-
-    while (true) {
-      console.log(count++);
-
-      if (!playerPlaced) {
-        i = this.getRandomNumber(0, 10);
-        j = this.getRandomNumber(0, 10);
-      }
-      if (!looPlaced) {
-        x = this.getRandomNumber(0, 10);
-        y = this.getRandomNumber(0, 10);
-      }
-
-      if (!playerPlaced && this.gameGrid[i][j].tileType === TILE_TYPES.NONE) {
-        this.player = this.gameGrid[i][j];
-        this.player.tileType = TILE_TYPES.PLAYER;
-        playerPlaced = true;
-      }
-
-      if (!looPlaced && this.gameGrid[x][y].tileType === TILE_TYPES.NONE) {
-        this.loo = this.gameGrid[x][y];
-        this.loo.tileType = TILE_TYPES.LOO;
-        looPlaced = true;
-      }
-
-      if (playerPlaced && looPlaced) {
-        this.onPlayerAndLooPlaced.emit({
-          source: this.player,
-          destination: this.loo
-        });
-        return;
-      }
-    }
-  }
-
-  private getRandomNumber(min: number, max: number): number {
-    // Inclusive of both min and max
-    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   resetGrid() {
