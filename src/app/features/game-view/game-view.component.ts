@@ -6,6 +6,7 @@ import { GridService } from "./services/";
 
 import { ChoreographerService } from "./services/choreographer/choreographer.service";
 import { GAME_STATES } from "./services/choreographer/choreographer.model";
+import { SalaryService } from "./services/salary.service";
 
 @Component({
   selector: "dlp-game-view",
@@ -19,8 +20,9 @@ export class GameViewComponent implements OnInit {
   env = environment;
 
   constructor(
-    private gridService: GridService,
-    public choreographerService: ChoreographerService
+    public gridService: GridService,
+    public choreographerService: ChoreographerService,
+    private salaryService: SalaryService
   ) {}
 
   ngOnInit() {
@@ -37,6 +39,7 @@ export class GameViewComponent implements OnInit {
   restartGame() {
     if(this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
       this.choreographerService.currentGameState = GAME_STATES.START;
+      this.salaryService.salary = 0;
     }
   }
 }
