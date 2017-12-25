@@ -76,10 +76,10 @@ export class GridService {
       return;
     }
 
-    let x = target.x,
+    const x = target.x,
       y = target.y,
-      neighbors: Node[] = [],
-      s0 = false,
+      neighbors: Node[] = [];
+    let s0 = false,
       d0 = false,
       s1 = false,
       d1 = false,
@@ -162,7 +162,7 @@ export class GridService {
   }
 
   private checkBounds(x, y): boolean {
-    if ((x >= 0 && x < 11) && (y >= 0 && y < 11)) {
+    if (x >= 0 && x < 11 && (y >= 0 && y < 11)) {
       return true;
     }
 

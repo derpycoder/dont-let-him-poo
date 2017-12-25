@@ -50,14 +50,14 @@ export class PathFindingService {
   }
 
   private backTrack(grid: Grid<Node>, source: Node, destination: Node): Node[] {
-    let path: Node[] = [];
+    const path: Node[] = [];
     let current: Node = destination;
 
     while (current) {
       path.push(current);
       current = grid.getCell(current);
     }
-    
+
     return path.reverse();
   }
 
@@ -65,8 +65,8 @@ export class PathFindingService {
     const openList = new heap((nodeA, nodeB) => {
       return nodeA.f - nodeB.f;
     });
-    let cameFrom = new Grid<Node>();
-    let costSoFar = new Grid<number>();
+    const cameFrom = new Grid<Node>();
+    const costSoFar = new Grid<number>();
 
     openList.push(source);
     cameFrom.setCell(source, null);
@@ -81,7 +81,7 @@ export class PathFindingService {
 
       const neighbors = this.gridService.getNeighbors(current);
       neighbors.forEach((neighbor: Node) => {
-        let newCost =
+        const newCost =
           costSoFar.getCell(current) +
           this.gridService.getCost(current, neighbor);
 
@@ -90,7 +90,7 @@ export class PathFindingService {
           newCost < costSoFar.getCell(neighbor)
         ) {
           costSoFar.setCell(neighbor, newCost);
-          let priority =
+          const priority =
             newCost + this.heuristicService.heuristic(destination, neighbor);
           openList.push(neighbor, priority);
           cameFrom.setCell(neighbor, current);
