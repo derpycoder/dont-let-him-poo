@@ -64,7 +64,6 @@ export class PlayerComponent implements OnInit {
       this.path = path;
 
       if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
-        this.salaryService.updateSalary(10);
         this.animatePlayer();
       }
     });
@@ -103,11 +102,13 @@ export class PlayerComponent implements OnInit {
     this.tl.kill();
     this.tl.clear();
 
-    if(this.path.length === 0) {
-      this.choreographerService.currentGameState === GAME_STATES.GAME_OVER;
-      console.log("Game Over");
+    if (this.path.length === 0) {
+      console.log("shilk");
+      this.choreographerService.currentGameState = GAME_STATES.GAME_OVER;
       return;
     }
+
+    this.salaryService.updateSalary(10);
 
     this.path.forEach(node => {
       const targetPos = this.calculatePixelPosition({

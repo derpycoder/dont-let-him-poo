@@ -23,11 +23,17 @@ class Grid<T> {
     [null, null, null, null, null, null, null, null, null, null, null]
   ];
 
-  getCell(pos: Node): T {
-    return this.grid[pos.x][pos.y];
+  getCell(node: Node): T {
+    if (!node) {
+      return;
+    }
+    return this.grid[node.x][node.y];
   }
-  setCell(pos: Node, val: T) {
-    this.grid[pos.x][pos.y] = val;
+  setCell(node: Node, val: T) {
+    if (!node) {
+      return;
+    }
+    this.grid[node.x][node.y] = val;
   }
 }
 
@@ -45,12 +51,11 @@ export class PathFindingService {
 
   private backTrack(grid: Grid<Node>, source: Node, destination: Node): Node[] {
     let path: Node[] = [];
-    
-    let n: Node = destination;
+    let current: Node = destination;
 
-    while (grid.getCell(n) != null) {
-      path.push(n);
-      n = grid.getCell(n);
+    while (current) {
+      path.push(current);
+      current = grid.getCell(current);
     }
     
     return path.reverse();
@@ -70,8 +75,8 @@ export class PathFindingService {
     while (!openList.empty()) {
       const current: Node = openList.pop();
 
-      if (current == destination) {
-        break;
+      if (current === destination) {
+        return this.backTrack(cameFrom, source, destination);
       }
 
       const neighbors = this.gridService.getNeighbors(current);
@@ -93,6 +98,6 @@ export class PathFindingService {
       });
     }
 
-    return this.backTrack(cameFrom, source, destination);
+    return [];
   }
 }

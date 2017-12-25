@@ -29,7 +29,7 @@ export class ChoreographerService {
   }
   set currentGameState(value: GAME_STATES) {
     this._currentGameState = value;
-
+    console.log("sldkjf");
     this.onGameStateChange.emit(value);
   }
 

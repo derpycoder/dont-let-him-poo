@@ -42,9 +42,6 @@ export class GridContainerComponent implements OnInit {
           this.doCountDown();
           this.showGrid = true;
           break;
-        case GAME_STATES.RUNNING:
-          this.showGrid = true;
-          break;
         default:
       }
     });
@@ -83,7 +80,6 @@ export class GridContainerComponent implements OnInit {
   }
 
   startGame() {
-    this.showGrid = true;
     this.choreographerService.currentGameState = GAME_STATES.RUN;
   }
 }
