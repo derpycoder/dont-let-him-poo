@@ -6,7 +6,7 @@ import {
   ChangeDetectorRef
 } from "@angular/core";
 
-import { TimelineMax } from "gsap";
+import { TimelineMax, TweenMax } from "gsap";
 
 import { Node } from "../services/grid/grid.model";
 import { GridService } from "../services/grid/grid.service";
@@ -19,6 +19,7 @@ import {
   Vector,
   GAME_STATES
 } from "../services/choreographer/choreographer.model";
+import { TILE_TYPES } from "../services/grid/grid.model";
 
 @Component({
   selector: "dlp-player",
@@ -38,8 +39,6 @@ export class PlayerComponent implements OnInit {
   playerType: PLAYER_TYPES = PLAYER_TYPES.NONE;
   player_types = PLAYER_TYPES;
 
-  animatedOnce: boolean;
-
   constructor(
     private pathFindingService: PathFindingService,
     private gridService: GridService,
@@ -56,15 +55,13 @@ export class PlayerComponent implements OnInit {
       this.setPlayerPosition();
     });
 
-    this.choreographerService.onPathChange.subscribe(
-      (path: Node[]) => {
-        this.path = path;
+    this.choreographerService.onPathChange.subscribe((path: Node[]) => {
+      this.path = path;
 
-        if(this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
-          this.animatePlayer();
-        }
+      if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
+        this.animatePlayer();
       }
-    );
+    });
 
     this.choreographerService.onMeasurementsChange.subscribe(
       (measurements: Measurements) => {
@@ -80,10 +77,10 @@ export class PlayerComponent implements OnInit {
           this.playerType = PLAYER_TYPES.NONE;
           break;
         case GAME_STATES.RUN:
-        this.playerType = PLAYER_TYPES.SLEEPING;
+          this.playerType = PLAYER_TYPES.SLEEPING;
           break;
         case GAME_STATES.RUNNING:
-        this.animatePlayer();
+          this.animatePlayer();
           break;
         default:
       }
@@ -91,13 +88,10 @@ export class PlayerComponent implements OnInit {
   }
 
   animatePlayer() {
-    if (
-      !this.animatedOnce &&
-      (!this.path || !this.measurements || !this.playerGridPos)
-    ) {
+    if (!this.path || !this.measurements || !this.playerGridPos) {
       return;
     }
-
+    TweenMax.killAll();
     const tl = new TimelineMax();
 
     this.path.forEach(node => {
@@ -106,15 +100,35 @@ export class PlayerComponent implements OnInit {
         y: node.y
       });
 
-      tl.to(this.playerRef.nativeElement, 0.5, {
-        left: targetPos.y,
-        top: targetPos.x
-      });
+      tl
+        .to(this.playerRef.nativeElement, 0.5, {
+          left: targetPos.y,
+          top: targetPos.x
+        })
+        .to(
+          this.playerRef.nativeElement,
+          0.25,
+          {
+            scale: 1.2
+          },
+          "-=0.5"
+        )
+        .to(
+          this.playerRef.nativeElement,
+          0.25,
+          {
+            scale: 1
+          },
+          "-=0.25"
+        )
+        .add($ => {
+          this.choreographerService.player.tileType = TILE_TYPES.NONE;
+          node.tileType = TILE_TYPES.PLAYER;
+          this.choreographerService.player = node;
+        });
 
       tl.play();
     });
-
-    this.animatedOnce = true;
   }
 
   setPlayerPosition() {

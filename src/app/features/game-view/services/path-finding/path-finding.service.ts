@@ -6,6 +6,30 @@ import { Node } from "../grid/grid.model";
 import { GridService } from "../grid/grid.service";
 import { HeuristicService } from "./heuristic.service";
 import { InteractionService } from "../interaction.service";
+import { Vector } from "../choreographer/choreographer.model";
+
+class Grid<T> {
+  grid: T[][] = [
+    [null, null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null, null, null, null]
+  ];
+
+  getCell(pos: Node): T {
+    return this.grid[pos.x][pos.y];
+  }
+  setCell(pos: Node, val: T) {
+    this.grid[pos.x][pos.y] = val;
+  }
+}
 
 @Injectable()
 export class PathFindingService {
@@ -16,23 +40,25 @@ export class PathFindingService {
   ) {}
 
   findPath(source: Node, destination: Node) {
+    // let x = new Grid<number>();
+    // console.log(x);
+
+    // let y = new Grid<Node>();
+    // console.log(y);
+
     return this.aStarPathFinder(source, destination);
   }
 
-  pathLength() {}
+  private backTrack(grid: Grid<Node>, source: Node, destination: Node): Node[] {
+    let path: Node[] = [];
+    
+    let n: Node = destination;
 
-  private backTrack(head: Node): Node[] {
-    if (!head) {
-      return;
+    while (grid.getCell(n) != source) {
+      path.push(n);
+      n = grid.getCell(n);
     }
-    let q: Node = head;
-    const path: Node[] = [];
 
-    while (q) {
-      path.push(q);
-      q = q.parent;
-    }
-    path.splice(-1, 1);
     return path.reverse();
   }
 
@@ -40,51 +66,39 @@ export class PathFindingService {
     const openList = new heap((nodeA, nodeB) => {
       return nodeA.f - nodeB.f;
     });
-
-    source.g = source.f = 0;
+    let cameFrom = new Grid<Node>();
+    let costSoFar = new Grid<number>();
 
     openList.push(source);
-    source.opened = true;
+    cameFrom.setCell(source, null);
+    costSoFar.setCell(source, 0);
 
     while (!openList.empty()) {
-      const curr: Node = openList.pop();
-      curr.closed = true;
+      const current: Node = openList.pop();
 
-      if (curr === destination) {
-        return this.backTrack(destination);
+      if (current == destination) {
+        break;
       }
 
-      const neighbors = this.gridService.getNeighbors(curr);
-      if (!neighbors) {
-        continue;
-      }
+      const neighbors = this.gridService.getNeighbors(current);
       neighbors.forEach((neighbor: Node) => {
-        if (neighbor.closed) {
-          return;
-        }
+        let newCost =
+          costSoFar.getCell(current) +
+          this.gridService.getCost(current, neighbor);
 
-        const ng = this.gridService.getCost(curr, neighbor);
-
-        if (!neighbor.opened || ng < neighbor.g) {
-          neighbor.g = ng;
-
-          neighbor.h =
-            neighbor.h || this.heuristicService.heuristic(curr, neighbor);
-
-          neighbor.f = neighbor.g + neighbor.h;
-          neighbor.parent = curr;
-
-          if (!neighbor.opened) {
-            openList.push(neighbor);
-            neighbor.opened = true;
-          } else {
-            openList.updateItem(neighbor);
-          }
+        if (
+          costSoFar.getCell(neighbor) == null ||
+          newCost < costSoFar.getCell(neighbor)
+        ) {
+          costSoFar.setCell(neighbor, newCost);
+          let priority =
+            newCost + this.heuristicService.heuristic(destination, neighbor);
+          openList.push(neighbor, priority);
+          cameFrom.setCell(neighbor, current);
         }
       });
     }
-    return null;
-  }
 
-  private jpsFinder() {}
+    return this.backTrack(cameFrom, source, destination);
+  }
 }

@@ -24,20 +24,21 @@ export class CellContainerComponent {
   onMouseDown() {
     if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
       this.onPointerDown();
-      this.salaryService.updateSalary(100);
     }
   }
   @HostListener("touchstart")
   onTouchStart() {
     if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
       this.onPointerDown();
-      this.salaryService.updateSalary(100);
     }
 
     event.preventDefault();
   }
 
   private onPointerDown() {
+    this.choreographerService.checkPathCollision(this.node);
+    this.salaryService.updateSalary(100);
+
     if (this.node.tileType === TILE_TYPES.NONE) {
       if (
         this.interactionService.selectedTileType !== TILE_TYPES.WALL &&

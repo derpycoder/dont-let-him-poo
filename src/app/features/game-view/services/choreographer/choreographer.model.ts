@@ -5,6 +5,12 @@ export enum PLAYER_TYPES {
   ANGRY
 }
 
+export enum PLAYER_MOVES {
+  NORMAL,
+  DIAGONAL,
+  DIAGONAL_HOP
+}
+
 export class Vector {
   x: number;
   y: number;

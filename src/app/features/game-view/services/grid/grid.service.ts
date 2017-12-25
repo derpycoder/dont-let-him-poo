@@ -6,6 +6,7 @@ import * as _ from "lodash";
 import { InteractionService } from "../interaction.service";
 
 import { UtilsService } from "../utils.service";
+import { PLAYER_MOVES } from "../choreographer/choreographer.model";
 
 @Injectable()
 export class GridService {
@@ -77,34 +78,89 @@ export class GridService {
       return;
     }
 
-    const dirs: any[][] = [[-1, 0], [0, 1], [1, 0], [-1, 0]];
-    let i, j;
+    let x = target.x,
+      y = target.y,
+      neighbors: Node[] = [],
+      s0 = false,
+      d0 = false,
+      s1 = false,
+      d1 = false,
+      s2 = false,
+      d2 = false,
+      s3 = false,
+      d3 = false;
 
-    if (this.interactionService.diagonalMovementAllowed) {
-      dirs.push([-1, 1], [1, 1], [1, -1], [-1, -1]);
+    // ↑
+    if (this.isWalkable(x - 1, y)) {
+      neighbors.push(this.gameGrid[x - 1][y]);
+      s0 = true;
+    }
+    // →
+    if (this.isWalkable(x, y + 1)) {
+      neighbors.push(this.gameGrid[x][y + 1]);
+      s1 = true;
+    }
+    // ↓
+    if (this.isWalkable(x + 1, y)) {
+      neighbors.push(this.gameGrid[x + 1][y]);
+      s2 = true;
+    }
+    // ←
+    if (this.isWalkable(x - 1, y)) {
+      neighbors.push(this.gameGrid[x - 1][y]);
+      s3 = true;
     }
 
-    const neighbors: Node[] = [];
+    if (this.interactionService.playerMoves === PLAYER_MOVES.NORMAL) {
+      return neighbors;
+    }
 
-    dirs.forEach(dir => {
-      i = target.x + dir[0];
-      j = target.y + dir[1];
+    if (this.interactionService.playerMoves === PLAYER_MOVES.DIAGONAL) {
+      d0 = s3 && s0;
+      d1 = s0 && s1;
+      d2 = s1 && s2;
+      d3 = s2 && s3;
+    } else if (
+      this.interactionService.playerMoves === PLAYER_MOVES.DIAGONAL_HOP
+    ) {
+      d0 = d1 = d2 = d3 = true;
+    }
 
-      if (
-        this.checkBounds(i, j) &&
-        this.gameGrid[i][j].tileType !== TILE_TYPES.WALL
-      ) {
-        neighbors.push(this.gameGrid[i][j]);
-      }
-    });
+    // ↖
+    if (d0 && this.isWalkable(x - 1, y - 1)) {
+      neighbors.push(this.gameGrid[x - 1][y - 1]);
+    }
+    // ↗
+    if (d1 && this.isWalkable(x - 1, y + 1)) {
+      neighbors.push(this.gameGrid[x - 1][y + 1]);
+    }
+    // ↘
+    if (d2 && this.isWalkable(x + 1, y + 1)) {
+      neighbors.push(this.gameGrid[x + 1][y + 1]);
+    }
+    // ↙
+    if (d3 && this.isWalkable(x + 1, y - 1)) {
+      neighbors.push(this.gameGrid[x + 1][y - 1]);
+    }
 
     return neighbors;
   }
 
   getCost(source: Node, destination: Node): number {
     return destination.x - source.x === 0 || destination.y - source.x === 0
-      ? 1
-      : Math.SQRT2;
+      ? 10
+      : 14;
+  }
+
+  private isWalkable(x, y): boolean {
+    if (
+      this.checkBounds(x, y) &&
+      this.gameGrid[x][y].tileType !== TILE_TYPES.WALL
+    ) {
+      return true;
+    }
+
+    return false;
   }
 
   private checkBounds(x, y): boolean {

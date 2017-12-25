@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 
 import { TILE_TYPES } from "./grid/grid.model";
 
+import { PLAYER_MOVES } from "./choreographer/choreographer.model";
+
 @Injectable()
 export class InteractionService {
   remainingQuantity = {
@@ -9,7 +11,7 @@ export class InteractionService {
     money: 5
   };
 
-  diagonalMovementAllowed: boolean = true;
+  playerMoves: PLAYER_MOVES = PLAYER_MOVES.DIAGONAL_HOP;
 
   selectedTileType: string = TILE_TYPES.NONE;
 
