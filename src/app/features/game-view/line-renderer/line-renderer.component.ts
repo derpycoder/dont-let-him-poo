@@ -52,11 +52,11 @@ export class LineRendererComponent implements OnInit {
       return;
     }
 
-    let pathArr: string[] = this.path.map((node: Node) => {
-      let pixelPos = this.calculatePixelPosition(node);
+    const pathArr: string[] = this.path.map((node: Node) => {
+      const pixelPos = this.calculatePixelPosition(node);
       return `${pixelPos.y},${pixelPos.x}`;
     });
-    
+
     this.pathString = pathArr.join(" ");
 
     this.timer = setInterval($ => {

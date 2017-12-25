@@ -121,7 +121,7 @@ export class ChoreographerService {
     if (!this.path) {
       return;
     }
-    
+
     this.timer = setInterval($ => {
       if (this.path.length < 1) {
         clearInterval(this.timer);
