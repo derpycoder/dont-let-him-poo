@@ -6,7 +6,7 @@ import {
   ChangeDetectorRef
 } from "@angular/core";
 
-import { TimelineMax, TweenMax } from "gsap";
+import { TimelineMax } from "gsap";
 
 import { Node, TILE_TYPES } from "../services/grid/grid.model";
 import { GridService } from "../services/grid/grid.service";
