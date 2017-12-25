@@ -3,3 +3,9 @@
     color: #5ac8fa;
     text-align: center;
 }
+
+@media screen and (max-width: 520px) {
+    .under-construction-msg h1 {
+        font-size: 0.8em;
+    }
+}
