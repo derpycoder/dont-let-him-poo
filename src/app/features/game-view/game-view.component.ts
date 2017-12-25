@@ -29,10 +29,14 @@ export class GameViewComponent implements OnInit {
         case GAME_STATES.START:
           this.gridService.initGrid();
           break;
-        case GAME_STATES.RUN:
-          break;
         default:
       }
     });
+  }
+
+  restartGame() {
+    if(this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
+      this.choreographerService.currentGameState = GAME_STATES.START;
+    }
   }
 }
