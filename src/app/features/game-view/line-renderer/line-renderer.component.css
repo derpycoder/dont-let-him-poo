@@ -5,7 +5,8 @@ svg {
 
 svg .polyline {
   fill: none;
-  stroke: #89fa5a;
+  stroke: deeppink;
   stroke-width: 3;
-  stroke-linecap: "round";
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }

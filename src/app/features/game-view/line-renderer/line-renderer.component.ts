@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 
+import { Observable } from 'rxjs/Rx';
+import { Subscription } from "rxjs/Subscription";
+
 import { TimelineMax } from "gsap";
 
 import { Node } from "../services/grid/grid.model";
@@ -19,7 +22,16 @@ export class LineRendererComponent implements OnInit {
   @ViewChild("polyLine") polyLine: ElementRef;
 
   path: Node[];
-  pathString: string;
+
+  svgPathSettings = {
+    pathString: "",
+    pathLength: 0,
+    pathOffset: 0
+  };
+
+  showPolyLine: boolean;
+  timer: Subscription;
+
   measurements: Measurements;
 
   game_states = GAME_STATES;
@@ -48,26 +60,25 @@ export class LineRendererComponent implements OnInit {
       return;
     }
 
-    const pathArr: string[] = this.path.map((node: Node) => {
+    let pathArr: string[] = this.path.map((node: Node) => {
       let pixelPos = this.calculatePixelPosition(node);
       return `${pixelPos.y},${pixelPos.x}`;
     });
 
-    this.pathString = pathArr.join(" ");
+    this.svgPathSettings.pathString = pathArr.join(" ");
 
-    this.path.forEach(node => {
-      const targetPos = this.calculatePixelPosition({
-        x: node.x,
-        y: node.y
-      });
+    this.tl.kill();
+    this.tl.clear();
 
-      this.tl.kill();
-      this.tl.clear();
+    this.svgPathSettings.pathOffset = this.polyLine
+      ? this.polyLine.nativeElement.getTotalLength()
+      : 0;
 
+    setTimeout($ => {
       if (this.polyLine) {
-        this.tl.to(this.polyLine.nativeElement, 0.5, {
-          dashoffset: 10
-        });
+        this.svgPathSettings.pathOffset = this.svgPathSettings.pathLength = this.polyLine.nativeElement.getTotalLength();
+
+        this.tl.to(this.svgPathSettings, 0.5, { pathOffset: 0 });
 
         this.tl.play();
       }
