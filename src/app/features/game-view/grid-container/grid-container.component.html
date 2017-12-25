@@ -7,11 +7,13 @@
     <span *ngIf="choreographerService.currentGameState === game_states.START" class="fa fa-play" (click)="startGame()"></span>
   </ng-template>
 
-  <dlp-player [hidden]="!choreographerService.currentGameState === game_states.RUN"></dlp-player>
+  <dlp-player></dlp-player>
 
-  <ng-container *ngIf="choreographerService.currentGameState === game_states.RUN">
+  <ng-container *ngIf="showGrid">
     <div class="grid-row" *ngFor="let row of gridService.gameGrid">
       <dlp-cell-container [node]="cell" class="grid-cell" *ngFor="let cell of row"></dlp-cell-container>
     </div>
   </ng-container>
+
+  <span class="vfx" #vfx>{{countDown}}</span>
 </div>

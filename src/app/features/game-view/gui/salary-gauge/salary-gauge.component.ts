@@ -3,7 +3,6 @@ import { Component, ViewChild, ElementRef, OnInit } from "@angular/core";
 import { TimelineMax } from "gsap";
 
 import { SalaryService } from "../../services/";
-import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: "dlp-salary-gauge",

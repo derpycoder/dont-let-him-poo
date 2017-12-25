@@ -17,7 +17,8 @@ import { SourceAndDestination } from "../services/grid/grid.model";
 import { ChoreographerService } from "../services/choreographer/choreographer.service";
 import {
   Measurements,
-  Vector
+  Vector,
+  GAME_STATES
 } from "../services/choreographer/choreographer.model";
 
 @Component({
@@ -43,15 +44,14 @@ export class PlayerComponent implements OnInit {
   constructor(
     private pathFindingService: PathFindingService,
     private gridService: GridService,
-    private choreograhperService: ChoreographerService,
+    private choreographerService: ChoreographerService,
     private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.gridService.onPlayerAndLooPlaced.subscribe(
       (sourceAndDestination: SourceAndDestination) => {
-        this.playerType = PLAYER_TYPES.SLEEPING;
-
+        // this.playerType = PLAYER_TYPES.SLEEPING;
         this.playerGridPos.x = sourceAndDestination.source.x;
         this.playerGridPos.y = sourceAndDestination.source.y;
 
@@ -62,19 +62,31 @@ export class PlayerComponent implements OnInit {
           sourceAndDestination.source,
           sourceAndDestination.destination
         );
-
-        this.animatePlayer();
       }
     );
 
-    this.choreograhperService.onMeasurementsChange.subscribe(
+    this.choreographerService.onMeasurementsChange.subscribe(
       (measurements: Measurements) => {
         this.measurements = measurements;
         console.log("Measurements: ", this.measurements);
         this.setPlayerPosition();
-        this.animatePlayer();
       }
     );
+
+    this.choreographerService.onGameStateChange.subscribe(state => {
+      switch (state) {
+        case GAME_STATES.START:
+          this.playerType = PLAYER_TYPES.NONE;
+          break;
+        case GAME_STATES.RUN:
+        this.playerType = PLAYER_TYPES.SLEEPING;
+          break;
+        case GAME_STATES.RUNNING:
+        this.animatePlayer();
+          break;
+        default:
+      }
+    });
   }
 
   animatePlayer() {

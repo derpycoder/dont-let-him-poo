@@ -25,5 +25,6 @@ export enum GAME_STATES {
   START,
   LOAD,
   RUN,
+  RUNNING,
   GAME_OVER
 }
