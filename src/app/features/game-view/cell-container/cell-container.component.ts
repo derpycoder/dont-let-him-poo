@@ -3,6 +3,8 @@ import { Component, HostListener, Input } from "@angular/core";
 import { InteractionService, SalaryService } from "../services/";
 
 import { TILE_TYPES, Node } from "../services/";
+import { ChoreographerService } from "../services/choreographer/choreographer.service";
+import { GAME_STATES } from "../services/choreographer/choreographer.model";
 
 @Component({
   selector: "dlp-cell-container",
@@ -14,18 +16,24 @@ export class CellContainerComponent {
 
   constructor(
     public interactionService: InteractionService,
-    private salaryService: SalaryService
+    private salaryService: SalaryService,
+    private choreographerService: ChoreographerService
   ) {}
 
   @HostListener("mousedown")
   onMouseDown() {
-    this.onPointerDown();
-    this.salaryService.updateSalary(100);
+    if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
+      this.onPointerDown();
+      this.salaryService.updateSalary(100);
+    }
   }
   @HostListener("touchstart")
   onTouchStart() {
-    this.onPointerDown();
-    this.salaryService.updateSalary(100);
+    if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
+      this.onPointerDown();
+      this.salaryService.updateSalary(100);
+    }
+    
     event.preventDefault();
   }
 

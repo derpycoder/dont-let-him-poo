@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 import { environment } from "../../../environments/environment";
 import { TILE_TYPES } from "./services/grid/grid.model";
@@ -12,7 +12,7 @@ import { GAME_STATES } from "./services/choreographer/choreographer.model";
   templateUrl: "./game-view.component.html",
   styleUrls: ["./game-view.component.css"]
 })
-export class GameViewComponent {
+export class GameViewComponent implements OnInit {
   title = "Don't Let Him Poo";
   tile_types = TILE_TYPES;
   game_states = GAME_STATES;
@@ -22,4 +22,17 @@ export class GameViewComponent {
     private gridService: GridService,
     public choreographerService: ChoreographerService
   ) {}
+
+  ngOnInit() {
+    this.choreographerService.onGameStateChange.subscribe(state => {
+      switch (state) {
+        case GAME_STATES.START:
+          this.gridService.initGrid();
+          break;
+        case GAME_STATES.RUN:
+          break;
+        default:
+      }
+    });
+  }
 }
