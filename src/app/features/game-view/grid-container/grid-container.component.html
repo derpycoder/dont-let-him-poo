@@ -4,12 +4,12 @@
   </div>
 
   <ng-template #showPlayButton>
-    <span *ngIf="!showGrid" class="fa fa-play" (click)="showGrid = true"></span>
+    <span *ngIf="choreographerService.currentGameState === game_states.START" class="fa fa-play" (click)="startGame()"></span>
   </ng-template>
 
-  <dlp-player [hidden]="!showGrid"></dlp-player>
+  <dlp-player [hidden]="!choreographerService.currentGameState === game_states.RUN"></dlp-player>
 
-  <ng-container *ngIf="showGrid">
+  <ng-container *ngIf="choreographerService.currentGameState === game_states.RUN">
     <div class="grid-row" *ngFor="let row of gridService.gameGrid">
       <dlp-cell-container [node]="cell" class="grid-cell" *ngFor="let cell of row"></dlp-cell-container>
     </div>

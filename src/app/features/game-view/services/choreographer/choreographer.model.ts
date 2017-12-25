@@ -20,3 +20,10 @@ export enum BREAKPOINTS {
   DESKTOP = 1,
   MOBILE = 2
 }
+
+export enum GAME_STATES {
+  START,
+  LOAD,
+  RUN,
+  GAME_OVER
+}

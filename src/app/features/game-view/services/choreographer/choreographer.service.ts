@@ -1,9 +1,11 @@
 import { Injectable, EventEmitter } from "@angular/core";
 
-import { Measurements, BREAKPOINTS } from "./choreographer.model";
+import { Measurements, BREAKPOINTS, GAME_STATES } from "./choreographer.model";
 
 @Injectable()
 export class ChoreographerService {
+  currentGameState: GAME_STATES = GAME_STATES.START;
+
   private _crucialMeasurements: Measurements;
 
   onMeasurementsChange: EventEmitter<Measurements> = new EventEmitter<
