@@ -83,6 +83,7 @@ export class ChoreographerService {
       if (playerPlaced && looPlaced) {
         this.onPlayerPlaced.emit(this.player);
         this.path = this.pathFindingService.findPath(this.player, this.loo);
+        console.log("Initial Path: ", this.path);
         
         if (this.path && this.path.length > 3) {
           this.onPlayerPlaced.emit(this.player);

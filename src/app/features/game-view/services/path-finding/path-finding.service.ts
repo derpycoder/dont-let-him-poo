@@ -40,12 +40,6 @@ export class PathFindingService {
   ) {}
 
   findPath(source: Node, destination: Node) {
-    // let x = new Grid<number>();
-    // console.log(x);
-
-    // let y = new Grid<Node>();
-    // console.log(y);
-
     return this.aStarPathFinder(source, destination);
   }
 
@@ -54,11 +48,11 @@ export class PathFindingService {
     
     let n: Node = destination;
 
-    while (grid.getCell(n) != source) {
+    while (grid.getCell(n) != null) {
       path.push(n);
       n = grid.getCell(n);
     }
-
+    
     return path.reverse();
   }
 

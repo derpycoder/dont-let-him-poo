@@ -12,10 +12,12 @@ export class HeuristicService {
     const dx = Math.abs(source.x - destination.x);
     const dy = Math.abs(source.y - destination.y);
 
-    return this.interactionService.playerMoves === PLAYER_MOVES.DIAGONAL ||
+    let heuristic = this.interactionService.playerMoves === PLAYER_MOVES.DIAGONAL ||
       this.interactionService.playerMoves === PLAYER_MOVES.DIAGONAL_HOP
       ? this.octileDistance(dx, dy)
       : this.manhattanDistance(dx, dy);
+
+      return heuristic *= (1.0 + 1 / 50);
   }
 
   private manhattanDistance(dx: number, dy: number): number {
@@ -23,6 +25,6 @@ export class HeuristicService {
   }
 
   private octileDistance(dx: number, dy: number): number {
-    return 10 * (dx + dy) + (14 - 2 * 10) * Math.min(dx, dy);
+    return 10 * (dx + dy) + (15 - 2 * 10) * Math.min(dx, dy);
   }
 }

@@ -11,7 +11,7 @@ export class InteractionService {
     money: 5
   };
 
-  playerMoves: PLAYER_MOVES = PLAYER_MOVES.DIAGONAL_HOP;
+  playerMoves: PLAYER_MOVES = PLAYER_MOVES.DIAGONAL;
 
   selectedTileType: string = TILE_TYPES.NONE;
 

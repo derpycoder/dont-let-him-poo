@@ -42,8 +42,6 @@ export class GridService {
 
         this.gameGridBackup = _.cloneDeep(this.gameGrid);
 
-        console.log(this.getNeighbors({ x: 5, y: 5, tileType: "meh" }));
-
         this.onGridReady.emit(true);
       });
   }

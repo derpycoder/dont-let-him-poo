@@ -16,11 +16,4 @@ export class Node {
   x: number;
   y: number;
   tileType: string;
-
-  f?: number;
-  g?: number;
-  h?: number;
-  opened?: boolean;
-  closed?: boolean;
-  parent?: Node;
 }

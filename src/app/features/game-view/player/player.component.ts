@@ -39,6 +39,8 @@ export class PlayerComponent implements OnInit {
   playerType: PLAYER_TYPES = PLAYER_TYPES.NONE;
   player_types = PLAYER_TYPES;
 
+  tl: TimelineMax;
+
   constructor(
     private pathFindingService: PathFindingService,
     private gridService: GridService,
@@ -47,6 +49,8 @@ export class PlayerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.tl = new TimelineMax();
+
     this.choreographerService.onPlayerPlaced.subscribe((position: Node) => {
       this.playerGridPos.x = position.x;
       this.playerGridPos.y = position.y;
@@ -91,16 +95,25 @@ export class PlayerComponent implements OnInit {
     if (!this.path || !this.measurements || !this.playerGridPos) {
       return;
     }
-    TweenMax.killAll();
-    const tl = new TimelineMax();
+    
+    this.tl.kill();
+    this.tl.clear();
 
     this.path.forEach(node => {
+      // if(node.tileType === TILE_TYPES.WALL) {
+        console.log("shit: ", node);
+
       const targetPos = this.calculatePixelPosition({
         x: node.x,
         y: node.y
       });
 
-      tl
+      this.tl
+        .add($ => {
+          this.choreographerService.player.tileType = TILE_TYPES.NONE;
+          node.tileType = TILE_TYPES.PLAYER;
+          this.choreographerService.player = node;
+        })
         .to(this.playerRef.nativeElement, 0.5, {
           left: targetPos.y,
           top: targetPos.x
@@ -120,14 +133,9 @@ export class PlayerComponent implements OnInit {
             scale: 1
           },
           "-=0.25"
-        )
-        .add($ => {
-          this.choreographerService.player.tileType = TILE_TYPES.NONE;
-          node.tileType = TILE_TYPES.PLAYER;
-          this.choreographerService.player = node;
-        });
+        );
 
-      tl.play();
+      this.tl.play();
     });
   }
 
