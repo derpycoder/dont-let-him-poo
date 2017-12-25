@@ -1,10 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 
-import { Observable } from 'rxjs/Rx';
-import { Subscription } from "rxjs/Subscription";
-
-import { TimelineMax } from "gsap";
-
 import { Node } from "../services/grid/grid.model";
 import { ChoreographerService } from "../services/choreographer/choreographer.service";
 import {
@@ -21,27 +16,16 @@ import {
 export class LineRendererComponent implements OnInit {
   @ViewChild("polyLine") polyLine: ElementRef;
 
-  path: Node[];
-
-  svgPathSettings = {
-    pathString: "",
-    pathLength: 0,
-    pathOffset: 0
-  };
-
-  showPolyLine: boolean;
-  timer: Subscription;
-
-  measurements: Measurements;
-
+  pathString: string;
   game_states = GAME_STATES;
 
-  tl: TimelineMax;
+  private path: Node[];
+  private measurements: Measurements;
+  private timer: any;
 
   constructor(public choreographerService: ChoreographerService) {}
 
   ngOnInit() {
-    this.tl = new TimelineMax();
     this.choreographerService.onPathChange.subscribe((path: Node[]) => {
       this.path = path;
       this.renderPath();
@@ -50,12 +34,20 @@ export class LineRendererComponent implements OnInit {
     this.choreographerService.onMeasurementsChange.subscribe(
       (measurements: Measurements) => {
         this.measurements = measurements;
-        this.renderPath();
+      }
+    );
+
+    this.choreographerService.onGameStateChange.subscribe(
+      (state: GAME_STATES) => {
+        if (state === GAME_STATES.RUNNING) {
+          this.renderPath();
+        }
       }
     );
   }
 
   renderPath() {
+    clearInterval(this.timer);
     if (!this.path || !this.measurements) {
       return;
     }
@@ -64,25 +56,16 @@ export class LineRendererComponent implements OnInit {
       let pixelPos = this.calculatePixelPosition(node);
       return `${pixelPos.y},${pixelPos.x}`;
     });
+    
+    this.pathString = pathArr.join(" ");
 
-    this.svgPathSettings.pathString = pathArr.join(" ");
-
-    this.tl.kill();
-    this.tl.clear();
-
-    this.svgPathSettings.pathOffset = this.polyLine
-      ? this.polyLine.nativeElement.getTotalLength()
-      : 0;
-
-    setTimeout($ => {
-      if (this.polyLine) {
-        this.svgPathSettings.pathOffset = this.svgPathSettings.pathLength = this.polyLine.nativeElement.getTotalLength();
-
-        this.tl.to(this.svgPathSettings, 0.5, { pathOffset: 0 });
-
-        this.tl.play();
+    this.timer = setInterval($ => {
+      if (pathArr.length < 1) {
+        clearInterval(this.timer);
       }
-    });
+      pathArr.splice(0, 1);
+      this.pathString = pathArr.join(" ");
+    }, 500);
   }
 
   calculatePixelPosition(targetPos: Vector): Vector {

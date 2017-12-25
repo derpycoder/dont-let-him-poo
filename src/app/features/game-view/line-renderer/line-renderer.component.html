@@ -1,4 +1,3 @@
 <svg height="94%" width="94%" filter="url(#dropShadow)" *ngIf="choreographerService.currentGameState === game_states.RUNNING">
-    <svg:polyline [attr.points]="svgPathSettings.pathString" class="polyline" [attr.stroke-dasharray]="svgPathSettings.pathLength + ' ' + svgPathSettings.pathLength"
-        [attr.stroke-dashoffset]="svgPathSettings.pathOffset" #polyLine />
+    <svg:polyline [attr.points]="pathString" class="polyline" />
 </svg>
