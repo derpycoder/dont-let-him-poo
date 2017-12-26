@@ -93,10 +93,11 @@ export class PlayerComponent implements OnInit {
           break;
         case GAME_STATES.RUN:
           this.playerType = PLAYER_TYPES.SLEEPING;
+          this.setPlayerPosition();
           break;
         case GAME_STATES.RUNNING:
           this.playerType = PLAYER_TYPES.HAPPY;
-          this.animatePlayer(true);
+          this.animatePlayer(false);
           break;
         default:
       }
