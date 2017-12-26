@@ -21,6 +21,7 @@ export class ChoreographerService {
   player: Node;
   private timer: any;
   private loo: Node;
+  private poo: Node;
   private crucialMeasurements: Measurements;
   private path: Node[];
 
@@ -39,19 +40,20 @@ export class ChoreographerService {
     private pathFindingService: PathFindingService
   ) {
     this.gridService.onGridReady.subscribe($ => {
-      this.cleverlyPlaceLooAndPlayer();
+      this.cleverlyPlacePlayerLooAndPoo();
     });
   }
 
-  private cleverlyPlaceLooAndPlayer() {
+  private cleverlyPlacePlayerLooAndPoo() {
     let playerPlaced: boolean;
     let looPlaced: boolean;
-    let i, j, x, y;
+    let pooPlaced: boolean;
+    let i, j, x, y, p, q;
 
     let count = 0;
 
     while (true) {
-      console.log(count++);
+      console.log(`Tries: ${count++}`);
 
       if (!playerPlaced) {
         i = this.utilsService.getRandomNumber(0, 10);
@@ -60,6 +62,10 @@ export class ChoreographerService {
       if (!looPlaced) {
         x = this.utilsService.getRandomNumber(0, 10);
         y = this.utilsService.getRandomNumber(0, 10);
+      }
+      if (!pooPlaced) {
+        p = this.utilsService.getRandomNumber(0, 10);
+        q = this.utilsService.getRandomNumber(0, 10);
       }
 
       if (
@@ -80,17 +86,54 @@ export class ChoreographerService {
         looPlaced = true;
       }
 
+      if (
+        !pooPlaced &&
+        this.gridService.gameGrid[p][q].tileType === TILE_TYPES.NONE
+      ) {
+        this.poo = this.gridService.gameGrid[p][q];
+        this.poo.tileType = TILE_TYPES.POOP;
+        pooPlaced = true;
+      }
+
       if (playerPlaced && looPlaced) {
         this.onPlayerPlaced.emit(this.player);
         this.path = this.pathFindingService.findPath(this.player, this.loo);
 
-        if (this.path && this.path.length > 3) {
+        if (this.path && this.path.length > 5) {
           this.onPlayerPlaced.emit(this.player);
           this.onPathChange.emit(this.path);
           return;
         }
 
         playerPlaced = false;
+      }
+    }
+  }
+
+  generatePoo() {
+    let pooPlaced: boolean;
+    let p, q;
+
+    let count = 0;
+
+    while (!pooPlaced) {
+      console.log(`Poo Tries: ${count++}`);
+
+      p = this.utilsService.getRandomNumber(0, 10);
+      q = this.utilsService.getRandomNumber(0, 10);
+
+      if (
+        !pooPlaced &&
+        this.gridService.gameGrid[p][q].tileType === TILE_TYPES.NONE
+      ) {
+        this.poo = this.gridService.gameGrid[p][q];
+        this.poo.tileType = TILE_TYPES.POOP;
+
+        let path = this.pathFindingService.findPath(this.player, this.poo);
+
+        if(path && path.length > 5) {
+          pooPlaced = true;
+        }
       }
     }
   }

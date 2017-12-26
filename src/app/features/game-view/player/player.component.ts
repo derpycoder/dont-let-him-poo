@@ -183,6 +183,7 @@ export class PlayerComponent implements OnInit {
         break;
       case TILE_TYPES.POOP:
         this.salaryService.updateSalary(100);
+        this.choreographerService.generatePoo();
         this.playerType = PLAYER_TYPES.NAUSEATED;
         break;
     }
