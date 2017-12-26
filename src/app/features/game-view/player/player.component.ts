@@ -73,10 +73,12 @@ export class PlayerComponent implements OnInit {
         if (
           this.choreographerService.currentGameState === GAME_STATES.RUNNING
         ) {
+          this.path = this.choreographerService.path;
           this.animatePlayer(false);
+        } else {
+          this.playerGridPos = this.choreographerService.player;
+          this.setPlayerPosition();
         }
-        this.playerGridPos = this.choreographerService.player;
-        this.setPlayerPosition();
       }
     );
 
@@ -122,10 +124,15 @@ export class PlayerComponent implements OnInit {
     }
 
     this.path.forEach(node => {
-      const targetPos = this.calculatePixelPosition({
-        x: node.x,
-        y: node.y
-      });
+      const targetPos = this.calculatePixelPosition(node);
+
+      if (
+        Math.abs(this.choreographerService.player.x - node.x) > 2 &&
+        Math.abs(this.choreographerService.player.y - node.y) > 2
+      ) {
+        this.playerGridPos = this.choreographerService.player;
+        this.setPlayerPosition();
+      }
 
       this.tl
         .add($ => {
