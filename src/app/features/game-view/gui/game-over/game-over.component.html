@@ -1,3 +1,9 @@
 <div class="game-over" *ngIf="choreographerService.currentGameState === game_states.GAME_OVER">
     <h1>Game Over!</h1>
+    <h4>You Earned</h4>
+    <h3>${{salaryService.getSalary()}}</h3>
+    <h4>Your Highest</h4>
+    <h3>${{salaryService.getHighestSalary()}}</h3>
+    <br>
+    <a href="#instructions">How to Play?</a>
 </div>

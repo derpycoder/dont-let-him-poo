@@ -1,22 +1,50 @@
 .game-over {
-    position: absolute;
-    width: 92%;
-    height: 91%;
-    background-color: rgba(46, 46, 46, 0.5);
-    
-    font-size: 1.5em;
-    color: #66c9fa;
-    font-weight: bold;
-    text-align: center;
+  position: absolute;
+  width: 92%;
+  height: 91%;
+  background-color: rgba(46, 46, 46, 0.5);
 
-    z-index: 10;
-    margin-top: 0px;
+  color: #66c9fa;
+  font-weight: bold;
+  text-align: center;
+
+  z-index: 10;
+  margin-top: 0px;
+}
+
+.game-over h3 {
+  color: #89fa5a;
+  font-weight: bold;
+  margin: 10px 0 20px 0;
+}
+
+.game-over a {
+  color: #ffd43a;
+  text-decoration: none;
+  font-size: 27px;
+  cursor: pointer;
+}
+.game-over a:active {
+  color: #89fa5a;
 }
 
 @media screen and (max-width: 520px) {
-    .game-over {
-      width: 94.5%;
-      height: 93.5%;
-    }
+  .game-over {
+    width: 94.5%;
+    height: 93.5%;
   }
-  
+
+  .game-over h1 {
+    font-size: 20px;
+  }
+  .game-over h4 {
+    font-size: 13px;
+  }
+  .game-over h3 {
+    font-size: 15px;
+  }
+
+  .game-over a {
+    font-size: 15px;
+  }
+}
