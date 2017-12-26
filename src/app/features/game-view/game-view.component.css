@@ -41,6 +41,10 @@
   vertical-align: inherit;
 }
 
+dlp-salary-gauge {
+  outline: none;
+}
+
 .pou {
   width: 48px;
   display: inline-block;
