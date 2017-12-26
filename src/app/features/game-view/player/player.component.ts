@@ -105,21 +105,22 @@ export class PlayerComponent implements OnInit {
   }
 
   animatePlayer(awardPlayer: boolean) {
+    this.tl.kill();
+    this.tl.clear();
+
     if (!this.path || !this.measurements || !this.playerGridPos) {
       return;
     }
 
-    this.tl.kill();
-    this.tl.clear();
+    if (this.path.length === 0) {
+      this.playerType = PLAYER_TYPES.ANGRY;
+      this.choreographerService.currentGameState = GAME_STATES.GAME_OVER;
+      return;
+    }
 
     if (awardPlayer) {
       this.salaryService.updateSalary(10);
       this.playerType = PLAYER_TYPES.ANGRY;
-    }
-
-    if (this.path.length === 0) {
-      this.choreographerService.currentGameState = GAME_STATES.GAME_OVER;
-      return;
     }
 
     this.path.forEach(node => {
