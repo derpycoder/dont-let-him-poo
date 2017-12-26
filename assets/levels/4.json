@@ -31,7 +31,7 @@
       "none",
       "none",
       "none",
-      "pizza",
+      "none",
       "none",
       "none",
       "none",
@@ -50,32 +50,6 @@
       "wall",
       "none",
       "wall",
-      "none"
-    ],
-    [
-      "wall",
-      "wall",
-      "none",
-      "wall",
-      "none",
-      "none",
-      "none",
-      "wall",
-      "none",
-      "wall",
-      "wall"
-    ],
-    [
-      "none",
-      "money",
-      "none",
-      "none",
-      "none",
-      "wall",
-      "none",
-      "none",
-      "none",
-      "none",
       "none"
     ],
     [
@@ -93,6 +67,32 @@
     ],
     [
       "none",
+      "none",
+      "none",
+      "none",
+      "none",
+      "wall",
+      "none",
+      "none",
+      "none",
+      "none",
+      "none"
+    ],
+    [
+      "wall",
+      "wall",
+      "none",
+      "wall",
+      "none",
+      "none",
+      "none",
+      "wall",
+      "none",
+      "wall",
+      "wall"
+    ],
+    [
+      "none",
       "wall",
       "none",
       "wall",
@@ -128,7 +128,7 @@
       "wall",
       "wall",
       "none",
-      "poop"
+      "none"
     ],
     [
       "none",
