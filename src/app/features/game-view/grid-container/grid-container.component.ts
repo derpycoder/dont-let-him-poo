@@ -36,6 +36,7 @@ export class GridContainerComponent implements OnInit {
     this.choreographerService.onGameStateChange.subscribe(state => {
       switch (state) {
         case GAME_STATES.LOAD:
+          this.showGrid = false;
           this.gridService.initGrid();
           break;
         case GAME_STATES.START:

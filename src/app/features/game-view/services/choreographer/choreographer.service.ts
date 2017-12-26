@@ -194,15 +194,6 @@ export class ChoreographerService {
     this.onMeasurementsChange.emit(this.crucialMeasurements);
   }
 
-  updatePathOnTime() {
-    this.timer = setInterval($ => {
-      if (this.path.length < 1) {
-        clearInterval(this.timer);
-      }
-      this.path.splice(0, 1);
-    }, 500);
-  }
-
   checkPathCollision(roadBlock: Node) {
     clearInterval(this.timer);
     if (!this.path) {
@@ -218,8 +209,6 @@ export class ChoreographerService {
       this.path = path;
       if (this.path) {
         this.onPathChange.emit(this.path);
-
-        this.updatePathOnTime();
       }
     }
   }

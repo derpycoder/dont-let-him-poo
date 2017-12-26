@@ -82,6 +82,8 @@ export class PlayerComponent implements OnInit {
 
     this.choreographerService.onGameStateChange.subscribe(state => {
       switch (state) {
+        case GAME_STATES.LOAD:
+          this.playerType = PLAYER_TYPES.NONE;
         case GAME_STATES.START:
           this.tl.kill();
           this.tl.clear();
@@ -119,9 +121,7 @@ export class PlayerComponent implements OnInit {
       this.playerType = PLAYER_TYPES.ANGRY;
     }
 
-    const path = this.path;
-
-    path.forEach(node => {
+    this.path.forEach(node => {
       const targetPos = this.calculatePixelPosition({
         x: node.x,
         y: node.y
@@ -158,7 +158,7 @@ export class PlayerComponent implements OnInit {
         .add($ => {
           if (this.playerType !== PLAYER_TYPES.TARGET_ACQUIRED) {
             this.playerType = PLAYER_TYPES.HAPPY;
-            this.path.shift();
+            this.choreographerService.path.shift();
           }
         });
 
