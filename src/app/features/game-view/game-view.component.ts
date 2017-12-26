@@ -26,14 +26,14 @@ export class GameViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.choreographerService.onGameStateChange.subscribe(state => {
-      switch (state) {
-        case GAME_STATES.START:
-          this.gridService.initGrid();
-          break;
-        default:
-      }
-    });
+    // this.choreographerService.onGameStateChange.subscribe(state => {
+    //   switch (state) {
+    //     case GAME_STATES.START:
+    //       this.gridService.initGrid();
+    //       break;
+    //     default:
+    //   }
+    // });
   }
 
   restartGame() {
@@ -41,7 +41,7 @@ export class GameViewComponent implements OnInit {
       this.choreographerService.currentGameState === GAME_STATES.RUNNING ||
       this.choreographerService.currentGameState === GAME_STATES.GAME_OVER
     ) {
-      this.choreographerService.currentGameState = GAME_STATES.START;
+      this.choreographerService.currentGameState = GAME_STATES.LOAD;
       this.salaryService.salary = 0;
     }
   }

@@ -1,11 +1,10 @@
 <div class="grid-container">
-  <div *ngIf="!gridService.gameGrid; else showPlayButton">
+  <div *ngIf="choreographerService.currentGameState === game_states.LOAD">
     <img class="get-loader" src="./assets/images/loader.gif" alt="Loader">
   </div>
 
-  <ng-template #showPlayButton>
-    <span *ngIf="choreographerService.currentGameState === game_states.START" class="fa fa-play" (click)="startGame()"></span>
-  </ng-template>
+  <span *ngIf="choreographerService.currentGameState === game_states.START" class="fa fa-play" (click)="startGame()"></span>
+
 
   <dlp-line-renderer></dlp-line-renderer>
 

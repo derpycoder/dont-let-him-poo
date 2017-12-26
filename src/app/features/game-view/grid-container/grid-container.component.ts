@@ -29,12 +29,15 @@ export class GridContainerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (!this.gridService.gameGrid) {
+    if (this.choreographerService.currentGameState === GAME_STATES.LOAD) {
       this.gridService.initGrid();
     }
 
     this.choreographerService.onGameStateChange.subscribe(state => {
       switch (state) {
+        case GAME_STATES.LOAD:
+          this.gridService.initGrid();
+          break;
         case GAME_STATES.START:
           this.showGrid = false;
           break;

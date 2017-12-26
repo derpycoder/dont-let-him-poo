@@ -25,7 +25,7 @@ export class ChoreographerService {
   private crucialMeasurements: Measurements;
   private path: Node[];
 
-  private _currentGameState: GAME_STATES = GAME_STATES.START;
+  private _currentGameState: GAME_STATES = GAME_STATES.LOAD;
   get currentGameState(): GAME_STATES {
     return this._currentGameState;
   }
@@ -40,6 +40,7 @@ export class ChoreographerService {
     private pathFindingService: PathFindingService
   ) {
     this.gridService.onGridReady.subscribe($ => {
+      this.currentGameState = GAME_STATES.START;
       this.cleverlyPlacePlayerLooAndPoo();
     });
   }

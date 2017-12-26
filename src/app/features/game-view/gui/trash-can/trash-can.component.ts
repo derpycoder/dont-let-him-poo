@@ -25,7 +25,7 @@ export class TrashCanComponent implements OnInit {
       (state: GAME_STATES) => {
         this.deactivateImage = state !== GAME_STATES.RUNNING;
 
-        if (state === GAME_STATES.START) {
+        if (state === GAME_STATES.LOAD) {
           this.interactionService.remainingQuantity.money = this.interactionService.remainingQuantity.pizza = 5;
           this.interactionService.selectedTileType = TILE_TYPES.NONE;
         }
