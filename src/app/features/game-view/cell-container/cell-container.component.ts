@@ -24,14 +24,12 @@ export class CellContainerComponent {
   onMouseDown() {
     if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
       this.onPointerDown();
-      this.choreographerService.checkPathCollision(this.node);
     }
   }
   @HostListener("touchstart")
   onTouchStart() {
     if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
       this.onPointerDown();
-      this.choreographerService.checkPathCollision(this.node);
     }
 
     event.preventDefault();
@@ -57,6 +55,7 @@ export class CellContainerComponent {
       } else {
         this.interactionService.selectedTileType = this.node.tileType =
           TILE_TYPES.WALL;
+        this.choreographerService.checkPathCollision(this.node);
       }
     } else if (this.node.tileType === TILE_TYPES.WALL) {
       if (
