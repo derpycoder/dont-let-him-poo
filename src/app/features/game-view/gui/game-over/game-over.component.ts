@@ -14,4 +14,8 @@ export class GameOverComponent {
     public choreographerService: ChoreographerService,
     public salaryService: SalaryService
   ) {}
+
+  restartGame() {
+    this.choreographerService.currentGameState = GAME_STATES.LOAD;
+  }
 }

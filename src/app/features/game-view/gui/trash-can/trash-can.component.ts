@@ -4,6 +4,7 @@ import { TILE_TYPES } from "../../services/";
 import { InteractionService } from "../../services/interaction.service";
 import { ChoreographerService } from "../../services/choreographer/choreographer.service";
 import { GAME_STATES } from "../../services/choreographer/choreographer.model";
+import { SalaryService } from "../../services/salary.service";
 
 @Component({
   selector: "dlp-trash-can",
@@ -17,7 +18,8 @@ export class TrashCanComponent implements OnInit {
 
   constructor(
     public interactionService: InteractionService,
-    public choreographerService: ChoreographerService
+    public choreographerService: ChoreographerService,
+    private salaryService: SalaryService
   ) {}
 
   ngOnInit() {
@@ -27,6 +29,7 @@ export class TrashCanComponent implements OnInit {
 
         if (state === GAME_STATES.LOAD) {
           this.interactionService.remainingQuantity.money = this.interactionService.remainingQuantity.pizza = 5;
+          this.salaryService.salary = 0;
           this.interactionService.selectedTileType = TILE_TYPES.NONE;
         }
       }
