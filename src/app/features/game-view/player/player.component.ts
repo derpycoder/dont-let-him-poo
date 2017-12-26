@@ -109,18 +109,17 @@ export class PlayerComponent implements OnInit {
       return;
     }
 
-    this.playerType = PLAYER_TYPES.ANGRY;
-
     this.tl.kill();
     this.tl.clear();
 
+    if(awardPlayer) {
+      this.salaryService.updateSalary(10);
+      this.playerType = PLAYER_TYPES.ANGRY;
+    }
+    
     if (this.path.length === 0) {
       this.choreographerService.currentGameState = GAME_STATES.GAME_OVER;
       return;
-    }
-
-    if(awardPlayer) {
-      this.salaryService.updateSalary(10);
     }
 
     this.path.forEach(node => {
