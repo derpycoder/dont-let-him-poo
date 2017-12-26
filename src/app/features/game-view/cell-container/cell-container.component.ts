@@ -66,6 +66,7 @@ export class CellContainerComponent {
       ) {
         this.interactionService.selectedTileType = this.node.tileType =
           TILE_TYPES.NONE;
+        this.choreographerService.checkPathCollision(this.node);
       }
     }
   }

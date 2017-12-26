@@ -159,7 +159,7 @@ export class ChoreographerService {
     }
 
     let index = this.targets.indexOf(target);
-    if(index === -1) {
+    if (index === -1) {
       return;
     }
 
@@ -206,12 +206,13 @@ export class ChoreographerService {
       this.path.splice(0, 1);
     }, 500);
 
-    if (this.path.indexOf(roadBlock) !== -1) {
-      this.path = this.pathFindingService.findPath(
-        this.player,
-        this.targets[this.targets.length - 1]
-      );
+    let path = this.pathFindingService.findPath(
+      this.player,
+      this.targets[this.targets.length - 1]
+    );
 
+    if (this.path.indexOf(roadBlock) !== -1 || path.length < this.path.length) {
+      this.path = path;
       if (this.path) {
         this.onPathChange.emit(this.path);
       }
