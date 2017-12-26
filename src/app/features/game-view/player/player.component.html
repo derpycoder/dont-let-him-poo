@@ -1,4 +1,6 @@
 <div [ngSwitch]="playerType" class="player" #player [style.left.px]="playerPixelPos.y" [style.top.px]="playerPixelPos.x">
+    <span *ngSwitchCase="player_types.NONE"></span>
+    
     <img *ngSwitchCase="player_types.SLEEPING" src="./assets/images/sleeping.png">
     <img *ngSwitchCase="player_types.HAPPY" src="./assets/images/happy.png">
 
