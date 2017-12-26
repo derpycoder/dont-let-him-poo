@@ -10,6 +10,8 @@
 
   z-index: 10;
   margin-top: 0px;
+
+  text-shadow: 0px 4px 3px rgb(48, 49, 49), 0 -1px 0px #676767;
 }
 
 .game-over h3 {
@@ -26,6 +28,12 @@
 }
 .game-over a:active {
   color: #89fa5a;
+}
+
+.fa.fa-refresh {
+  font-size: 60px;
+  margin: 25px 0 40px 0;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 520px) {
@@ -46,5 +54,10 @@
 
   .game-over a {
     font-size: 15px;
+  }
+
+  .fa.fa-refresh {
+    font-size: 30px;
+    margin: 0px 0 20px 0;
   }
 }
