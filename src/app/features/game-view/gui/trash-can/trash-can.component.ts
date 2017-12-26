@@ -24,7 +24,7 @@ export class TrashCanComponent implements OnInit {
     this.choreographerService.onGameStateChange.subscribe(
       (state: GAME_STATES) => {
         this.deactivateImage = state !== GAME_STATES.RUNNING;
-        
+
         if (state === GAME_STATES.START) {
           this.interactionService.remainingQuantity.money = this.interactionService.remainingQuantity.pizza = 5;
           this.interactionService.selectedTileType = TILE_TYPES.NONE;
@@ -34,13 +34,19 @@ export class TrashCanComponent implements OnInit {
   }
 
   selectMoney() {
-    if (this.choreographerService.currentGameState === GAME_STATES.RUNNING && this.interactionService.remainingQuantity[TILE_TYPES.MONEY] > 0) {
+    if (
+      this.choreographerService.currentGameState === GAME_STATES.RUNNING &&
+      this.interactionService.remainingQuantity[TILE_TYPES.MONEY] > 0
+    ) {
       this.interactionService.selectedTileType = TILE_TYPES.MONEY;
     }
   }
 
   selectPizza() {
-    if (this.choreographerService.currentGameState === GAME_STATES.RUNNING && this.interactionService.remainingQuantity[TILE_TYPES.PIZZA] > 0) {
+    if (
+      this.choreographerService.currentGameState === GAME_STATES.RUNNING &&
+      this.interactionService.remainingQuantity[TILE_TYPES.PIZZA] > 0
+    ) {
       this.interactionService.selectedTileType = TILE_TYPES.PIZZA;
     }
   }

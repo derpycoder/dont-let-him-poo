@@ -36,7 +36,9 @@ export class LineRendererComponent implements OnInit {
     this.choreographerService.onMeasurementsChange.subscribe(
       (measurements: Measurements) => {
         this.measurements = measurements;
-        if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
+        if (
+          this.choreographerService.currentGameState === GAME_STATES.RUNNING
+        ) {
           this.renderPath();
         }
       }
@@ -61,7 +63,7 @@ export class LineRendererComponent implements OnInit {
       const pixelPos = this.calculatePixelPosition(node);
       return `${pixelPos.y},${pixelPos.x}`;
     });
-    
+
     this.pathString = pathArr.join(" ");
 
     this.timer = setInterval($ => {

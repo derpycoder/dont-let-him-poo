@@ -134,7 +134,7 @@ export class ChoreographerService {
         this.poo = this.gridService.gameGrid[p][q];
         this.poo.tileType = TILE_TYPES.POOP;
 
-        let path = this.pathFindingService.findPath(this.player, this.poo);
+        const path = this.pathFindingService.findPath(this.player, this.poo);
 
         if (path && path.length > 5) {
           pooPlaced = true;
@@ -158,7 +158,7 @@ export class ChoreographerService {
       return;
     }
 
-    let index = this.targets.indexOf(target);
+    const index = this.targets.indexOf(target);
     if (index === -1) {
       return;
     }
@@ -206,7 +206,7 @@ export class ChoreographerService {
       this.path.splice(0, 1);
     }, 500);
 
-    let path = this.pathFindingService.findPath(
+    const path = this.pathFindingService.findPath(
       this.player,
       this.targets[this.targets.length - 1]
     );

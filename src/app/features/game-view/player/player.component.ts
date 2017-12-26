@@ -112,11 +112,11 @@ export class PlayerComponent implements OnInit {
     this.tl.kill();
     this.tl.clear();
 
-    if(awardPlayer) {
+    if (awardPlayer) {
       this.salaryService.updateSalary(10);
       this.playerType = PLAYER_TYPES.ANGRY;
     }
-    
+
     if (this.path.length === 0) {
       this.choreographerService.currentGameState = GAME_STATES.GAME_OVER;
       return;
