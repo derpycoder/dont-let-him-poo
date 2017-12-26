@@ -20,7 +20,7 @@ export class ChoreographerService {
 
   player: Node;
   private timer: any;
-  private loo: Node;
+  private targets: Node[];
   private poo: Node;
   private crucialMeasurements: Measurements;
   private path: Node[];
@@ -45,6 +45,8 @@ export class ChoreographerService {
   }
 
   private cleverlyPlacePlayerLooAndPoo() {
+    this.targets = [];
+
     let playerPlaced: boolean;
     let looPlaced: boolean;
     let pooPlaced: boolean;
@@ -81,8 +83,8 @@ export class ChoreographerService {
         !looPlaced &&
         this.gridService.gameGrid[x][y].tileType === TILE_TYPES.NONE
       ) {
-        this.loo = this.gridService.gameGrid[x][y];
-        this.loo.tileType = TILE_TYPES.LOO;
+        this.targets.push(this.gridService.gameGrid[x][y]);
+        this.targets[this.targets.length - 1].tileType = TILE_TYPES.LOO;
         looPlaced = true;
       }
 
@@ -97,7 +99,10 @@ export class ChoreographerService {
 
       if (playerPlaced && looPlaced) {
         this.onPlayerPlaced.emit(this.player);
-        this.path = this.pathFindingService.findPath(this.player, this.loo);
+        this.path = this.pathFindingService.findPath(
+          this.player,
+          this.targets[this.targets.length - 1]
+        );
 
         if (this.path && this.path.length > 5) {
           this.onPlayerPlaced.emit(this.player);
@@ -131,11 +136,40 @@ export class ChoreographerService {
 
         let path = this.pathFindingService.findPath(this.player, this.poo);
 
-        if(path && path.length > 5) {
+        if (path && path.length > 5) {
           pooPlaced = true;
         }
       }
     }
+  }
+
+  distractionPlaced(target: Node) {
+    this.targets.push(target);
+
+    this.path = this.pathFindingService.findPath(
+      this.player,
+      this.targets[this.targets.length - 1]
+    );
+    this.onPathChange.emit(this.path);
+  }
+
+  distractionOver(target: Node) {
+    if (this.targets.length < 0) {
+      return;
+    }
+
+    let index = this.targets.indexOf(target);
+    if(index === -1) {
+      return;
+    }
+
+    this.targets.splice(index, 1);
+
+    this.path = this.pathFindingService.findPath(
+      this.player,
+      this.targets[this.targets.length - 1]
+    );
+    this.onPathChange.emit(this.path);
   }
 
   takeMeasurements(token: number) {
@@ -173,7 +207,10 @@ export class ChoreographerService {
     }, 500);
 
     if (this.path.indexOf(roadBlock) !== -1) {
-      this.path = this.pathFindingService.findPath(this.player, this.loo);
+      this.path = this.pathFindingService.findPath(
+        this.player,
+        this.targets[this.targets.length - 1]
+      );
 
       if (this.path) {
         this.onPathChange.emit(this.path);

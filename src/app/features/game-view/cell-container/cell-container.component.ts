@@ -50,6 +50,8 @@ export class CellContainerComponent {
           this.interactionService.updateQuantity(
             this.interactionService.selectedTileType
           );
+
+          this.choreographerService.distractionPlaced(this.node);
         }
         this.interactionService.selectedTileType = TILE_TYPES.NONE;
       } else {

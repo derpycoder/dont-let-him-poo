@@ -130,7 +130,7 @@ export class PlayerComponent implements OnInit {
 
       this.tl
         .add($ => {
-          this.showExpression(node.tileType);
+          this.showExpression(node);
 
           this.choreographerService.player.tileType = TILE_TYPES.NONE;
           node.tileType = TILE_TYPES.PLAYER;
@@ -166,17 +166,19 @@ export class PlayerComponent implements OnInit {
     });
   }
 
-  showExpression(tileType) {
-    switch (tileType) {
+  showExpression(node: Node) {
+    switch (node.tileType) {
       case TILE_TYPES.LOO:
         this.playerType = PLAYER_TYPES.TARGET_ACQUIRED;
         this.choreographerService.currentGameState = GAME_STATES.GAME_OVER;
         break;
       case TILE_TYPES.PIZZA:
         this.playerType = PLAYER_TYPES.GOT_FED;
+        this.choreographerService.distractionOver(node);
         break;
       case TILE_TYPES.MONEY:
         this.playerType = PLAYER_TYPES.GOT_MONEY;
+        this.choreographerService.distractionOver(node);
         break;
       case TILE_TYPES.NONE:
         this.playerType = PLAYER_TYPES.HAPPY;
