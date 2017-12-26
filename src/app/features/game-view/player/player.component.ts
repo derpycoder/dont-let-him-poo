@@ -54,8 +54,7 @@ export class PlayerComponent implements OnInit {
     this.tl = new TimelineMax();
 
     this.choreographerService.onPlayerPlaced.subscribe((position: Node) => {
-      this.playerGridPos.x = position.x;
-      this.playerGridPos.y = position.y;
+      this.playerGridPos = position;
 
       this.setPlayerPosition();
     });
@@ -75,11 +74,8 @@ export class PlayerComponent implements OnInit {
           this.choreographerService.currentGameState === GAME_STATES.RUNNING
         ) {
           this.animatePlayer(false);
-        } else if (
-          this.choreographerService.currentGameState === GAME_STATES.GAME_OVER
-        ) {
-          this.playerGridPos = this.choreographerService.player;
         }
+        this.playerGridPos = this.choreographerService.player;
         this.setPlayerPosition();
       }
     );
@@ -185,7 +181,7 @@ export class PlayerComponent implements OnInit {
         this.choreographerService.distractionOver(node);
         break;
       case TILE_TYPES.NONE:
-        //TODO: If Player Chasing Money, he will show MONEY Face, 
+        //TODO: If Player Chasing Money, he will show MONEY Face,
         //Else if he's chasing Pizza, then craving face.
         // Otherwise Happy to go to loo!
         this.playerType = PLAYER_TYPES.HAPPY;
