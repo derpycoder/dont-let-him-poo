@@ -70,7 +70,7 @@ export class LineRendererComponent implements OnInit {
       if (pathArr.length < 1) {
         clearInterval(this.timer);
       }
-      pathArr.splice(0, 1);
+      pathArr.shift();
       this.pathString = pathArr.join(" ");
     }, 500);
   }

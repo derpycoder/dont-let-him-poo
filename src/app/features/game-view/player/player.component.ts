@@ -123,7 +123,9 @@ export class PlayerComponent implements OnInit {
       this.playerType = PLAYER_TYPES.ANGRY;
     }
 
-    this.path.forEach(node => {
+    let path = this.path;
+
+    path.forEach(node => {
       const targetPos = this.calculatePixelPosition({
         x: node.x,
         y: node.y
@@ -160,6 +162,7 @@ export class PlayerComponent implements OnInit {
         .add($ => {
           if (this.playerType !== PLAYER_TYPES.TARGET_ACQUIRED) {
             this.playerType = PLAYER_TYPES.HAPPY;
+            this.path.shift();
           }
         });
 
@@ -182,6 +185,9 @@ export class PlayerComponent implements OnInit {
         this.choreographerService.distractionOver(node);
         break;
       case TILE_TYPES.NONE:
+        //TODO: If Player Chasing Money, he will show MONEY Face, 
+        //Else if he's chasing Pizza, then craving face.
+        // Otherwise Happy to go to loo!
         this.playerType = PLAYER_TYPES.HAPPY;
         break;
       case TILE_TYPES.POOP:
