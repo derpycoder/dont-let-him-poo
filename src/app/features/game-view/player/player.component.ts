@@ -64,13 +64,22 @@ export class PlayerComponent implements OnInit {
       this.path = path;
 
       if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
-        this.animatePlayer();
+        this.animatePlayer(true);
       }
     });
 
     this.choreographerService.onMeasurementsChange.subscribe(
       (measurements: Measurements) => {
         this.measurements = measurements;
+        if (
+          this.choreographerService.currentGameState === GAME_STATES.RUNNING
+        ) {
+          this.animatePlayer(false);
+        } else if (
+          this.choreographerService.currentGameState === GAME_STATES.GAME_OVER
+        ) {
+          this.playerGridPos = this.choreographerService.player;
+        }
         this.setPlayerPosition();
       }
     );
@@ -87,14 +96,14 @@ export class PlayerComponent implements OnInit {
           break;
         case GAME_STATES.RUNNING:
           this.playerType = PLAYER_TYPES.HAPPY;
-          this.animatePlayer();
+          this.animatePlayer(true);
           break;
         default:
       }
     });
   }
 
-  animatePlayer() {
+  animatePlayer(awardPlayer: boolean) {
     if (!this.path || !this.measurements || !this.playerGridPos) {
       return;
     }
@@ -109,7 +118,9 @@ export class PlayerComponent implements OnInit {
       return;
     }
 
-    this.salaryService.updateSalary(10);
+    if(awardPlayer) {
+      this.salaryService.updateSalary(10);
+    }
 
     this.path.forEach(node => {
       const targetPos = this.calculatePixelPosition({

@@ -1,0 +1,22 @@
+.game-over {
+    position: absolute;
+    width: 92%;
+    height: 91%;
+    background-color: rgba(46, 46, 46, 0.5);
+    
+    font-size: 1.5em;
+    color: #66c9fa;
+    font-weight: bold;
+    text-align: center;
+
+    z-index: 10;
+    margin-top: 0px;
+}
+
+@media screen and (max-width: 520px) {
+    .game-over {
+      width: 94.5%;
+      height: 93.5%;
+    }
+  }
+  

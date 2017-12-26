@@ -127,7 +127,7 @@ export class ChoreographerService {
         clearInterval(this.timer);
       }
       this.path.splice(0, 1);
-    }, 400);
+    }, 500);
 
     if (this.path.indexOf(roadBlock) !== -1) {
       this.path = this.pathFindingService.findPath(this.player, this.loo);

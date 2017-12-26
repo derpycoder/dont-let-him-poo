@@ -28,12 +28,17 @@ export class LineRendererComponent implements OnInit {
   ngOnInit() {
     this.choreographerService.onPathChange.subscribe((path: Node[]) => {
       this.path = path;
-      this.renderPath();
+      if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
+        this.renderPath();
+      }
     });
 
     this.choreographerService.onMeasurementsChange.subscribe(
       (measurements: Measurements) => {
         this.measurements = measurements;
+        if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
+          this.renderPath();
+        }
       }
     );
 
@@ -56,7 +61,7 @@ export class LineRendererComponent implements OnInit {
       const pixelPos = this.calculatePixelPosition(node);
       return `${pixelPos.y},${pixelPos.x}`;
     });
-
+    
     this.pathString = pathArr.join(" ");
 
     this.timer = setInterval($ => {
