@@ -10,6 +10,8 @@ import { InteractionService } from "../interaction.service";
 import { UtilsService } from "../utils.service";
 import { PLAYER_MOVES } from "../choreographer/choreographer.model";
 
+const MAX_LEVELS = 7;
+
 @Injectable()
 export class GridService {
   gameGridBackup: Node[][];
@@ -25,7 +27,7 @@ export class GridService {
 
   initGrid() {
     this.httpClient
-      .get(`./assets/levels/${this.utilsService.getRandomNumber(1, 6)}.json`)
+      .get(`./assets/levels/${this.utilsService.getRandomNumber(1, MAX_LEVELS)}.json`)
       .subscribe((data: any) => {
         this.gameGrid = [];
         let row: Node[];
