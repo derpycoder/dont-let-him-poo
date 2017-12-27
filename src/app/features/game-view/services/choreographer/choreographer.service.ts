@@ -20,7 +20,7 @@ export class ChoreographerService {
 
   player: Node;
   private timer: any;
-  private targets: Node[];
+  targets: Node[];
   private poo: Node;
   private crucialMeasurements: Measurements;
   public path: Node[];

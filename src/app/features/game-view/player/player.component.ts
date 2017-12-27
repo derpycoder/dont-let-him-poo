@@ -176,18 +176,25 @@ export class PlayerComponent implements OnInit {
         this.choreographerService.currentGameState = GAME_STATES.GAME_OVER;
         break;
       case TILE_TYPES.PIZZA:
-        this.playerType = PLAYER_TYPES.GOT_FED;
-        this.choreographerService.distractionOver(node);
+        setTimeout($ => this.choreographerService.distractionOver(node));
         break;
       case TILE_TYPES.MONEY:
-        this.playerType = PLAYER_TYPES.GOT_MONEY;
-        this.choreographerService.distractionOver(node);
+        setTimeout($ => this.choreographerService.distractionOver(node));
         break;
       case TILE_TYPES.NONE:
-        // TODO: If Player Chasing Money, he will show MONEY Face,
-        // Else if he's chasing Pizza, then craving face.
-        // Otherwise Happy to go to loo!
-        this.playerType = PLAYER_TYPES.HAPPY;
+        switch (this.choreographerService.targets[
+          this.choreographerService.targets.length - 1
+        ].tileType) {
+          case TILE_TYPES.LOO:
+            this.playerType = PLAYER_TYPES.HAPPY;
+            break;
+          case TILE_TYPES.MONEY:
+            this.playerType = PLAYER_TYPES.GOT_MONEY;
+            break;
+          case TILE_TYPES.PIZZA:
+            this.playerType = PLAYER_TYPES.GOT_FED;
+            break;
+        }
         break;
       case TILE_TYPES.POOP:
         this.salaryService.updateSalary(100);
