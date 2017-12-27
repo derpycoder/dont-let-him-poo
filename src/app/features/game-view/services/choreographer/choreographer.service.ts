@@ -67,6 +67,7 @@ export class ChoreographerService {
         y = this.utilsService.getRandomNumber(0, 10);
       }
       if (!pooPlaced) {
+        console.log("Trying to poo");
         p = this.utilsService.getRandomNumber(0, 10);
         q = this.utilsService.getRandomNumber(0, 10);
       }
@@ -95,10 +96,11 @@ export class ChoreographerService {
       ) {
         this.poo = this.gridService.gameGrid[p][q];
         this.poo.tileType = TILE_TYPES.POOP;
+        console.log("Initial Poo Placed");
         pooPlaced = true;
       }
 
-      if (playerPlaced && looPlaced) {
+      if (playerPlaced && looPlaced && pooPlaced) {
         this.onPlayerPlaced.emit(this.player);
         this.path = this.pathFindingService.findPath(
           this.player,
@@ -108,9 +110,9 @@ export class ChoreographerService {
         if (this.path && this.path.length > 5) {
           this.onPlayerPlaced.emit(this.player);
           this.onPathChange.emit(this.path);
+
           return;
         }
-
         playerPlaced = false;
       }
     }
@@ -133,12 +135,16 @@ export class ChoreographerService {
         this.gridService.gameGrid[p][q].tileType === TILE_TYPES.NONE
       ) {
         this.poo = this.gridService.gameGrid[p][q];
-        this.poo.tileType = TILE_TYPES.POOP;
+
+        if (this.path.indexOf(this.poo) !== -1) {
+          continue;
+        }
 
         const path = this.pathFindingService.findPath(this.player, this.poo);
 
         if (path && path.length > 5) {
           pooPlaced = true;
+          this.poo.tileType = TILE_TYPES.POOP;
         }
       }
     }
