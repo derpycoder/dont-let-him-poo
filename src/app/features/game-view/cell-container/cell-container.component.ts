@@ -22,20 +22,23 @@ export class CellContainerComponent {
 
   @HostListener("mousedown")
   onMouseDown() {
-    if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
-      this.onPointerDown();
-    }
+    this.onPointerDown();
   }
   @HostListener("touchstart")
   onTouchStart() {
-    if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
-      this.onPointerDown();
-    }
+    this.onPointerDown();
 
     event.preventDefault();
   }
 
   private onPointerDown() {
+    if (
+      this.choreographerService.currentGameState !== GAME_STATES.RUNNING &&
+      this.choreographerService.currentGameState !== GAME_STATES.EDIT_MODE
+    ) {
+      return;
+    }
+
     if (this.node.tileType === TILE_TYPES.NONE) {
       if (
         this.interactionService.selectedTileType !== TILE_TYPES.WALL &&

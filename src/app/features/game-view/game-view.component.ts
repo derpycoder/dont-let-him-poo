@@ -19,6 +19,11 @@ export class GameViewComponent implements OnInit {
   game_states = GAME_STATES;
   env = environment;
 
+  helperBtnText: string = "Edit";
+  showHelpers: boolean;
+
+  powerOffBtnActive: boolean = false;
+
   constructor(
     public gridService: GridService,
     public choreographerService: ChoreographerService,
@@ -26,22 +31,35 @@ export class GameViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.choreographerService.onGameStateChange.subscribe(state => {
-    //   switch (state) {
-    //     case GAME_STATES.START:
-    //       this.gridService.initGrid();
-    //       break;
-    //     default:
-    //   }
-    // });
+    this.choreographerService.onGameStateChange.subscribe(
+      (state: GAME_STATES) => {
+        switch (state) {
+          case GAME_STATES.START:
+            this.helperBtnText = "Edit";
+            this.powerOffBtnActive = false;
+            break;
+          case GAME_STATES.RUNNING:
+          case GAME_STATES.GAME_OVER:
+          case GAME_STATES.EDIT_MODE:
+            this.powerOffBtnActive = true;
+            this.helperBtnText = "Next";
+            break;
+          default:
+            this.helperBtnText = "Next";
+            this.powerOffBtnActive = false;
+        }
+      }
+    );
   }
 
   restartGame() {
-    if (
-      this.choreographerService.currentGameState === GAME_STATES.RUNNING ||
-      this.choreographerService.currentGameState === GAME_STATES.GAME_OVER
-    ) {
+    if (this.powerOffBtnActive) {
       this.choreographerService.currentGameState = GAME_STATES.LOAD;
     }
+  }
+
+  editLevel() {
+    this.choreographerService.currentGameState = GAME_STATES.EDIT_MODE;
+    this.showHelpers = true;
   }
 }

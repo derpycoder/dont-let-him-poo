@@ -36,5 +36,6 @@ export enum GAME_STATES {
   START,
   RUN,
   RUNNING,
-  GAME_OVER
+  GAME_OVER,
+  EDIT_MODE
 }

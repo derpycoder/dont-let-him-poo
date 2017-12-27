@@ -46,6 +46,11 @@ export class GridContainerComponent implements OnInit {
           this.doCountDown();
           this.showGrid = true;
           break;
+        case GAME_STATES.EDIT_MODE:
+          if (this.showGrid) {
+            this.gridService.initGrid();
+          }
+          this.showGrid = true;
         default:
       }
     });

@@ -17,7 +17,7 @@
 <div class="container main">
   <h1>
     <ng-container>
-      <span class="fa fa-power-off" [ngClass]="{'active': choreographerService.currentGameState === game_states.RUNNING || choreographerService.currentGameState === game_states.GAME_OVER}"
+      <span class="fa fa-power-off" [ngClass]="{'active': powerOffBtnActive}"
         (click)="restartGame()"></span>
       <span class="title">{{title}}</span>
     </ng-container>
@@ -29,9 +29,11 @@
   <dlp-trash-can></dlp-trash-can>
 
   <ng-container *ngIf="!env.production">
-    <button type="button" class="btn btn-dark hidden-sm hidden-xs" (click)="gridService.clearGrid()">Clear</button>
-    <button type="button" class="btn btn-dark hidden-sm hidden-xs" (click)="gridService.resetGrid()">Reset</button>
-    <button type="button" class="btn btn-dark hidden-sm hidden-xs" (click)="gridService.serializeGrid()">Serialize</button>
+    <button type="button" class="btn btn-dark hidden-sm hidden-xs" (click)="editLevel()">{{helperBtnText}}</button>
+    <ng-container *ngIf="showHelpers">
+      <button type="button" class="btn btn-dark hidden-sm hidden-xs" (click)="gridService.clearGrid()">Clear</button>
+      <button type="button" class="btn btn-dark hidden-sm hidden-xs" (click)="gridService.serializeGrid()">Serialize</button>
+    </ng-container>
   </ng-container>
 </div>
 
