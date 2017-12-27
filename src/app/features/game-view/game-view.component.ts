@@ -35,18 +35,18 @@ export class GameViewComponent implements OnInit {
       (state: GAME_STATES) => {
         switch (state) {
           case GAME_STATES.START:
-            this.helperBtnText = "Edit";
             this.showHelpers = false;
             this.powerOffBtnActive = false;
+            this.helperBtnText = "Edit";
             break;
+          case GAME_STATES.RUN:
           case GAME_STATES.RUNNING:
           case GAME_STATES.GAME_OVER:
           case GAME_STATES.EDIT_MODE:
             this.powerOffBtnActive = true;
-            this.helperBtnText = "Next";
+            this.helperBtnText = "Exit";
             break;
           default:
-            this.helperBtnText = "Next";
             this.powerOffBtnActive = false;
         }
       }
