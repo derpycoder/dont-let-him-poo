@@ -145,6 +145,7 @@ export class ChoreographerService {
         if (path && path.length > 5) {
           pooPlaced = true;
           this.poo.tileType = TILE_TYPES.POOP;
+          return;
         }
       }
     }
