@@ -55,7 +55,7 @@ export class ChoreographerService {
 
     let count = 0;
 
-    while (true) {
+    while (count < 100) {
       console.log(`Tries: ${count++}`);
 
       if (!playerPlaced) {
@@ -122,7 +122,7 @@ export class ChoreographerService {
 
     let count = 0;
 
-    while (!pooPlaced) {
+    while (count < 100) {
       console.log(`Poo Tries: ${count++}`);
 
       p = this.utilsService.getRandomNumber(0, 10);
