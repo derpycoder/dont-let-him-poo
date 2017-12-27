@@ -107,7 +107,7 @@ export class ChoreographerService {
           this.targets[this.targets.length - 1]
         );
 
-        if (this.path && this.path.length > 5) {
+        if (this.path && this.path.length > 5 &&  this.path.indexOf(this.poo) === -1) {
           this.onPlayerPlaced.emit(this.player);
           this.onPathChange.emit(this.path);
 

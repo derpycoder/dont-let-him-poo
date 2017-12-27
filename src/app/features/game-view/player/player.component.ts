@@ -63,7 +63,7 @@ export class PlayerComponent implements OnInit {
       this.path = path;
 
       if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
-        this.animatePlayer(true);
+        this.animatePlayer();
       }
     });
 
@@ -74,7 +74,7 @@ export class PlayerComponent implements OnInit {
           this.choreographerService.currentGameState === GAME_STATES.RUNNING
         ) {
           this.path = this.choreographerService.path;
-          this.animatePlayer(false);
+          this.animatePlayer();
         } else {
           this.playerGridPos = this.choreographerService.player;
           this.setPlayerPosition();
@@ -97,14 +97,14 @@ export class PlayerComponent implements OnInit {
           break;
         case GAME_STATES.RUNNING:
           this.playerType = PLAYER_TYPES.HAPPY;
-          this.animatePlayer(false);
+          this.animatePlayer();
           break;
         default:
       }
     });
   }
 
-  animatePlayer(awardPlayer: boolean) {
+  animatePlayer() {
     this.tl.kill();
     this.tl.clear();
 
@@ -112,15 +112,11 @@ export class PlayerComponent implements OnInit {
       return;
     }
 
+    this.playerType = PLAYER_TYPES.ANGRY;
+
     if (this.path.length === 0) {
-      this.playerType = PLAYER_TYPES.ANGRY;
       this.choreographerService.currentGameState = GAME_STATES.GAME_OVER;
       return;
-    }
-
-    if (awardPlayer) {
-      this.salaryService.updateSalary(10);
-      this.playerType = PLAYER_TYPES.ANGRY;
     }
 
     this.path.forEach(node => {
