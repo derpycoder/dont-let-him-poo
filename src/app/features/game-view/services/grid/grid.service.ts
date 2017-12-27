@@ -27,7 +27,12 @@ export class GridService {
 
   initGrid() {
     this.httpClient
-      .get(`./assets/levels/${this.utilsService.getRandomNumber(1, MAX_LEVELS)}.json`)
+      .get(
+        `./assets/levels/${this.utilsService.getRandomNumber(
+          1,
+          MAX_LEVELS
+        )}.json`
+      )
       .subscribe((data: any) => {
         this.gameGrid = [];
         let row: Node[];
@@ -44,7 +49,7 @@ export class GridService {
           this.gameGrid.push(row);
         }
 
-        if(!environment.production) {
+        if (!environment.production) {
           this.gameGridBackup = _.cloneDeep(this.gameGrid);
         }
 
@@ -53,13 +58,13 @@ export class GridService {
   }
 
   resetGrid() {
-    if(this.gameGridBackup) {
+    if (this.gameGridBackup) {
       this.gameGrid = _.cloneDeep(this.gameGridBackup);
     }
   }
 
   clearGrid() {
-    if(!this.gameGrid) {
+    if (!this.gameGrid) {
       return;
     }
 
@@ -72,10 +77,10 @@ export class GridService {
   }
 
   serializeGrid() {
-    if(!this.gameGrid) {
+    if (!this.gameGrid) {
       return;
     }
-    
+
     const serializedGrid = JSON.stringify({
       gameGrid: this.gameGrid.map(row => {
         return row.map((cell: any) => {

@@ -86,6 +86,7 @@ export class PlayerComponent implements OnInit {
       switch (state) {
         case GAME_STATES.LOAD:
           this.playerType = PLAYER_TYPES.NONE;
+          break;
         case GAME_STATES.START:
           this.tl.kill();
           this.tl.clear();

@@ -51,6 +51,7 @@ export class GridContainerComponent implements OnInit {
             this.gridService.initGrid();
           }
           this.showGrid = true;
+          break;
         default:
       }
     });
