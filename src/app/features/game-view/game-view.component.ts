@@ -36,6 +36,7 @@ export class GameViewComponent implements OnInit {
         switch (state) {
           case GAME_STATES.START:
             this.helperBtnText = "Edit";
+            this.showHelpers = false;
             this.powerOffBtnActive = false;
             break;
           case GAME_STATES.RUNNING:
