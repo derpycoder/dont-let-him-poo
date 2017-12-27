@@ -10,7 +10,7 @@ import { InteractionService } from "../interaction.service";
 import { UtilsService } from "../utils.service";
 import { PLAYER_MOVES } from "../choreographer/choreographer.model";
 
-const MAX_LEVELS = 7;
+const MAX_LEVELS = 8;
 
 @Injectable()
 export class GridService {
