@@ -27,7 +27,7 @@ export class GridService {
 
   initGrid() {
     this.httpClient
-      .get(`./assets/levels/${this.utilsService.getRandomNumber(1, MAX_LEVELS)}.json`)
+      .get(`./assets/levels/8.json`)
       .subscribe((data: any) => {
         this.gameGrid = [];
         let row: Node[];
