@@ -2,6 +2,8 @@ import { Injectable, EventEmitter } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Node, TILE_TYPES } from "./grid.model";
 
+import { environment } from "../../../../../environments/environment";
+
 import * as _ from "lodash";
 import { InteractionService } from "../interaction.service";
 
@@ -40,17 +42,25 @@ export class GridService {
           this.gameGrid.push(row);
         }
 
-        this.gameGridBackup = _.cloneDeep(this.gameGrid);
+        if(!environment.production) {
+          this.gameGridBackup = _.cloneDeep(this.gameGrid);
+        }
 
         this.onGridReady.emit(true);
       });
   }
 
   resetGrid() {
-    this.gameGrid = _.cloneDeep(this.gameGridBackup);
+    if(this.gameGridBackup) {
+      this.gameGrid = _.cloneDeep(this.gameGridBackup);
+    }
   }
 
   clearGrid() {
+    if(!this.gameGrid) {
+      return;
+    }
+
     this.gameGrid = this.gameGrid.map(row => {
       return row.map(cell => {
         cell.tileType = TILE_TYPES.NONE;
@@ -60,6 +70,10 @@ export class GridService {
   }
 
   serializeGrid() {
+    if(!this.gameGrid) {
+      return;
+    }
+    
     const serializedGrid = JSON.stringify({
       gameGrid: this.gameGrid.map(row => {
         return row.map((cell: any) => {
