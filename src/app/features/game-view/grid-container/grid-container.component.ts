@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ElementRef
+} from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 
 import { GridService } from "../services/grid/grid.service";
@@ -37,29 +43,31 @@ export class GridContainerComponent implements OnInit, OnDestroy {
       this.gridService.initGrid();
     }
 
-    this.choreographerSubscription = this.choreographerService.onGameStateChange.subscribe(state => {
-      switch (state) {
-        case GAME_STATES.LOAD:
-          this.showGrid = false;
-          this.gridService.initGrid();
-          break;
-        case GAME_STATES.START:
-          this.countDown = "";
-          this.showGrid = false;
-          break;
-        case GAME_STATES.RUN:
-          this.doCountDown();
-          this.showGrid = true;
-          break;
-        case GAME_STATES.EDIT_MODE:
-          if (this.showGrid) {
+    this.choreographerSubscription = this.choreographerService.onGameStateChange.subscribe(
+      state => {
+        switch (state) {
+          case GAME_STATES.LOAD:
+            this.showGrid = false;
             this.gridService.initGrid();
-          }
-          this.showGrid = true;
-          break;
-        default:
+            break;
+          case GAME_STATES.START:
+            this.countDown = "";
+            this.showGrid = false;
+            break;
+          case GAME_STATES.RUN:
+            this.doCountDown();
+            this.showGrid = true;
+            break;
+          case GAME_STATES.EDIT_MODE:
+            if (this.showGrid) {
+              this.gridService.initGrid();
+            }
+            this.showGrid = true;
+            break;
+          default:
+        }
       }
-    });
+    );
   }
 
   ngOnDestroy() {
@@ -92,7 +100,7 @@ export class GridContainerComponent implements OnInit, OnDestroy {
       .to(this.vfx.nativeElement, 0.5, { z: 0, alpha: 1 })
       .set(this.vfx.nativeElement, { alpha: 0, scale: 0 })
       .add($ => {
-        if(this.choreographerService.currentGameState === GAME_STATES.RUN) {
+        if (this.choreographerService.currentGameState === GAME_STATES.RUN) {
           this.choreographerService.currentGameState = GAME_STATES.RUNNING;
         }
       });
