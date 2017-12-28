@@ -20,8 +20,7 @@ export class ChoreographerService {
 
   onPlayerMove: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  player: Node;
-  private timer: any;
+  player: Node;y
   targets: Node[];
   private poo: Node;
   private crucialMeasurements: Measurements;
@@ -213,7 +212,6 @@ export class ChoreographerService {
   }
 
   checkPathCollision(roadBlock: Node) {
-    clearInterval(this.timer);
     if (!this.path) {
       return;
     }
