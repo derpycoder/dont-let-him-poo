@@ -172,9 +172,11 @@ export class PlayerComponent implements OnInit {
         this.choreographerService.currentGameState = GAME_STATES.GAME_OVER;
         break;
       case TILE_TYPES.PIZZA:
+        this.playerType = PLAYER_TYPES.GOT_FED;
         setTimeout($ => this.choreographerService.onDistractionOver.emit(node));
         break;
       case TILE_TYPES.MONEY:
+        this.playerType = PLAYER_TYPES.GOT_MONEY;
         setTimeout($ => this.choreographerService.onDistractionOver.emit(node));
         break;
       case TILE_TYPES.NONE:
