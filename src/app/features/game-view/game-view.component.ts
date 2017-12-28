@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { environment } from "../../../environments/environment";
 import { TILE_TYPES } from "./services/grid/grid.model";
@@ -28,10 +29,15 @@ export class GameViewComponent implements OnInit {
   constructor(
     public gridService: GridService,
     public choreographerService: ChoreographerService,
-    private salaryService: SalaryService
+    private salaryService: SalaryService,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    this.router.events.subscribe(val => {
+      this.choreographerService.currentGameState = GAME_STATES.START;
+    });
+
     this.choreographerService.onGameStateChange.subscribe(
       (state: GAME_STATES) => {
         switch (state) {

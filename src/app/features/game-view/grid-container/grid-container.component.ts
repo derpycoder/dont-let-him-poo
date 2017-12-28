@@ -40,6 +40,7 @@ export class GridContainerComponent implements OnInit {
           this.gridService.initGrid();
           break;
         case GAME_STATES.START:
+          this.countDown = "";
           this.showGrid = false;
           break;
         case GAME_STATES.RUN:
