@@ -85,8 +85,8 @@ export class PlayerComponent implements OnInit {
     this.choreographerService.onGameStateChange.subscribe(state => {
       switch (state) {
         case GAME_STATES.LOAD:
+          this.tl.clear();
           this.playerType = PLAYER_TYPES.NONE;
-          console.log("Yah");
           break;
         case GAME_STATES.START:
           this.tl.clear();
