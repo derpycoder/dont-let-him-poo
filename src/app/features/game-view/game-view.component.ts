@@ -23,6 +23,7 @@ export class GameViewComponent implements OnInit {
   showHelpers: boolean;
 
   powerOffBtnActive: boolean = false;
+  showLevelEditBtn: boolean = false;
 
   constructor(
     public gridService: GridService,
@@ -38,13 +39,18 @@ export class GameViewComponent implements OnInit {
             this.showHelpers = false;
             this.powerOffBtnActive = false;
             this.helperBtnText = "Edit";
+            this.showLevelEditBtn = true;
             break;
           case GAME_STATES.RUN:
+            this.powerOffBtnActive = false;
+            this.showLevelEditBtn = false;
+            break;
           case GAME_STATES.RUNNING:
           case GAME_STATES.GAME_OVER:
           case GAME_STATES.EDIT_MODE:
             this.powerOffBtnActive = true;
             this.helperBtnText = "Exit";
+            this.showLevelEditBtn = true;
             break;
           default:
             this.powerOffBtnActive = false;
@@ -60,6 +66,13 @@ export class GameViewComponent implements OnInit {
   }
 
   editLevel() {
+    if (
+      this.choreographerService.currentGameState !== GAME_STATES.RUNNING &&
+      this.choreographerService.currentGameState !== GAME_STATES.EDIT_MODE &&
+      this.choreographerService.currentGameState !== GAME_STATES.START
+    ) {
+      return;
+    }
     if (this.choreographerService.currentGameState !== GAME_STATES.RUNNING) {
       this.showHelpers = true;
     }
