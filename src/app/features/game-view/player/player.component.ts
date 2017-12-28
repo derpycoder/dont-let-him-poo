@@ -88,7 +88,6 @@ export class PlayerComponent implements OnInit {
           this.playerType = PLAYER_TYPES.NONE;
           break;
         case GAME_STATES.START:
-          this.tl.kill();
           this.tl.clear();
           this.playerType = PLAYER_TYPES.NONE;
           break;
@@ -106,7 +105,8 @@ export class PlayerComponent implements OnInit {
   }
 
   animatePlayer() {
-    this.tl.kill();
+    // Necessary to stop previous tween, else, the player will keep moving in the previous
+    // direction, and after finishing that, will continue on new path.
     this.tl.clear();
 
     if (!this.path || !this.measurements || !this.playerGridPos) {
@@ -122,14 +122,6 @@ export class PlayerComponent implements OnInit {
 
     this.path.forEach(node => {
       const targetPos = this.calculatePixelPosition(node);
-
-      if (
-        Math.abs(this.choreographerService.player.x - node.x) > 2 &&
-        Math.abs(this.choreographerService.player.y - node.y) > 2
-      ) {
-        this.playerGridPos = this.choreographerService.player;
-        this.setPlayerPosition();
-      }
 
       this.tl
         .add($ => {
