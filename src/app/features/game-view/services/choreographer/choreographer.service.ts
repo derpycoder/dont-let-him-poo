@@ -50,9 +50,9 @@ export class ChoreographerService {
   private cleverlyPlacePlayerLooAndPoo() {
     this.targets = [];
 
-    let playerPlaced: boolean;
-    let looPlaced: boolean;
-    let pooPlaced: boolean;
+    let playerPlaced: boolean, looPlaced: boolean, pooPlaced: boolean;
+    let tmpPlayer: Node, tmpLoo: Node, tmpPoo: Node;
+
     let i, j, x, y, p, q;
 
     let count = 0;
@@ -69,7 +69,6 @@ export class ChoreographerService {
         y = this.utilsService.getRandomNumber(0, 10);
       }
       if (!pooPlaced) {
-        console.log("Trying to poo");
         p = this.utilsService.getRandomNumber(0, 10);
         q = this.utilsService.getRandomNumber(0, 10);
       }
@@ -78,8 +77,7 @@ export class ChoreographerService {
         !playerPlaced &&
         this.gridService.gameGrid[i][j].tileType === TILE_TYPES.NONE
       ) {
-        this.player = this.gridService.gameGrid[i][j];
-        this.player.tileType = TILE_TYPES.PLAYER;
+        tmpPlayer = this.gridService.gameGrid[i][j];
         playerPlaced = true;
       }
 
@@ -87,8 +85,7 @@ export class ChoreographerService {
         !looPlaced &&
         this.gridService.gameGrid[x][y].tileType === TILE_TYPES.NONE
       ) {
-        this.targets.push(this.gridService.gameGrid[x][y]);
-        this.targets[this.targets.length - 1].tileType = TILE_TYPES.LOO;
+        tmpLoo = this.gridService.gameGrid[x][y];
         looPlaced = true;
       }
 
@@ -96,26 +93,36 @@ export class ChoreographerService {
         !pooPlaced &&
         this.gridService.gameGrid[p][q].tileType === TILE_TYPES.NONE
       ) {
-        this.poo = this.gridService.gameGrid[p][q];
-        this.poo.tileType = TILE_TYPES.POOP;
-        console.log("Initial Poo Placed");
+        tmpPoo = this.gridService.gameGrid[p][q];
         pooPlaced = true;
       }
 
       if (playerPlaced && looPlaced && pooPlaced) {
-        this.onPlayerPlaced.emit(this.player);
         this.path = this.pathFindingService.findPath(
-          this.player,
-          this.targets[this.targets.length - 1]
+          tmpPlayer,
+          tmpLoo
         );
 
-        if (this.path && this.path.length > 5 &&  this.path.indexOf(this.poo) === -1) {
+        if (
+          this.path &&
+          this.path.length > 5 &&
+          this.path.indexOf(tmpPoo) === -1
+        ) {
+          this.player = tmpPlayer;
+          this.player.tileType = TILE_TYPES.PLAYER;
+
+          tmpLoo.tileType = TILE_TYPES.LOO;
+          this.targets.push(tmpLoo);
+
+          this.poo = tmpPoo;
+          this.poo.tileType = TILE_TYPES.POOP;
+
           this.onPlayerPlaced.emit(this.player);
           this.onPathChange.emit(this.path);
 
           return;
         }
-        playerPlaced = false;
+        playerPlaced = looPlaced = pooPlaced = false;
       }
     }
   }
