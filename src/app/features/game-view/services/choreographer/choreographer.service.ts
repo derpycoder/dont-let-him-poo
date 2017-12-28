@@ -21,6 +21,7 @@ export class ChoreographerService {
   onPlayerMove: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   onPlayerAtePoo: EventEmitter<boolean> = new EventEmitter<boolean>();
+  onDistractionOver: EventEmitter<Node> = new EventEmitter<Node>();
 
   player: Node;
   targets: Node[];
@@ -49,6 +50,10 @@ export class ChoreographerService {
 
     this.onPlayerAtePoo.subscribe($ => {
       this.generatePoo();
+    });
+
+    this.onDistractionOver.subscribe((distraction: Node) => {
+      this.distractionOver(distraction);
     });
   }
 
