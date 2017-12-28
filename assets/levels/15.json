@@ -21,7 +21,7 @@
       "none",
       "wall",
       "wall",
-      "loo",
+      "none",
       "wall",
       "none",
       "wall"
@@ -118,7 +118,7 @@
       "none"
     ],
     [
-      "poop",
+      "none",
       "none",
       "wall",
       "none",
