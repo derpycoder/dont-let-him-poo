@@ -100,6 +100,8 @@ export class PlayerComponent implements OnInit {
           this.playerType = PLAYER_TYPES.HAPPY;
           this.animatePlayer();
           break;
+        case GAME_STATES.GAME_OVER:
+          this.tl.clear();
         default:
       }
     });
