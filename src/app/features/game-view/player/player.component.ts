@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  OnDestroy,
   ViewChild,
   ElementRef,
   ChangeDetectorRef
@@ -21,13 +22,14 @@ import {
 } from "../services/choreographer/choreographer.model";
 
 import { SalaryService } from "../services/salary.service";
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
   selector: "dlp-player",
   templateUrl: "./player.component.html",
   styleUrls: ["./player.component.css"]
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements OnInit, OnDestroy {
   @ViewChild("player") playerRef: ElementRef;
 
   playerPixelPos: Vector = new Vector();
@@ -42,6 +44,12 @@ export class PlayerComponent implements OnInit {
 
   tl: TimelineMax;
 
+  // Subscriptions
+  private onPlayerPlacedSubscription: Subscription;
+  private onPathChangeSubscription: Subscription;
+  private onMeasurementChangeSubscription: Subscription;
+  private onGameStateChangeSubscription: Subscription;
+
   constructor(
     private pathFindingService: PathFindingService,
     private gridService: GridService,
@@ -53,21 +61,27 @@ export class PlayerComponent implements OnInit {
   ngOnInit() {
     this.tl = new TimelineMax();
 
-    this.choreographerService.onPlayerPlaced.subscribe((position: Node) => {
-      this.playerGridPos = position;
+    this.onPlayerPlacedSubscription = this.choreographerService.onPlayerPlaced.subscribe(
+      (position: Node) => {
+        this.playerGridPos = position;
 
-      this.setPlayerPosition();
-    });
-
-    this.choreographerService.onPathChange.subscribe((path: Node[]) => {
-      this.path = path;
-
-      if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
-        this.animatePlayer();
+        this.setPlayerPosition();
       }
-    });
+    );
 
-    this.choreographerService.onMeasurementsChange.subscribe(
+    this.onPathChangeSubscription = this.choreographerService.onPathChange.subscribe(
+      (path: Node[]) => {
+        this.path = path;
+
+        if (
+          this.choreographerService.currentGameState === GAME_STATES.RUNNING
+        ) {
+          this.animatePlayer();
+        }
+      }
+    );
+
+    this.onMeasurementChangeSubscription = this.choreographerService.onMeasurementsChange.subscribe(
       (measurements: Measurements) => {
         this.measurements = measurements;
         if (
@@ -82,27 +96,35 @@ export class PlayerComponent implements OnInit {
       }
     );
 
-    this.choreographerService.onGameStateChange.subscribe(state => {
-      switch (state) {
-        case GAME_STATES.LOAD:
-          this.tl.clear();
-          this.playerType = PLAYER_TYPES.NONE;
-          break;
-        case GAME_STATES.START:
-          this.tl.clear();
-          this.playerType = PLAYER_TYPES.NONE;
-          break;
-        case GAME_STATES.RUN:
-          this.playerType = PLAYER_TYPES.SLEEPING;
-          this.setPlayerPosition();
-          break;
-        case GAME_STATES.RUNNING:
-          this.playerType = PLAYER_TYPES.HAPPY;
-          this.animatePlayer();
-          break;
-        default:
+    this.onGameStateChangeSubscription = this.choreographerService.onGameStateChange.subscribe(
+      state => {
+        switch (state) {
+          case GAME_STATES.LOAD:
+            this.tl.clear();
+            this.playerType = PLAYER_TYPES.NONE;
+            break;
+          case GAME_STATES.START:
+            this.tl.clear();
+            this.playerType = PLAYER_TYPES.NONE;
+            break;
+          case GAME_STATES.RUN:
+            this.playerType = PLAYER_TYPES.SLEEPING;
+            this.setPlayerPosition();
+            break;
+          case GAME_STATES.RUNNING:
+            this.playerType = PLAYER_TYPES.HAPPY;
+            this.animatePlayer();
+            break;
+          default:
+        }
       }
-    });
+    );
+  }
+  ngOnDestroy() {
+    this.onGameStateChangeSubscription.unsubscribe();
+    this.onMeasurementChangeSubscription.unsubscribe();
+    this.onPathChangeSubscription.unsubscribe();
+    this.onPlayerPlacedSubscription.unsubscribe();
   }
 
   animatePlayer() {
@@ -110,7 +132,7 @@ export class PlayerComponent implements OnInit {
     // direction, and after finishing that, will continue on new path.
     this.tl.clear();
 
-    if (!this.path || !this.measurements || !this.playerGridPos) {
+    if (!this.path || !this.measurements || !this.playerGridPos || !this.playerRef) {
       return;
     }
 

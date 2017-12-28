@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from "@angular/core";
+import { Subscription } from "rxjs/Subscription";
 
 import { GridService } from "../services/grid/grid.service";
 import { PathFindingService } from "../services/path-finding/path-finding.service";
@@ -14,12 +15,15 @@ import { SalaryService } from "../services/salary.service";
   templateUrl: "./grid-container.component.html",
   styleUrls: ["./grid-container.component.css"]
 })
-export class GridContainerComponent implements OnInit {
+export class GridContainerComponent implements OnInit, OnDestroy {
   showGrid: boolean;
   game_states = GAME_STATES;
 
   @ViewChild("vfx") vfx: ElementRef;
   countDown: string;
+
+  // Subscriptions
+  private choreographerSubscription: Subscription;
 
   constructor(
     public gridService: GridService,
@@ -33,7 +37,7 @@ export class GridContainerComponent implements OnInit {
       this.gridService.initGrid();
     }
 
-    this.choreographerService.onGameStateChange.subscribe(state => {
+    this.choreographerSubscription = this.choreographerService.onGameStateChange.subscribe(state => {
       switch (state) {
         case GAME_STATES.LOAD:
           this.showGrid = false;
@@ -56,6 +60,10 @@ export class GridContainerComponent implements OnInit {
         default:
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.choreographerSubscription.unsubscribe();
   }
 
   private doCountDown() {
@@ -84,7 +92,9 @@ export class GridContainerComponent implements OnInit {
       .to(this.vfx.nativeElement, 0.5, { z: 0, alpha: 1 })
       .set(this.vfx.nativeElement, { alpha: 0, scale: 0 })
       .add($ => {
-        this.choreographerService.currentGameState = GAME_STATES.RUNNING;
+        if(this.choreographerService.currentGameState === GAME_STATES.RUN) {
+          this.choreographerService.currentGameState = GAME_STATES.RUNNING;
+        }
       });
 
     tl.play();

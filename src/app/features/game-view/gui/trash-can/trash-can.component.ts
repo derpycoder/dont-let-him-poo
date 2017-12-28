@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Subscription } from "rxjs/Subscription";
 
 import { TILE_TYPES } from "../../services/";
 import { InteractionService } from "../../services/interaction.service";
@@ -11,10 +12,13 @@ import { SalaryService } from "../../services/salary.service";
   templateUrl: "./trash-can.component.html",
   styleUrls: ["./trash-can.component.css"]
 })
-export class TrashCanComponent implements OnInit {
+export class TrashCanComponent implements OnInit, OnDestroy {
   tile_types = TILE_TYPES;
 
   deactivateImage: boolean = true;
+
+  // Subscriptions
+  private choreographySubscription: Subscription;
 
   constructor(
     public interactionService: InteractionService,
@@ -23,7 +27,7 @@ export class TrashCanComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.choreographerService.onGameStateChange.subscribe(
+    this.choreographySubscription = this.choreographerService.onGameStateChange.subscribe(
       (state: GAME_STATES) => {
         this.deactivateImage = state !== GAME_STATES.RUNNING;
 
@@ -34,6 +38,9 @@ export class TrashCanComponent implements OnInit {
         }
       }
     );
+  }
+  ngOnDestroy() {
+    this.choreographySubscription.unsubscribe();
   }
 
   selectMoney() {

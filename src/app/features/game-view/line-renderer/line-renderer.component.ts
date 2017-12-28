@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ElementRef
+} from "@angular/core";
+import { Subscription } from "rxjs/Subscription";
 
 import { Node } from "../services/grid/grid.model";
 import { ChoreographerService } from "../services/choreographer/choreographer.service";
@@ -13,7 +20,7 @@ import {
   templateUrl: "./line-renderer.component.html",
   styleUrls: ["./line-renderer.component.css"]
 })
-export class LineRendererComponent implements OnInit {
+export class LineRendererComponent implements OnInit, OnDestroy {
   @ViewChild("polyLine") polyLine: ElementRef;
 
   pathString: string;
@@ -23,17 +30,27 @@ export class LineRendererComponent implements OnInit {
   private measurements: Measurements;
   private timer: any;
 
+  // Subscriptions
+  private onPathChangeSubscription: Subscription;
+  private onMeasurementChangeSubscription: Subscription;
+  private onGameStateChangeSubscription: Subscription;
+  private onPlayerMoveSubscription: Subscription;
+
   constructor(public choreographerService: ChoreographerService) {}
 
   ngOnInit() {
-    this.choreographerService.onPathChange.subscribe((path: Node[]) => {
-      this.path = path;
-      if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
-        this.renderPath();
+    this.onPathChangeSubscription = this.choreographerService.onPathChange.subscribe(
+      (path: Node[]) => {
+        this.path = path;
+        if (
+          this.choreographerService.currentGameState === GAME_STATES.RUNNING
+        ) {
+          this.renderPath();
+        }
       }
-    });
+    );
 
-    this.choreographerService.onMeasurementsChange.subscribe(
+    this.onMeasurementChangeSubscription = this.choreographerService.onMeasurementsChange.subscribe(
       (measurements: Measurements) => {
         this.measurements = measurements;
         if (
@@ -44,7 +61,7 @@ export class LineRendererComponent implements OnInit {
       }
     );
 
-    this.choreographerService.onGameStateChange.subscribe(
+    this.onGameStateChangeSubscription = this.choreographerService.onGameStateChange.subscribe(
       (state: GAME_STATES) => {
         if (state === GAME_STATES.RUNNING) {
           this.path = this.choreographerService.path;
@@ -53,14 +70,29 @@ export class LineRendererComponent implements OnInit {
       }
     );
 
-    this.choreographerService.onPlayerMove.subscribe($ => {
-      if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
-        this.renderPath();
+    this.onPlayerMoveSubscription = this.choreographerService.onPlayerMove.subscribe(
+      $ => {
+        if (
+          this.choreographerService.currentGameState === GAME_STATES.RUNNING
+        ) {
+          this.renderPath();
+        }
       }
-    });
+    );
+  }
+
+  ngOnDestroy() {
+    this.onGameStateChangeSubscription.unsubscribe();
+    this.onMeasurementChangeSubscription.unsubscribe();
+    this.onPathChangeSubscription.unsubscribe();
+    this.onPlayerMoveSubscription.unsubscribe();
   }
 
   renderPath() {
+    if (!this.path) {
+      return;
+    }
+
     const pathArr: string[] = this.path.map((node: Node) => {
       const pixelPos = this.calculatePixelPosition(node);
       return `${pixelPos.y},${pixelPos.x}`;

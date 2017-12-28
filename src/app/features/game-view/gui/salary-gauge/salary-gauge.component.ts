@@ -1,4 +1,5 @@
-import { Component, ViewChild, ElementRef, OnInit } from "@angular/core";
+import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from "@angular/core";
+import { Subscription } from "rxjs/Subscription";
 
 import { TimelineMax } from "gsap";
 
@@ -9,17 +10,24 @@ import { SalaryService } from "../../services/";
   templateUrl: "./salary-gauge.component.html",
   styleUrls: ["./salary-gauge.component.css"]
 })
-export class SalaryGaugeComponent implements OnInit {
+export class SalaryGaugeComponent implements OnInit, OnDestroy {
   @ViewChild("vfx") vfx: ElementRef;
   updatedSalary: string;
+
+  // Subscription
+  private salarySubscription: Subscription;
 
   constructor(public salaryService: SalaryService) {}
 
   ngOnInit() {
-    this.salaryService.salaryUpdate.subscribe((salary: number) => {
+    this.salarySubscription = this.salaryService.salaryUpdate.subscribe((salary: number) => {
       this.updatedSalary = salary.toLocaleString();
       this.updateView();
     });
+  }
+
+  ngOnDestroy() {
+    this.salarySubscription.unsubscribe();
   }
 
   updateView() {

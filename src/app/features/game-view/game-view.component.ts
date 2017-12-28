@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
+import { Subscription } from "rxjs/Subscription";
 
 import { environment } from "../../../environments/environment";
 import { TILE_TYPES } from "./services/grid/grid.model";
@@ -14,7 +15,7 @@ import { SalaryService } from "./services/salary.service";
   templateUrl: "./game-view.component.html",
   styleUrls: ["./game-view.component.css"]
 })
-export class GameViewComponent implements OnInit {
+export class GameViewComponent implements OnInit, OnDestroy {
   title = "Don't Let Him Poo";
   tile_types = TILE_TYPES;
   game_states = GAME_STATES;
@@ -26,6 +27,10 @@ export class GameViewComponent implements OnInit {
   powerOffBtnActive: boolean = false;
   showLevelEditBtn: boolean = false;
 
+  // Subscriptions
+  private routerSubscription: Subscription;
+  private choreographerSubscription: Subscription;
+
   constructor(
     public gridService: GridService,
     public choreographerService: ChoreographerService,
@@ -34,11 +39,12 @@ export class GameViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.router.events.subscribe(val => {
+    this.routerSubscription = this.router.events.subscribe(val => {
       this.choreographerService.currentGameState = GAME_STATES.START;
+      this.routerSubscription.unsubscribe();
     });
 
-    this.choreographerService.onGameStateChange.subscribe(
+    this.choreographerSubscription = this.choreographerService.onGameStateChange.subscribe(
       (state: GAME_STATES) => {
         switch (state) {
           case GAME_STATES.START:
@@ -63,6 +69,11 @@ export class GameViewComponent implements OnInit {
         }
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.routerSubscription.unsubscribe();
+    this.choreographerSubscription.unsubscribe();
   }
 
   restartGame() {
