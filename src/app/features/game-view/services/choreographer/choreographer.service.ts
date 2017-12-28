@@ -20,6 +20,8 @@ export class ChoreographerService {
 
   onPlayerMove: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  onPlayerAtePoo: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   player: Node;
   targets: Node[];
   private poo: Node;
@@ -43,6 +45,10 @@ export class ChoreographerService {
     this.gridService.onGridReady.subscribe($ => {
       this.currentGameState = GAME_STATES.START;
       this.cleverlyPlacePlayerLooAndPoo();
+    });
+
+    this.onPlayerAtePoo.subscribe($ => {
+      this.generatePoo();
     });
   }
 
