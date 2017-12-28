@@ -102,6 +102,7 @@ export class PlayerComponent implements OnInit {
           break;
         case GAME_STATES.GAME_OVER:
           this.tl.clear();
+          break;
         default:
       }
     });

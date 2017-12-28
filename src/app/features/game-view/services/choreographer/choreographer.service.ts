@@ -20,7 +20,7 @@ export class ChoreographerService {
 
   onPlayerMove: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  player: Node;y
+  player: Node;
   targets: Node[];
   private poo: Node;
   private crucialMeasurements: Measurements;
@@ -97,10 +97,7 @@ export class ChoreographerService {
       }
 
       if (playerPlaced && looPlaced && pooPlaced) {
-        this.path = this.pathFindingService.findPath(
-          tmpPlayer,
-          tmpLoo
-        );
+        this.path = this.pathFindingService.findPath(tmpPlayer, tmpLoo);
 
         if (
           this.path &&

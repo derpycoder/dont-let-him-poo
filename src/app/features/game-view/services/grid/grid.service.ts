@@ -28,7 +28,7 @@ export class GridService {
   ) {}
 
   initGrid() {
-    let fileName = this.levelsRandomized
+    const fileName = this.levelsRandomized
       ? this.utilsService.getRandomNumber(1, MAX_LEVELS)
       : "playground";
 

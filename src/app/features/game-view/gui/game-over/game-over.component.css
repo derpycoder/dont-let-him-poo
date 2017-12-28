@@ -11,7 +11,7 @@
   z-index: 10;
   margin-top: 0px;
 
-  text-shadow: 0px 4px 3px rgb(48, 49, 49), 0 -1px 0px #676767;
+  text-shadow: 0px 4px 3px rgb(48, 49, 49);
 }
 
 .game-over h3 {
