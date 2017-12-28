@@ -129,11 +129,12 @@ export class ChoreographerService {
 
   generatePoo() {
     let pooPlaced: boolean;
+    let tmpPoo: Node;
     let p, q;
 
     let count = 0;
 
-    while (count < 100) {
+    while (count < 50) {
       console.log(`Poo Tries: ${count++}`);
 
       p = this.utilsService.getRandomNumber(0, 10);
@@ -143,15 +144,16 @@ export class ChoreographerService {
         !pooPlaced &&
         this.gridService.gameGrid[p][q].tileType === TILE_TYPES.NONE
       ) {
-        this.poo = this.gridService.gameGrid[p][q];
+        tmpPoo = this.gridService.gameGrid[p][q];
 
-        if (this.path.indexOf(this.poo) !== -1) {
+        if (this.path.indexOf(tmpPoo) !== -1) {
           continue;
         }
 
-        const path = this.pathFindingService.findPath(this.player, this.poo);
+        const path = this.pathFindingService.findPath(this.player, tmpPoo);
 
         if (path && path.length > 5) {
+          this.poo = tmpPoo;
           pooPlaced = true;
           this.poo.tileType = TILE_TYPES.POOP;
           return;
