@@ -86,6 +86,7 @@ export class PlayerComponent implements OnInit {
       switch (state) {
         case GAME_STATES.LOAD:
           this.playerType = PLAYER_TYPES.NONE;
+          console.log("Yah");
           break;
         case GAME_STATES.START:
           this.tl.clear();
@@ -155,6 +156,8 @@ export class PlayerComponent implements OnInit {
           if (this.playerType !== PLAYER_TYPES.TARGET_ACQUIRED) {
             this.playerType = PLAYER_TYPES.HAPPY;
             this.choreographerService.path.shift();
+
+            this.choreographerService.onPlayerMove.emit(true);
           }
         });
 

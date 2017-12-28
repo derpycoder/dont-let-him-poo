@@ -47,32 +47,26 @@ export class LineRendererComponent implements OnInit {
     this.choreographerService.onGameStateChange.subscribe(
       (state: GAME_STATES) => {
         if (state === GAME_STATES.RUNNING) {
+          this.path = this.choreographerService.path;
           this.renderPath();
         }
       }
     );
+
+    this.choreographerService.onPlayerMove.subscribe($ => {
+      if (this.choreographerService.currentGameState === GAME_STATES.RUNNING) {
+        this.renderPath();
+      }
+    });
   }
 
   renderPath() {
-    clearInterval(this.timer);
-    if (!this.path || !this.measurements) {
-      return;
-    }
-
     const pathArr: string[] = this.path.map((node: Node) => {
       const pixelPos = this.calculatePixelPosition(node);
       return `${pixelPos.y},${pixelPos.x}`;
     });
 
     this.pathString = pathArr.join(" ");
-
-    this.timer = setInterval($ => {
-      if (pathArr.length < 1) {
-        clearInterval(this.timer);
-      }
-      pathArr.shift();
-      this.pathString = pathArr.join(" ");
-    }, 500);
   }
 
   calculatePixelPosition(targetPos: Vector): Vector {

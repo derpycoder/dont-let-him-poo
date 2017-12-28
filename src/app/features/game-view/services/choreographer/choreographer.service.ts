@@ -18,6 +18,8 @@ export class ChoreographerService {
   onPlayerPlaced: EventEmitter<Node> = new EventEmitter<Node>();
   onPathChange: EventEmitter<Node[]> = new EventEmitter<Node[]>();
 
+  onPlayerMove: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   player: Node;
   private timer: any;
   targets: Node[];

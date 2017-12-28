@@ -60,7 +60,9 @@ export class GameViewComponent implements OnInit {
   }
 
   editLevel() {
+    if (this.choreographerService.currentGameState !== GAME_STATES.RUNNING) {
+      this.showHelpers = true;
+    }
     this.choreographerService.currentGameState = GAME_STATES.EDIT_MODE;
-    this.showHelpers = true;
   }
 }
