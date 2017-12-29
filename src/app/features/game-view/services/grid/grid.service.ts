@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter, Optional, Inject } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 import { APP_BASE_HREF } from "@angular/common";
@@ -24,18 +24,10 @@ export class GridService {
 
   onGridReady: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  /**
-   * For Angular universal to work, path need to be absolute in server
-   * while being relative in browser
-   * Hence Origin is needed.
-   */
   constructor(
     private httpClient: HttpClient,
     private interactionService: InteractionService,
-    private utilsService: UtilsService,
-    @Optional()
-    @Inject(APP_BASE_HREF)
-    private origin: string
+    private utilsService: UtilsService
   ) {}
 
   initGrid() {
@@ -44,7 +36,7 @@ export class GridService {
       : "playground";
 
     this.httpClient
-      .get(`${this.origin || ""}/assets/levels/${fileName}.json`)
+      .get(`./assets/levels/${fileName}.json`)
       .subscribe((data: any) => {
         this.gameGrid = [];
         let row: Node[];
