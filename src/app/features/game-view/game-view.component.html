@@ -28,7 +28,7 @@
   <dlp-trash-can></dlp-trash-can>
 
   <ng-container *ngIf="!env.production">
-    <button type="button" class="btn btn-dark hidden-sm hidden-xs" *ngIf="showLevelEditBtn" (click)="editLevel()">{{helperBtnText}}</button>
+    <button type="button" class="btn btn-dark hidden-sm hidden-xs" *ngIf="showLevelEditBtn" (click)="editOrExitLevel()">{{helperBtnText}}</button>
     <ng-container *ngIf="showHelpers">
       <button type="button" class="btn btn-dark hidden-sm hidden-xs" (click)="gridService.clearGrid()">C</button>
       <button type="button" class="btn btn-dark hidden-sm hidden-xs" (click)="gridService.resetGrid()">R</button>

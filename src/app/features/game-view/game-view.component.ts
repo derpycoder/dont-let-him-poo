@@ -71,7 +71,7 @@ export class GameViewComponent implements OnInit, OnDestroy {
 
   showRankingsPage() {
     this.choreographerService.currentGameState = GAME_STATES.LOAD;
-    this.router.navigate(['./rankings']);
+    this.router.navigate(["./rankings"]);
   }
 
   restartGame() {
@@ -80,11 +80,10 @@ export class GameViewComponent implements OnInit, OnDestroy {
     }
   }
 
-  editLevel() {
+  editOrExitLevel() {
     if (
-      this.choreographerService.currentGameState !== GAME_STATES.RUNNING &&
-      this.choreographerService.currentGameState !== GAME_STATES.EDIT_MODE &&
-      this.choreographerService.currentGameState !== GAME_STATES.START
+      this.choreographerService.currentGameState === GAME_STATES.RUN ||
+      this.choreographerService.currentGameState === GAME_STATES.LOAD
     ) {
       return;
     }
