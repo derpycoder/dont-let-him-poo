@@ -23,9 +23,7 @@ import {
     PoopComponent,
     WallComponent
   ],
-  exports: [
-    TileFactoryDirective
-  ],
+  exports: [TileFactoryDirective],
   entryComponents: [
     LooComponent,
     MoneyComponent,

@@ -28,7 +28,6 @@ export class GameViewComponent implements OnInit, OnDestroy {
   showLevelEditBtn: boolean = false;
 
   // Subscriptions
-  private routerSubscription: Subscription;
   private choreographerSubscription: Subscription;
 
   constructor(
@@ -39,11 +38,6 @@ export class GameViewComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.routerSubscription = this.router.events.subscribe(val => {
-      this.choreographerService.currentGameState = GAME_STATES.START;
-      this.routerSubscription.unsubscribe();
-    });
-
     this.choreographerSubscription = this.choreographerService.onGameStateChange.subscribe(
       (state: GAME_STATES) => {
         switch (state) {
@@ -72,8 +66,12 @@ export class GameViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.routerSubscription.unsubscribe();
     this.choreographerSubscription.unsubscribe();
+  }
+
+  showRankingsPage() {
+    this.choreographerService.currentGameState = GAME_STATES.LOAD;
+    this.router.navigate(['./rankings']);
   }
 
   restartGame() {

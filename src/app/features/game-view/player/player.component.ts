@@ -98,6 +98,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
     this.onGameStateChangeSubscription = this.choreographerService.onGameStateChange.subscribe(
       state => {
+        this.path = this.choreographerService.path;
         switch (state) {
           case GAME_STATES.LOAD:
             this.tl.clear();
@@ -132,7 +133,12 @@ export class PlayerComponent implements OnInit, OnDestroy {
     // direction, and after finishing that, will continue on new path.
     this.tl.clear();
 
-    if (!this.path || !this.measurements || !this.playerGridPos || !this.playerRef) {
+    if (
+      !this.path ||
+      !this.measurements ||
+      !this.playerGridPos ||
+      !this.playerRef
+    ) {
       return;
     }
 
@@ -233,8 +239,6 @@ export class PlayerComponent implements OnInit, OnDestroy {
   }
 
   calculatePixelPosition(targetPos: Vector): Vector {
-    // console.log(this.measurements);
-
     const x =
       this.measurements.gridContainerPadding +
       this.measurements.cellMargin * targetPos.x +
@@ -244,8 +248,6 @@ export class PlayerComponent implements OnInit, OnDestroy {
       this.measurements.gridContainerPadding +
       this.measurements.cellMargin * targetPos.y +
       this.measurements.cellSize * targetPos.y;
-
-    // console.log("Calculated Pixel Pos: ", x, y);
 
     return { x, y };
   }

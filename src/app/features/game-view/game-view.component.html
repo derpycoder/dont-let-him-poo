@@ -20,7 +20,7 @@
       <span class="fa fa-power-off" [ngClass]="{'active': powerOffBtnActive}" (click)="restartGame()"></span>
       <span class="title">{{title}}</span>
     </ng-container>
-    <dlp-salary-gauge></dlp-salary-gauge>
+    <dlp-salary-gauge (click)="showRankingsPage()"></dlp-salary-gauge>
   </h1>
 
   <dlp-grid-container></dlp-grid-container>

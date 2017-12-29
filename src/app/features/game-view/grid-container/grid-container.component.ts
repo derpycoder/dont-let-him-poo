@@ -28,6 +28,8 @@ export class GridContainerComponent implements OnInit, OnDestroy {
   @ViewChild("vfx") vfx: ElementRef;
   countDown: string;
 
+  private tl: TimelineMax;
+
   // Subscriptions
   private choreographerSubscription: Subscription;
 
@@ -39,6 +41,8 @@ export class GridContainerComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.tl = new TimelineMax();
+
     if (this.choreographerService.currentGameState === GAME_STATES.LOAD) {
       this.gridService.initGrid();
     }
@@ -47,11 +51,12 @@ export class GridContainerComponent implements OnInit, OnDestroy {
       state => {
         switch (state) {
           case GAME_STATES.LOAD:
+            this.tl.clear();
+            this.countDown = "";
             this.showGrid = false;
             this.gridService.initGrid();
             break;
           case GAME_STATES.START:
-            this.countDown = "";
             this.showGrid = false;
             break;
           case GAME_STATES.RUN:
@@ -75,9 +80,9 @@ export class GridContainerComponent implements OnInit, OnDestroy {
   }
 
   private doCountDown() {
-    const tl = new TimelineMax();
+    this.tl = new TimelineMax();
 
-    tl
+    this.tl
       .add($ => {
         this.countDown = "3";
       })
@@ -105,7 +110,7 @@ export class GridContainerComponent implements OnInit, OnDestroy {
         }
       });
 
-    tl.play();
+    this.tl.play();
   }
 
   startGame() {
