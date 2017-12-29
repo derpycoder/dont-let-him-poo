@@ -1,1 +1,6 @@
-<div [dlp-tile-factory]="node.tileType"></div>
+<div class="grid-tile" [ngClass]="{'wall': node.tileType === tile_types.WALL}" [ngSwitch]="node.tileType">
+    <img *ngSwitchCase="tile_types.LOO" src="./assets/images/loo.png">
+    <img *ngSwitchCase="tile_types.MONEY"  src="./assets/images/money.png">
+    <img *ngSwitchCase="tile_types.PIZZA"  src="./assets/images/pizza.png">
+    <img *ngSwitchCase="tile_types.POOP"  src="./assets/images/poop.png">
+</div>

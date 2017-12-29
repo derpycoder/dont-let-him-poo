@@ -14,6 +14,8 @@ import { GAME_STATES } from "../services/choreographer/choreographer.model";
 export class CellContainerComponent {
   @Input() node: Node;
 
+  tile_types = TILE_TYPES;
+
   constructor(
     public interactionService: InteractionService,
     private salaryService: SalaryService,
