@@ -22,7 +22,7 @@ const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist');
 
 // Our index.html we'll use as our template
-const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toString();
+// const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toString();
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main.bundle');
@@ -56,7 +56,7 @@ app.use(express.static(join(DIST_FOLDER, 'browser'), {
 
 // ALl regular routes use the Universal engine
 app.get('*', (req, res) => {
-  res.render('index', { req });
+  res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
 });
 
 // Start up the Node server

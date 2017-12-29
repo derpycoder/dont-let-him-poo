@@ -76,7 +76,9 @@ export class GridContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.choreographerSubscription.unsubscribe();
+    if (this.choreographerSubscription) {
+      this.choreographerSubscription.unsubscribe();
+    }
   }
 
   private doCountDown() {

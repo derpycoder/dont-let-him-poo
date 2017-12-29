@@ -16,8 +16,14 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy-to-github-pages": "ng build --prod --aot --base-href http://www.abhijit-kar.com/dont-let-him-poo/ && ngh --dir=dist/browser/",
-    "build-for-heroku": "ng build --prod --aot && ng build --prod --aot --app 1 --output-hashing=false"
+    
+    "deploy-to-github-pages": "ng build --prod --base-href http://www.abhijit-kar.com/dont-let-him-poo/ && ngh --dir=dist/browser/",
+    
+    "build:universal": "npm run build:client-and-server-bundles && npm run webpack:server",
+    "serve:universal": "node dist/server.js",
+    
+    "build:client-and-server-bundles": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
+    "webpack:server": "webpack --config webpack.server.config.js --progress --colors"    
   },
   "private": true,
   "engines": {
@@ -46,6 +52,7 @@
     "lodash": "^4.17.4",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.5.6",
+    "ts-loader": "^3.2.0",
     "typescript": "^2.5.3",
     "zone.js": "^0.8.18"
   },

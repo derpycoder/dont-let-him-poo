@@ -82,10 +82,21 @@ export class LineRendererComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.onGameStateChangeSubscription.unsubscribe();
-    this.onMeasurementChangeSubscription.unsubscribe();
-    this.onPathChangeSubscription.unsubscribe();
-    this.onPlayerMoveSubscription.unsubscribe();
+    if (this.onGameStateChangeSubscription) {
+      this.onGameStateChangeSubscription.unsubscribe();
+    }
+
+    if (this.onMeasurementChangeSubscription) {
+      this.onMeasurementChangeSubscription.unsubscribe();
+    }
+
+    if (this.onPathChangeSubscription) {
+      this.onPathChangeSubscription.unsubscribe();
+    }
+
+    if (this.onPlayerMoveSubscription) {
+      this.onPlayerMoveSubscription.unsubscribe();
+    }
   }
 
   renderPath() {

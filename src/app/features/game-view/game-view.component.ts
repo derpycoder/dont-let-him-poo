@@ -66,7 +66,9 @@ export class GameViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.choreographerSubscription.unsubscribe();
+    if (this.choreographerSubscription) {
+      this.choreographerSubscription.unsubscribe();
+    }
   }
 
   showRankingsPage() {

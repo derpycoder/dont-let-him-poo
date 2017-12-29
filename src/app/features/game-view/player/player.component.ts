@@ -122,10 +122,21 @@ export class PlayerComponent implements OnInit, OnDestroy {
     );
   }
   ngOnDestroy() {
-    this.onGameStateChangeSubscription.unsubscribe();
-    this.onMeasurementChangeSubscription.unsubscribe();
-    this.onPathChangeSubscription.unsubscribe();
-    this.onPlayerPlacedSubscription.unsubscribe();
+    if (this.onGameStateChangeSubscription) {
+      this.onGameStateChangeSubscription.unsubscribe();
+    }
+
+    if (this.onMeasurementChangeSubscription) {
+      this.onMeasurementChangeSubscription.unsubscribe();
+    }
+
+    if (this.onPathChangeSubscription) {
+      this.onPathChangeSubscription.unsubscribe();
+    }
+
+    if (this.onPlayerPlacedSubscription) {
+      this.onPlayerPlacedSubscription.unsubscribe();
+    }
   }
 
   animatePlayer() {

@@ -1,4 +1,5 @@
-import { Injectable, EventEmitter } from "@angular/core";
+import { Injectable, EventEmitter, Inject, PLATFORM_ID } from "@angular/core";
+import { isPlatformBrowser, isPlatformServer } from "@angular/common";
 
 @Injectable()
 export class SalaryService {
@@ -19,13 +20,22 @@ export class SalaryService {
   private _highestSalary: number = 0;
   set highestSalary(value: number) {
     this._highestSalary = value;
-    localStorage.setItem("highest_salary", this._highestSalary.toString());
+
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem("highest_salary", this._highestSalary.toString());
+    }
   }
   get highestSalary(): number {
-    this._highestSalary =
-      parseInt(localStorage.getItem("highest_salary"), 10) || this._highestSalary;
+    if (isPlatformBrowser(this.platformId)) {
+      this._highestSalary =
+        parseInt(localStorage.getItem("highest_salary"), 10) ||
+        this._highestSalary;
+    }
+
     return this._highestSalary;
   }
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   updateSalary(salary: number) {
     this.salary += salary;

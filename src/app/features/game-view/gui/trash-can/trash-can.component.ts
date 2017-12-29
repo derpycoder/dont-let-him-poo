@@ -40,7 +40,9 @@ export class TrashCanComponent implements OnInit, OnDestroy {
     );
   }
   ngOnDestroy() {
-    this.choreographySubscription.unsubscribe();
+    if (this.choreographySubscription) {
+      this.choreographySubscription.unsubscribe();
+    }
   }
 
   selectMoney() {
