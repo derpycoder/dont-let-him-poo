@@ -16,14 +16,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    
     "deploy-to-github-pages": "ng build --prod --base-href http://www.abhijit-kar.com/dont-let-him-poo/ && ngh --dir=dist/browser/",
-    
     "build:universal": "npm run build:client-and-server-bundles && npm run webpack:server",
+    "serve:http-server": "./node_modules/.bin/http-server ./dist/browser -a localhost -p 8080",
     "serve:universal": "node dist/server.js",
-    
     "build:client-and-server-bundles": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
-    "webpack:server": "webpack --config webpack.server.config.js --progress --colors"    
+    "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
   },
   "private": true,
   "engines": {
@@ -47,13 +45,13 @@
     "compression": "^1.7.1",
     "core-js": "^2.5.3",
     "express": "^4.16.2",
+    "global": "^4.3.2",
     "gsap": "^1.20.3",
     "heap": "^0.2.6",
     "lodash": "^4.17.4",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.5.6",
     "ts-loader": "^3.2.0",
-    "typescript": "^2.5.3",
     "zone.js": "^0.8.18"
   },
   "devDependencies": {
@@ -63,8 +61,9 @@
     "@types/lodash": "^4.14.91",
     "@types/node": "~8.5.2",
     "codelyzer": "~4.0.2",
+    "http-server": "^0.10.0",
     "ts-node": "~4.1.0",
     "tslint": "~5.8.0",
-    "typescript": "~2.6.2"
+    "typescript": "^2.5.3"
   }
 }
