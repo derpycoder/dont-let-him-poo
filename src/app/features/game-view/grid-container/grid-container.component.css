@@ -13,11 +13,6 @@
   position: relative;
 }
 
-.play {
-  margin: 1% 0 1% 45%;
-  cursor: pointer;
-}
-
 .grid-row {
   margin: 0 auto;
   margin-bottom: 4px;

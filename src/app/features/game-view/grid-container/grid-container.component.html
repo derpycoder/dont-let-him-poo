@@ -1,26 +1,16 @@
 <div class="grid-container">
   <dlp-loader *ngIf="choreographerService.currentGameState === game_states.LOAD"></dlp-loader>
+  <dlp-start-btn *ngIf="choreographerService.currentGameState === game_states.START" (click)="startGame()"></dlp-start-btn>
   
-  <svg class="play" *ngIf="choreographerService.currentGameState === game_states.START" (click)="startGame()" viewBox="0 0 494.148 494.148"
-    width="40px" height="40px">
-    <svg:g>
-      <svg:path filter="url(#dropShadow)" d="M405.284,201.188L130.804,13.28C118.128,4.596,105.356,0,94.74,0C74.216,0,61.52,16.472,61.52,44.044v406.124    c0,27.54,12.68,43.98,33.156,43.98c10.632,0,23.2-4.6,35.904-13.308l274.608-187.904c17.66-12.104,27.44-28.392,27.44-45.884    C432.632,229.572,422.964,213.288,405.284,201.188z"
-        fill="#5ac8fa" />
-      </g>
-  </svg>
-
-
-  <dlp-line-renderer></dlp-line-renderer>
-
+  <span class="vfx" #vfx>{{countDown}}</span>
+  
   <dlp-game-over></dlp-game-over>
-
+  <dlp-line-renderer></dlp-line-renderer>
   <dlp-player></dlp-player>
-
+  
   <ng-container *ngIf="showGrid">
     <div class="grid-row" *ngFor="let row of gridService.gameGrid">
       <dlp-cell-container [node]="cell" class="grid-cell" *ngFor="let cell of row"></dlp-cell-container>
     </div>
-  </ng-container>
-
-  <span class="vfx" #vfx>{{countDown}}</span>
+  </ng-container>  
 </div>

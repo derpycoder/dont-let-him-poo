@@ -22,6 +22,7 @@ import {
   LevelEditorComponent,
   PowerBtnComponent,
   LoaderComponent,
+  StartBtnComponent,
   GridService,
   InteractionService,
   SalaryService,
@@ -50,7 +51,8 @@ import {
     GameOverComponent,
     LevelEditorComponent,
     PowerBtnComponent,
-    LoaderComponent
+    LoaderComponent,
+    StartBtnComponent
   ],
   providers: [
     GridService,

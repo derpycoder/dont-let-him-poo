@@ -1,0 +1,10 @@
+.play {
+  margin: 1% 0 1% 45%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 520px) {
+  .play {
+    width: 30px;
+  }
+}
