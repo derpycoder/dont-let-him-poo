@@ -58,6 +58,8 @@ export class GridService {
         }
 
         this.onGridReady.emit(true);
+      }, err => {
+        this.onGridReady.emit(false);
       });
   }
 

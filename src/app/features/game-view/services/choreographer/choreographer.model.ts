@@ -33,6 +33,7 @@ export enum BREAKPOINTS {
 
 export enum GAME_STATES {
   LOAD,
+  LOAD_FAILED,
   START,
   RUN,
   RUNNING,

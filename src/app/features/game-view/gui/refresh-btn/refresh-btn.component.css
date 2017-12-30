@@ -11,6 +11,20 @@
   fill: #89fa5a;
 }
 
+.refresh.flat {
+  margin: 5px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  margin-left: 42%;
+  height: 40px;
+  width: 40px;
+  padding: 0;
+}
+.refresh.flat:active path {
+  fill: #5ac8fa;
+}
+
 @media screen and (max-width: 520px) {
   .refresh {
     width: 30px;

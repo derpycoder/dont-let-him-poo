@@ -43,9 +43,13 @@ export class ChoreographerService {
     private utilsService: UtilsService,
     private pathFindingService: PathFindingService
   ) {
-    this.gridService.onGridReady.subscribe($ => {
-      this.currentGameState = GAME_STATES.START;
-      this.cleverlyPlacePlayerLooAndPoo();
+    this.gridService.onGridReady.subscribe(status => {
+      if(status) {
+        this.currentGameState = GAME_STATES.START;
+        this.cleverlyPlacePlayerLooAndPoo();
+      } else {
+        this.currentGameState = GAME_STATES.LOAD_FAILED;
+      }
     });
 
     this.onPlayerAtePoo.subscribe($ => {

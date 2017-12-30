@@ -1,5 +1,6 @@
 <div class="grid-container">
   <dlp-loader *ngIf="choreographerService.currentGameState === game_states.LOAD"></dlp-loader>
+  <dlp-refresh-btn isFlat="true" *ngIf="choreographerService.currentGameState === game_states.LOAD_FAILED" (click)="choreographerService.currentGameState = game_states.LOAD"></dlp-refresh-btn>
   <dlp-start-btn *ngIf="choreographerService.currentGameState === game_states.START" (click)="startGame()"></dlp-start-btn>
   
   <span class="vfx" #vfx>{{countDown}}</span>
