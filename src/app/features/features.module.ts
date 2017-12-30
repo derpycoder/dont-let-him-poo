@@ -6,6 +6,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { FeaturesRoutingModule } from "./features-routing.module";
 import {} from "./rankings/rankings-routing.module";
 
+import { SharedModule } from "../shared/shared.module";
+
 // Components & Services
 import {
   GameViewComponent,
@@ -30,7 +32,8 @@ import {
   imports: [
     CommonModule,
     FeaturesRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   declarations: [
     GameViewComponent,

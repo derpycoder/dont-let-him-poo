@@ -62,7 +62,7 @@ dlp-salary-gauge {
 }
 .label {
   color: #ff38ff;
-  font-size: 14px;
+  font-size: 1.1em;
   font-weight: bold;
 
   padding: 0;
@@ -180,12 +180,14 @@ ol {
   .power.active {
     padding: 0.6% 0.3% 0.6% 0.9%;
   }
+  .instructions p {
+    text-align: center;
+  }
   .author,
   .links {
     float: none;
   }
-  .header,
-  .instructions {
+  header {
     text-align: center;
   }
   .title {
