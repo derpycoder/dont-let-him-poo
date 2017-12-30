@@ -83,6 +83,12 @@ p.author {
   margin-left: 10px;
 }
 
+.social-header {
+  color: #5ac8fa;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 hr {
   border-top: 1px solid #313131;
   box-shadow: 0 1px 0 #5f5f5f;
@@ -106,8 +112,20 @@ ol {
   vertical-align: text-bottom;
 }
 
-@media screen and (max-width: 768px) {
+.tweet {
+  float: none;
+  margin: 0;
+  position: relative;
 }
+.tweet svg {
+  position: absolute;
+  left: 7px;
+  top: 4px;
+}
+.tweet span {
+  padding-left: 25px;
+}
+
 @media screen and (max-width: 520px) {
   .img-icon {
     width: 20px;
