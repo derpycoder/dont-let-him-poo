@@ -111,30 +111,37 @@ ol {
   height: 28px;
   vertical-align: text-bottom;
 }
-
-.share-btn:not(:first-child) {
-  margin-left: 10px;
-}
-.tweet, .whatsapp {
+.share-btn {
   float: none;
   margin: 0;
   position: relative;
 }
-.tweet svg {
+.share-btn svg {
   position: absolute;
+}
+.share-btn span {
+  padding-left: 25px;
+  font-weight: bold;
+}
+
+.share-btn:not(:first-child) {
+  margin-left: 10px;
+}
+
+.tweet svg {
   left: 7px;
   top: 4px;
 }
 .whatsapp svg {
-  position: absolute;
   left: 7px;
-  top: 5px;
+  top: 6px;
 
   width: 20px;
   height: 20px;
 }
-.tweet span, .whatsapp span {
-  padding-left: 25px;
+.facebook svg {
+  left: 7px;
+  top: 6px;
 }
 
 @media screen and (max-width: 520px) {

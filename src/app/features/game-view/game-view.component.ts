@@ -22,6 +22,7 @@ import { GAME_STATES } from "./services/choreographer/choreographer.model";
 export class GameViewComponent {
   tweetIntent: string = "https://twitter.com/intent/tweet/";
   whatsAppMsg: string = "whatsapp://send?text=";
+  facebookMsg: string = "https://www.facebook.com/sharer/sharer.php?u=";
 
   game_states = GAME_STATES;
   env = environment;
@@ -33,6 +34,7 @@ export class GameViewComponent {
   ) {
     this.constructTweetIntent();
     this.constructWhatsAppMsg();
+    this.constructFacebookMsg();
   }
 
   private constructTweetIntent() {
@@ -49,53 +51,14 @@ export class GameViewComponent {
       this.tweetIntent += key + "=" + encodeURIComponent(attributes[key]);
     });
   }
+
   private constructWhatsAppMsg() {
     this.whatsAppMsg += encodeURIComponent(
       `http://www.abhijit-kar.com/dont-let-him-poo/`
     );
   }
-
-  tweet() {
-    if (isPlatformBrowser) {
-      this.popUpCenter(this.tweetIntent, "Share a link on Twitter", 500, 500);
-    }
-  }
-
-  private popUpCenter(url, title, w, h) {
-    if (isPlatformBrowser(this.platformId)) {
-      var dualScreenLeft = window.screenLeft;
-      var dualScreenTop = window.screenTop;
-
-      var width = window.innerWidth
-        ? window.innerWidth
-        : document.documentElement.clientWidth
-          ? document.documentElement.clientWidth
-          : screen.width;
-      var height = window.innerHeight
-        ? window.innerHeight
-        : document.documentElement.clientHeight
-          ? document.documentElement.clientHeight
-          : screen.height;
-
-      var left = width / 2 - w / 2 + dualScreenLeft;
-      var top = height / 2 - h / 2 + dualScreenTop;
-      var newWindow = window.open(
-        url,
-        title,
-        "scrollbars=yes, width=" +
-          w +
-          ", height=" +
-          h +
-          ", top=" +
-          top +
-          ", left=" +
-          left
-      );
-
-      if (window.focus) {
-        newWindow.focus();
-      }
-    }
+  private constructFacebookMsg() {
+    this.facebookMsg += encodeURIComponent(`http://www.abhijit-kar.com/dont-let-him-poo/`);
   }
 
   showRankingsPage() {
