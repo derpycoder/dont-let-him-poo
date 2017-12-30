@@ -81,17 +81,4 @@ export class GameViewComponent implements OnInit, OnDestroy {
       this.choreographerService.currentGameState = GAME_STATES.LOAD;
     }
   }
-
-  editOrExitLevel() {
-    if (
-      this.choreographerService.currentGameState === GAME_STATES.RUN ||
-      this.choreographerService.currentGameState === GAME_STATES.LOAD
-    ) {
-      return;
-    }
-    if (this.choreographerService.currentGameState !== GAME_STATES.RUNNING) {
-      this.showHelpers = true;
-    }
-    this.choreographerService.currentGameState = GAME_STATES.EDIT_MODE;
-  }
 }

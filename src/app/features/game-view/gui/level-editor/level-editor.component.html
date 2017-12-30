@@ -1,0 +1,6 @@
+<button type="button" class="btn btn-dark hidden-sm hidden-xs" *ngIf="showLevelEditBtn" (click)="editOrExitLevel()">{{helperBtnText}}</button>
+<ng-container *ngIf="showHelpers">
+    <button type="button" class="btn btn-dark hidden-sm hidden-xs" (click)="gridService.clearGrid()">C</button>
+    <button type="button" class="btn btn-dark hidden-sm hidden-xs" (click)="gridService.resetGrid()">R</button>
+    <button type="button" class="btn btn-dark hidden-sm hidden-xs" (click)="gridService.serializeGrid()">S</button>
+</ng-container>

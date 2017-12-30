@@ -9,3 +9,4 @@ export * from "./player/player.component";
 export * from "./measuring-stick/measuring-stick.component";
 export * from "./line-renderer/line-renderer.component";
 export * from "./gui/game-over/game-over.component";
+export * from "./gui/level-editor/level-editor.component";
