@@ -23,6 +23,7 @@ import {
   PowerBtnComponent,
   LoaderComponent,
   StartBtnComponent,
+  RefreshBtnComponent,
   GridService,
   InteractionService,
   SalaryService,
@@ -52,7 +53,8 @@ import {
     LevelEditorComponent,
     PowerBtnComponent,
     LoaderComponent,
-    StartBtnComponent
+    StartBtnComponent,
+    RefreshBtnComponent
   ],
   providers: [
     GridService,

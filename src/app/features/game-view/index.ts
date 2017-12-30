@@ -14,3 +14,4 @@ export * from "./gui/level-editor/level-editor.component";
 export * from "./gui/power-btn/power-btn.component";
 export * from "./gui/loader/loader.component";
 export * from "./gui/start-btn/start-btn.component";
+export * from "./gui/refresh-btn/refresh-btn.component";
