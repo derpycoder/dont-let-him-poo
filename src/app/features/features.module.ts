@@ -4,7 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 
 // Routing Module
 import { FeaturesRoutingModule } from "./features-routing.module";
-import {} from "./rankings/rankings-routing.module";
+// import {} from "./rankings/rankings-routing.module";
 
 import { SharedModule } from "../shared/shared.module";
 
@@ -20,6 +20,7 @@ import {
   LineRendererComponent,
   GameOverComponent,
   LevelEditorComponent,
+  PowerBtnComponent,
   GridService,
   InteractionService,
   SalaryService,
@@ -46,7 +47,8 @@ import {
     MeasuringStickComponent,
     LineRendererComponent,
     GameOverComponent,
-    LevelEditorComponent
+    LevelEditorComponent,
+    PowerBtnComponent
   ],
   providers: [
     GridService,

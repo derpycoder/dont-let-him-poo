@@ -1,13 +1,10 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 
-import { environment } from "../../../../../environments/environment";
-
 import {
   ChoreographerService,
   GridService,
-  GAME_STATES,
-  TILE_TYPES
+  GAME_STATES
 } from "../../services/";
 
 @Component({
