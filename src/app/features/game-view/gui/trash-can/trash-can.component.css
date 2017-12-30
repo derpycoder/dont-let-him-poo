@@ -35,7 +35,7 @@ img.trash-image.deactive {
   display: inline-block;
   height: 50%;
   width: 50%;
-  color: lightgreen;
+  color: #89fa5a;
   font-weight: bold;
   position: absolute;
   z-index: 20;

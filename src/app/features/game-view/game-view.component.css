@@ -51,7 +51,7 @@ dlp-salary-gauge {
 }
 .author,
 .links a {
-  color: #fc0;
+  color: #f3c215;
   font-family: "Roboto Mono", monospace;
   font-weight: bold;
 }
@@ -76,10 +76,10 @@ p.author {
   outline: none;
 }
 .links a:first-child {
-  color: #0cd6d0;
+  color: #5ac8fa;
 }
 .links a:last-child {
-  color: #5af11c;
+  color: #89fa5a;
   margin-left: 10px;
 }
 
