@@ -21,6 +21,7 @@ import {
   GameOverComponent,
   LevelEditorComponent,
   PowerBtnComponent,
+  LoaderComponent,
   GridService,
   InteractionService,
   SalaryService,
@@ -48,7 +49,8 @@ import {
     LineRendererComponent,
     GameOverComponent,
     LevelEditorComponent,
-    PowerBtnComponent
+    PowerBtnComponent,
+    LoaderComponent
   ],
   providers: [
     GridService,
