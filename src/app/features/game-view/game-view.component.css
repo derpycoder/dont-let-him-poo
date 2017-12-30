@@ -16,15 +16,8 @@
     0px 0px 13px 3px rgba(0, 0, 0, 0.19);
 }
 
-.container.main {
+#main {
   position: relative;
-}
-
-.container.main,
-.container.appendix {
-  margin-top: 5%;
-}
-.container.appendix {
   margin-bottom: 5%;
 }
 
@@ -33,12 +26,13 @@
   margin-bottom: 20px;
 }
 
-.title {
+h1 {
   font-family: "Pacifico", cursive;
   color: #5ac8fa;
-  text-align: center;
-  font-size: 0.7em;
   vertical-align: inherit;
+  display: inline-block;
+  font-size: 1.5em;
+  margin-top: 7%;
 }
 
 dlp-salary-gauge {
@@ -131,8 +125,8 @@ ol {
 }
 .power {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: -10px;
+  left: -10px;
   border: 1px solid rgb(36, 35, 35);
   border-radius: 50%;
   padding: 0.9% 0.2% 0.4% 0.7%;
@@ -190,7 +184,7 @@ ol {
   header {
     text-align: center;
   }
-  .title {
+  h1 {
     font-size: 15px;
     vertical-align: middle;
   }
