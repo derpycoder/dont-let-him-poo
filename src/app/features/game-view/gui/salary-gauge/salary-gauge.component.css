@@ -25,17 +25,21 @@
 
 .score {
   color: #66c9fa;
-  font-size: 0.7em;
+  font-size: 30px;
   text-shadow: 0px 4px 3px rgb(44, 47, 47);
+  float: right;
+  font-weight: bold;
+  margin-top: 3%;
 }
 
 .high-score {
   right: 10px;
-  top: -24px;
-  font-size: 0.5em;
+  top: -31px;
+  font-size: 20px;
   color: #66c9fa;
   font-weight: bold;
   position: absolute;
+
 }
 
 .usd {
@@ -45,15 +49,9 @@
   margin-top: 6%;
 }
 
-.score {
-  float: right;
-  font-weight: bold;
-  margin-top: 6%;
-}
-
 .vfx {
   color: #66fabd;
-  font-size: 0.7em;
+  font-size: 30px;
   font-weight: bold;
   position: absolute;
   opacity: 0;
@@ -68,19 +66,19 @@
     font-size: 3.5em;
   }
   .score {
-    margin-top: 12%;
+    margin-top: 6%;
   }
   .usd {
     width: 20px;
   }
   .score,
   .vfx {
-    font-size: 0.4em;
+    font-size: 15px;
   }
 
   .high-score {
     right: 10px;
-    top: -17px;
-    font-size: 0.3em;
+    top: -23px;
+    font-size: 15px;
   }
 }

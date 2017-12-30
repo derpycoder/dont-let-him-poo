@@ -2,7 +2,7 @@
   float: none;
   margin: 0;
   position: relative;
-  width: 24%;
+  width: 24.4%;
   margin-bottom: 1%;
 }
 .share-btn svg {
@@ -11,6 +11,7 @@
 .share-btn span {
   padding-left: 25px;
   font-weight: bold;
+  font-size: 1.2em;
 }
 .linked-in svg {
   width: 15%;
@@ -72,15 +73,16 @@
 
 @media screen and (max-width: 768px) {
   .whatsapp {
-    display: inline;
+    display: inline-block;
   }
 }
 
 @media screen and (max-width: 520px) {
   .share-btn {
-    font-size: 0.7em;
+    font-size: 15px;
+    width: 49.5%;
   }
   .whatsapp {
-    display: inline;
+    display: inline-block;
   }
 }

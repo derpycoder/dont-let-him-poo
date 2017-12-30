@@ -31,7 +31,7 @@ h1 {
   color: #5ac8fa;
   vertical-align: inherit;
   display: inline-block;
-  font-size: 1.5em;
+  font-size: 25px;
   margin-top: 7%;
   margin-left: -3%;
 }
@@ -57,17 +57,19 @@ dlp-salary-gauge {
 }
 .label {
   color: #ff38ff;
-  font-size: 1.1em;
+  font-size: 15px;
   font-weight: bold;
 
   padding: 0;
 }
 p.author {
   margin: 0;
+  font-size: 15px;
 }
 
 .links {
   float: right;
+  font-size: 15px;
 }
 .links a,
 .links a:hover,
@@ -85,7 +87,7 @@ p.author {
 
 .social-header {
   color: #5ac8fa;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -95,7 +97,8 @@ p.author {
 
 @media screen and (max-width: 520px) {
   .social-header {
-    font-size: 0.7em;
+    font-size: 15px;
+    text-align: left;
   }
   .img-icon {
     width: 20px;
@@ -112,9 +115,9 @@ p.author {
     text-align: center;
   }
   h1 {
-    font-size: 15px;
+    font-size: 18px;
     vertical-align: middle;
-    margin-left: -65px;
+    margin-left: -40px;
     margin-top: 9%;
   }
   .pou {
