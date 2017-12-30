@@ -15,3 +15,5 @@ export * from "./gui/power-btn/power-btn.component";
 export * from "./gui/loader/loader.component";
 export * from "./gui/start-btn/start-btn.component";
 export * from "./gui/refresh-btn/refresh-btn.component";
+export * from "./gui/share-btns/share-btns.component";
+export * from "./gui/instructions/instructions.component";

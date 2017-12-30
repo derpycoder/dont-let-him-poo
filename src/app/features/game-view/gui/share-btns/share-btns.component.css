@@ -1,0 +1,86 @@
+.share-btn {
+  float: none;
+  margin: 0;
+  position: relative;
+  width: 24%;
+  margin-bottom: 1%;
+}
+.share-btn svg {
+  position: absolute;
+}
+.share-btn span {
+  padding-left: 25px;
+  font-weight: bold;
+}
+.linked-in svg {
+  width: 15%;
+  height: 67%;
+  top: 9%;
+  left: 10%;
+}
+.linked-in span {
+  padding-left: 30%;
+}
+.google svg {
+  width: 20%;
+  top: 16%;
+  left: 9%;
+  height: 70%;
+}
+.google span {
+  padding-left: 34%;
+}
+.pinterest svg {
+  width: 20%;
+  height: 77%;
+  top: 14%;
+  left: 8%;
+}
+.pinterest span {
+  padding-left: 28%;
+}
+.tweet svg {
+  left: 7%;
+  top: 10%;
+  width: 25%;
+  height: 77%;
+}
+.tweet span {
+  padding-left: 23%;
+}
+.whatsapp {
+  display: none;
+}
+.whatsapp svg {
+  width: 21%;
+  height: 66%;
+  top: 15%;
+  left: 5%;
+}
+.whatsapp span {
+  padding-left: 26%;
+}
+.facebook svg {
+  width: 20%;
+  height: 77%;
+  left: 5%;
+  top: 11%;
+}
+.facebook span {
+  padding-left: 20%;
+}
+
+@media screen and (max-width: 768px) {
+  .whatsapp {
+    display: inline;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .share-btn {
+    font-size: 0.7em;
+  }
+  .whatsapp {
+    display: inline;
+  }
+}

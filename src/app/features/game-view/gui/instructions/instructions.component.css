@@ -1,0 +1,23 @@
+.instructions,
+p,
+ol {
+  color: #b5b5b5;
+  font-weight: bold;
+  font-family: "Roboto Mono", monospace;
+}
+
+.img-icon {
+  width: 28px;
+  height: 28px;
+  vertical-align: text-bottom;
+}
+
+@media screen and (max-width: 520px) {
+  .img-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .instructions p {
+    text-align: center;
+  }
+}

@@ -24,6 +24,8 @@ import {
   LoaderComponent,
   StartBtnComponent,
   RefreshBtnComponent,
+  ShareBtnsComponent,
+  InstructionsComponent,
   GridService,
   InteractionService,
   SalaryService,
@@ -54,7 +56,9 @@ import {
     PowerBtnComponent,
     LoaderComponent,
     StartBtnComponent,
-    RefreshBtnComponent
+    RefreshBtnComponent,
+    ShareBtnsComponent,
+    InstructionsComponent
   ],
   providers: [
     GridService,
