@@ -21,6 +21,7 @@ import { GAME_STATES } from "./services/choreographer/choreographer.model";
 })
 export class GameViewComponent {
   tweetIntent: string = "https://twitter.com/intent/tweet/";
+  whatsAppMsg: string = "whatsapp://send?text=";
 
   game_states = GAME_STATES;
   env = environment;
@@ -31,6 +32,7 @@ export class GameViewComponent {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.constructTweetIntent();
+    this.constructWhatsAppMsg();
   }
 
   private constructTweetIntent() {
@@ -47,6 +49,11 @@ export class GameViewComponent {
       this.tweetIntent += key + "=" + encodeURIComponent(attributes[key]);
     });
   }
+  private constructWhatsAppMsg() {
+    this.whatsAppMsg += encodeURIComponent(
+      `http://www.abhijit-kar.com/dont-let-him-poo/`
+    );
+  }
 
   tweet() {
     if (isPlatformBrowser) {
@@ -56,10 +63,8 @@ export class GameViewComponent {
 
   private popUpCenter(url, title, w, h) {
     if (isPlatformBrowser(this.platformId)) {
-      var dualScreenLeft =
-        window.screenLeft != undefined ? window.screenLeft : screen.left;
-      var dualScreenTop =
-        window.screenTop != undefined ? window.screenTop : screen.top;
+      var dualScreenLeft = window.screenLeft;
+      var dualScreenTop = window.screenTop;
 
       var width = window.innerWidth
         ? window.innerWidth
