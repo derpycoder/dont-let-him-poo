@@ -165,6 +165,7 @@ ol {
     margin-top: 8%;
   }
   .container.appendix {
+    font-size: 0.9em;
     margin-bottom: 10%;
   }
 }
@@ -206,6 +207,7 @@ ol {
     margin-top: 10%;
   }
   .container.appendix {
+    font-size: 0.7em;
     margin-bottom: 15%;
   }
   .btn-dark {
