@@ -115,6 +115,7 @@ ol {
   h1 {
     font-size: 15px;
     vertical-align: middle;
+    margin-left: -50px;
   }
   .pou {
     width: 24px;

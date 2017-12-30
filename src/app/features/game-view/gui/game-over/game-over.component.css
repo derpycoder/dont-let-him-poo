@@ -1,7 +1,7 @@
 .game-over {
   position: absolute;
   width: 92%;
-  height: 91%;
+  height: 92%;
   background-color: rgba(46, 46, 46, 0.5);
 
   color: #66c9fa;
@@ -21,10 +21,18 @@
 }
 
 .game-over a {
-  color: #ffd43a;
   text-decoration: none;
   font-size: 27px;
   cursor: pointer;
+
+  background-color: #323332;
+  box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.3),
+    0 1px 0 rgba(255, 255, 255, 0.1), 0 -1px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  padding: 10px;
+  color: #66c9fa;
+
+  text-shadow: none;
 }
 .game-over a:active {
   color: #89fa5a;
@@ -33,12 +41,21 @@
 .refresh {
   margin: 25px 0 40px 0;
   cursor: pointer;
+
+  background-color: #323332;
+  box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.3),
+    0 1px 0 rgba(255, 255, 255, 0.1), 0 -1px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 10px;
+}
+.refresh:active path {
+  fill: #89fa5a;
 }
 
 @media screen and (max-width: 520px) {
   .game-over {
     width: 94.5%;
-    height: 93.5%;
+    height: 94%;
   }
 
   .game-over h1 {
@@ -57,6 +74,8 @@
 
   .refresh {
     width: 30px;
+    height: 30px;
     margin: 0px 0 20px 0;
+    padding: 5px;
   }
 }
