@@ -56,6 +56,10 @@ export class GridContainerComponent implements OnInit, OnDestroy {
             this.showGrid = false;
             this.gridService.initGrid();
             break;
+          case GAME_STATES.LOAD_FAILED:
+            this.showGrid = false;
+            this.tl.clear();
+            break;
           case GAME_STATES.START:
             this.showGrid = false;
             break;

@@ -30,6 +30,10 @@ export class LevelEditorComponent implements OnInit, OnDestroy {
     this.choreographerSubscription = this.choreographerService.onGameStateChange.subscribe(
       (state: GAME_STATES) => {
         switch (state) {
+          case GAME_STATES.LOAD_FAILED:
+            this.showHelpers = false;
+            this.helperBtnText = "Edit";
+            this.showLevelEditBtn = false;
           case GAME_STATES.START:
             this.showHelpers = false;
             this.helperBtnText = "Edit";

@@ -104,6 +104,10 @@ export class PlayerComponent implements OnInit, OnDestroy {
             this.tl.clear();
             this.playerType = PLAYER_TYPES.NONE;
             break;
+          case GAME_STATES.LOAD_FAILED:
+            this.tl.clear();
+            this.playerType = PLAYER_TYPES.NONE;
+            break;
           case GAME_STATES.START:
             this.tl.clear();
             this.playerType = PLAYER_TYPES.NONE;
