@@ -30,8 +30,7 @@
   color: #89fa5a;
 }
 
-.fa.fa-refresh {
-  font-size: 60px;
+.refresh {
   margin: 25px 0 40px 0;
   cursor: pointer;
 }
@@ -56,8 +55,8 @@
     font-size: 15px;
   }
 
-  .fa.fa-refresh {
-    font-size: 30px;
+  .refresh {
+    width: 30px;
     margin: 0px 0 20px 0;
   }
 }

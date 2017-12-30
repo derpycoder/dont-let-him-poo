@@ -13,13 +13,9 @@
   position: relative;
 }
 
-.fa.fa-play {
-  color: #5ac8fa;
-  font-size: 50px;
-  width: 100%;
-  text-align: center;
+.play {
+  margin: 1% 0 1% 45%;
   cursor: pointer;
-  text-shadow: 0px 4px 3px rgb(44, 47, 47);
 }
 
 .grid-row {
@@ -97,8 +93,7 @@
     height: 24px;
     margin-right: 2px;
   }
-  .fa.fa-play {
-    font-size: 30px;
-    padding: 10px;
+  .play {
+    width: 30px;
   }
 }

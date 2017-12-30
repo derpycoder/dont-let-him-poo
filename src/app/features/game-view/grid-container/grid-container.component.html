@@ -1,9 +1,22 @@
 <div class="grid-container">
   <div *ngIf="choreographerService.currentGameState === game_states.LOAD">
-    <img class="get-loader" src="./assets/images/loader.gif" alt="Loader">
+    <svg class="get-loader" width="50px" height="50px" viewBox="0 0 100 100">
+      <circle filter="url(#dropShadow)" cx="50" cy="50" fill="none" stroke="#5ac8fa" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138"
+        transform="rotate(24 50 50)">
+        <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1s"
+          begin="0s" repeatCount="indefinite"></animateTransform>
+      </circle>
+    </svg>
   </div>
 
-  <span *ngIf="choreographerService.currentGameState === game_states.START" class="fa fa-play" (click)="startGame()"></span>
+  <svg class="play" *ngIf="choreographerService.currentGameState === game_states.START" (click)="startGame()" viewBox="0 0 494.148 494.148"
+    width="40px" height="40px">
+    <svg:g>
+      <svg:path filter="url(#dropShadow)" d="M405.284,201.188L130.804,13.28C118.128,4.596,105.356,0,94.74,0C74.216,0,61.52,16.472,61.52,44.044v406.124    c0,27.54,12.68,43.98,33.156,43.98c10.632,0,23.2-4.6,35.904-13.308l274.608-187.904c17.66-12.104,27.44-28.392,27.44-45.884    C432.632,229.572,422.964,213.288,405.284,201.188z"
+        fill="#5ac8fa" />
+      </g>
+  </svg>
+
 
   <dlp-line-renderer></dlp-line-renderer>
 

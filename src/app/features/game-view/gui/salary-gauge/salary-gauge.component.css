@@ -20,7 +20,6 @@
   outline: none !important;
 }
 
-.fa.fa-usd,
 .score {
   color: #66c9fa;
   font-size: 0.7em;
@@ -36,11 +35,11 @@
   position: absolute;
 }
 
-.fa.fa-usd {
+.usd {
   border-right: 1px solid #646363;
-  padding-right: 7%;
+  padding-right: 2%;
   float: left;
-  margin-top: 7%;
+  margin-top: 6%;
 }
 
 .score {
@@ -63,11 +62,12 @@
   .gauge-container {
     height: 40px;
   }
-  .fa.fa-usd,
   .score {
     margin-top: 12%;
   }
-  .fa.fa-usd,
+  .usd {
+    width: 20px;
+  }
   .score,
   .vfx {
     font-size: 0.4em;
