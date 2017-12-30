@@ -33,6 +33,7 @@ h1 {
   display: inline-block;
   font-size: 1.5em;
   margin-top: 7%;
+  margin-left: -3%;
 }
 
 dlp-salary-gauge {
@@ -115,7 +116,8 @@ ol {
   h1 {
     font-size: 15px;
     vertical-align: middle;
-    margin-left: -50px;
+    margin-left: -65px;
+    margin-top: 9%;
   }
   .pou {
     width: 24px;
