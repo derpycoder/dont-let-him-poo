@@ -12,12 +12,12 @@ declare var ga;
 export class AppComponent {
   @HostListener("window:focus", ["$event"])
   onFocus(event) {
-    this.googleAnalyticsService.emitEvent("Focus", "Acquired");
+    // this.googleAnalyticsService.emitEvent("Focus", "Acquired");
   }
 
   @HostListener("window:blur", ["$event"])
   onBlur(event) {
-    this.googleAnalyticsService.emitEvent("Focus", "Lost");
+    // this.googleAnalyticsService.emitEvent("Focus", "Lost");
   }
 
   constructor(
