@@ -10,8 +10,8 @@
         "http://www.abhijit-kar.com/dont-let-him-poo/favicon.ico",
         "http://www.abhijit-kar.com/dont-let-him-poo/index.html",
         "http://www.abhijit-kar.com/dont-let-him-poo/0.9db2ac4238c157e6d009.chunk.js",
-        "http://www.abhijit-kar.com/dont-let-him-poo/inline.971411fd83268d8b5ef9.bundle.js",
-        "http://www.abhijit-kar.com/dont-let-him-poo/main.01a06305886d77524ad8.bundle.js",
+        "http://www.abhijit-kar.com/dont-let-him-poo/inline.e9157586599e0cfd9f13.bundle.js",
+        "http://www.abhijit-kar.com/dont-let-him-poo/main.704f27ae77f625f3df03.bundle.js",
         "http://www.abhijit-kar.com/dont-let-him-poo/polyfills.6a82d3e655c57deff832.bundle.js",
         "http://www.abhijit-kar.com/dont-let-him-poo/styles.408acd901841355227e2.bundle.css"
       ],
@@ -60,7 +60,8 @@
         "http://www.abhijit-kar.com/dont-let-him-poo/assets/meta/ms-icon-70x70.png",
         "http://www.abhijit-kar.com/dont-let-him-poo/assets/meta/pwa-icon-256x256.png",
         "http://www.abhijit-kar.com/dont-let-him-poo/assets/meta/pwa-icon-384x384.png",
-        "http://www.abhijit-kar.com/dont-let-him-poo/assets/meta/pwa-icon-512x512.png"
+        "http://www.abhijit-kar.com/dont-let-him-poo/assets/meta/pwa-icon-512x512.png",
+        "http://www.abhijit-kar.com/dont-let-him-poo/assets/meta/screenshot.png"
       ],
       "patterns": [
         "https:\\/\\/fonts\\.googleapis\\.com\\/.*",
@@ -84,9 +85,9 @@
   "hashTable": {
     "http://www.abhijit-kar.com/dont-let-him-poo/0.9db2ac4238c157e6d009.chunk.js": "e9edeafcf9fd72711a321335b8641bfa45112374",
     "http://www.abhijit-kar.com/dont-let-him-poo/assets/manifest.json": "36a8fdcb2890f7995fc0706a0fd95274719b048f",
-    "http://www.abhijit-kar.com/dont-let-him-poo/inline.971411fd83268d8b5ef9.bundle.js": "085d83c9f51bfa3da552acde648dfa6e40d58494",
+    "http://www.abhijit-kar.com/dont-let-him-poo/inline.e9157586599e0cfd9f13.bundle.js": "8d11a79f3105b32d8d0972b7b7db9623e7879a90",
     "http://www.abhijit-kar.com/dont-let-him-poo/assets/images/angry.png": "f3df8fd34d448162fbf3dc06d742f3fb169fa752",
-    "http://www.abhijit-kar.com/dont-let-him-poo/main.01a06305886d77524ad8.bundle.js": "def6805e600ea0c5d1319f052bcd157f6bc59560",
+    "http://www.abhijit-kar.com/dont-let-him-poo/main.704f27ae77f625f3df03.bundle.js": "85df02d352288d09d5ccab08e5c60dfe4755a32c",
     "http://www.abhijit-kar.com/dont-let-him-poo/assets/images/got-fed.png": "fbffcde3fe617ace649e194ae0dc9d074589153a",
     "http://www.abhijit-kar.com/dont-let-him-poo/polyfills.6a82d3e655c57deff832.bundle.js": "586394f3f4932361ff8b691632b81a15eebe2bfc",
     "http://www.abhijit-kar.com/dont-let-him-poo/assets/images/got-money.png": "d2d6a88f43e6ca4c85aee352cee619f30e71c115",
@@ -94,7 +95,7 @@
     "http://www.abhijit-kar.com/dont-let-him-poo/assets/images/happy.png": "b9fb06fa4045f9292f9b0e98c250e582a8d88b01",
     "http://www.abhijit-kar.com/dont-let-him-poo/favicon.ico": "516fae91ab403e6cefac8896168d7b7801ebec1a",
     "http://www.abhijit-kar.com/dont-let-him-poo/assets/images/loo.png": "844d387e5cf25aea278faac5e60c863757099126",
-    "http://www.abhijit-kar.com/dont-let-him-poo/index.html": "3940b2dfcc8e04132c106b484a73e3c809eaf5ef",
+    "http://www.abhijit-kar.com/dont-let-him-poo/index.html": "5826eb62018398ff737ab0f8c8cacf3cfb4f5724",
     "http://www.abhijit-kar.com/dont-let-him-poo/assets/images/money.png": "95f585e4fb11e80fd2c756cc34b8e981c0d70bc8",
     "http://www.abhijit-kar.com/dont-let-him-poo/assets/images/nauseated.png": "787fdd7b0fddf259e578b8c63953feb3a809b9f3",
     "http://www.abhijit-kar.com/dont-let-him-poo/assets/images/pizza.png": "1496edb3eb59cdbe5211654a71d2b0e3c1fe127f",
@@ -127,6 +128,7 @@
     "http://www.abhijit-kar.com/dont-let-him-poo/assets/meta/ms-icon-70x70.png": "c7c8095e244095118f0db1c2044b519dd4b6caf4",
     "http://www.abhijit-kar.com/dont-let-him-poo/assets/meta/pwa-icon-256x256.png": "c574835b6e942ef7f73e04524e65ad4bafa69710",
     "http://www.abhijit-kar.com/dont-let-him-poo/assets/meta/pwa-icon-384x384.png": "9efc03d23d49c37f88f88ca176f8fbb1ce014548",
-    "http://www.abhijit-kar.com/dont-let-him-poo/assets/meta/pwa-icon-512x512.png": "ba3a10645efb496ee27f6f6ccc78a03eb1ed2ffe"
+    "http://www.abhijit-kar.com/dont-let-him-poo/assets/meta/pwa-icon-512x512.png": "ba3a10645efb496ee27f6f6ccc78a03eb1ed2ffe",
+    "http://www.abhijit-kar.com/dont-let-him-poo/assets/meta/screenshot.png": "4e57f9494362854b266310c2bdb42848c7c7cc6f"
   }
 }
