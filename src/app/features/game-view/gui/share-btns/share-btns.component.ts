@@ -40,7 +40,7 @@ export class ShareBtnsComponent {
     this.constructLinkedInMsg();
   }
 
-  fireShareBtnClickEvent(event: Event, siteName: string, url: string) {
+  directToSocialSite(event: Event, siteName: string, url: string) {
     event.preventDefault();
     this.googleAnalyticsService.emitEvent("Social", siteName, $ => {
       window.open(url, "_blank");

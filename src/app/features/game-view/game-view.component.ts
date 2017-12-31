@@ -33,4 +33,10 @@ export class GameViewComponent {
       window.open("http://paypal.me/abhijitkar", "_blank");
     });
   }
+  directToPortfolio(event: Event, site: string, url: string) {
+    event.preventDefault();
+    this.googleAnalyticsService.emitEvent("Portfolio", site, $ => {
+      window.open(url, "_blank");
+    });
+  }
 }
