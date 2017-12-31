@@ -112,7 +112,7 @@ p.author {
 
 #instructions {
   color: #5ac8fa;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
   text-align: center;
   margin: 0;
@@ -128,7 +128,7 @@ p.author {
     font-size: 12px;
   }
   #instructions {
-    font-size: 14px;
+    font-size: 12px;
   }
   .paypal {
     font-size: 12px;
