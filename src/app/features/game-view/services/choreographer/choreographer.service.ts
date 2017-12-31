@@ -187,7 +187,7 @@ export class ChoreographerService {
 
     this.googleAnalyticsService.emitEvent(
       "Distraction",
-      target.tileType,
+      target.tileType.charAt(0).toUpperCase() + target.tileType.slice(1),
       null,
       this.gridService.fileNumber
     );
