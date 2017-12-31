@@ -1,7 +1,10 @@
 import { Component } from "@angular/core";
-import { ChoreographerService } from "../../services/choreographer/choreographer.service";
-import { GAME_STATES } from "../../services/choreographer/choreographer.model";
-import { SalaryService } from "../../services/salary.service";
+import {
+  ChoreographerService,
+  SalaryService,
+  GAME_STATES,
+  GridService
+} from "../../services";
 
 import { GoogleAnalyticsService } from "../../../../shared/";
 
@@ -16,11 +19,17 @@ export class GameOverComponent {
   constructor(
     public choreographerService: ChoreographerService,
     public salaryService: SalaryService,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private googleAnalyticsService: GoogleAnalyticsService,
+    private gridService: GridService
   ) {}
 
   restartGame() {
     this.choreographerService.currentGameState = GAME_STATES.LOAD;
-    this.googleAnalyticsService.emitEvent("Game Play", "Reload");
+    this.googleAnalyticsService.emitEvent(
+      "Gameplay",
+      "Reload",
+      null,
+      this.gridService.fileNumber
+    );
   }
 }

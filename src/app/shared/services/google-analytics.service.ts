@@ -8,8 +8,8 @@ export class GoogleAnalyticsService {
     eventCategory: string,
     eventAction: string,
     callback?: Function,
-    eventLabel?: string,
-    eventValue?: number
+    eventValue?: number,
+    eventLabel?: string
   ) {
     ga("send", "event", {
       eventCategory: eventCategory,

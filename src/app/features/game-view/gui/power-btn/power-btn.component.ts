@@ -1,7 +1,13 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 
-import { ChoreographerService, GAME_STATES } from "../../services/";
+import {
+  ChoreographerService,
+  GAME_STATES,
+  GridService
+} from "../../services/";
+import { GoogleAnalyticsService } from "../../../../shared/";
+
 @Component({
   selector: "dlp-power-btn",
   templateUrl: "./power-btn.component.html",
@@ -14,7 +20,9 @@ export class PowerBtnComponent implements OnInit, OnDestroy {
   private choreographerSubscription: Subscription;
 
   constructor(
-    public choreographerService: ChoreographerService
+    public choreographerService: ChoreographerService,
+    private googleAnalyticsService: GoogleAnalyticsService,
+    private gridService: GridService
   ) {}
 
   ngOnInit() {
@@ -47,6 +55,14 @@ export class PowerBtnComponent implements OnInit, OnDestroy {
 
   restartGame() {
     if (this.powerOffBtnActive) {
+      this.googleAnalyticsService.emitEvent(
+        "Gameplay",
+        this.choreographerService.currentGameState !== GAME_STATES.GAME_OVER
+          ? "Restart"
+          : "Reload",
+        null,
+        this.gridService.fileNumber
+      );
       this.choreographerService.currentGameState = GAME_STATES.LOAD;
     }
   }

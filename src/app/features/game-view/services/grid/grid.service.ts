@@ -18,6 +18,7 @@ const MAX_LEVELS = 18;
 @Injectable()
 export class GridService {
   levelsRandomized: boolean = true;
+  fileNumber: number;
 
   gameGridBackup: Node[][];
   gameGrid: Node[][];
@@ -31,12 +32,12 @@ export class GridService {
   ) {}
 
   initGrid() {
-    const fileName = environment.randomizeLevel
+    this.fileNumber = environment.randomizeLevel
       ? this.utilsService.getRandomNumber(1, MAX_LEVELS)
-      : "playground";
+      : 0;
 
     this.httpClient
-      .get(`./assets/levels/${fileName}.json`)
+      .get(`./assets/levels/${this.fileNumber}.json`)
       .subscribe((data: any) => {
         this.gameGrid = [];
         let row: Node[];
