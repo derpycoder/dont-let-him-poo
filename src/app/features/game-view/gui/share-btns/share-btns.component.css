@@ -4,10 +4,10 @@
   position: relative;
   width: 24.4%;
   margin-bottom: 1%;
+  color: #5ac8fa;
 }
 
 .share-btn span {
-  font-weight: bold;
   font-size: 1.2em;
 }
 .whatsapp {

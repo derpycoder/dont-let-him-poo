@@ -99,7 +99,6 @@ p.author {
   margin: 0 0 0 33%;
   width: 30%;
   padding: 2%;
-  font-weight: bold;
   text-align: center;
   font-size: 15px;
 }
@@ -112,9 +111,8 @@ p.author {
   margin: 0;
 }
 .paypal-msg {
-  color: #5ac8fc;
+  color: #b5b5b5;
   font-size: 15px;
-  font-weight: bold;
   text-align: center;
 }
 
@@ -146,6 +144,7 @@ p.author {
   }
   .instructions p {
     text-align: center;
+    font-weight: normal;
   }
   .author,
   .links {
@@ -153,6 +152,7 @@ p.author {
   }
   header {
     text-align: center;
+    padding-top: 5px;
   }
   h1 {
     font-size: 18px;
