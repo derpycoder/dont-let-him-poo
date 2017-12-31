@@ -6,6 +6,7 @@ import { Node, TILE_TYPES } from "../grid/grid.model";
 
 import { UtilsService } from "../utils.service";
 import { PathFindingService } from "../path-finding/path-finding.service";
+import { GoogleAnalyticsService } from "../../../../shared/";
 
 @Injectable()
 export class ChoreographerService {
@@ -41,7 +42,8 @@ export class ChoreographerService {
   constructor(
     private gridService: GridService,
     private utilsService: UtilsService,
-    private pathFindingService: PathFindingService
+    private pathFindingService: PathFindingService,
+    private googleAnalyticsService: GoogleAnalyticsService
   ) {
     this.gridService.onGridReady.subscribe(status => {
       if (status) {
@@ -180,7 +182,15 @@ export class ChoreographerService {
       this.player,
       this.targets[this.targets.length - 1]
     );
+
     this.onPathChange.emit(this.path);
+
+    this.googleAnalyticsService.emitEvent(
+      "Distraction",
+      target.tileType,
+      null,
+      this.gridService.fileNumber
+    );
   }
 
   distractionOver(target: Node) {
