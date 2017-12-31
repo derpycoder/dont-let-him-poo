@@ -1,18 +1,18 @@
-<button (click)="directToSocialSite($event, 'Twitter', tweetIntent)" class="btn btn-dark tweet share-btn" target="_blank">
+<button (click)="directToSocialSite($event, 'Twitter', tweetIntent)" class="btn btn-dark tweet share-btn">
     <span>Twitter</span>
 </button>
-<button (click)="directToSocialSite($event, 'Facebook', facebookMsg)" class="btn btn-dark facebook share-btn" target="_blank">
+<button (click)="directToSocialSite($event, 'Facebook', facebookMsg)" class="btn btn-dark facebook share-btn">
     <span>Facebook</span>
 </button>
-<button (click)="directToSocialSite($event, 'Google', googleMsg)" class="btn btn-dark google share-btn" target="_blank">
+<button (click)="directToSocialSite($event, 'Google', googleMsg)" class="btn btn-dark google share-btn">
     <span>Google</span>
 </button>
-<button (click)="directToSocialSite($event, 'Pinterest', pinterestMsg)" class="btn btn-dark pinterest share-btn" target="_blank">
+<button (click)="directToSocialSite($event, 'Pinterest', pinterestMsg)" class="btn btn-dark pinterest share-btn">
     <span>Pinterest</span>
 </button>
-<button (click)="directToSocialSite($event, 'LinkedIn', linkedInMsg)" class="btn btn-dark linked-in share-btn" target="_blank">
+<button (click)="directToSocialSite($event, 'LinkedIn', linkedInMsg)" class="btn btn-dark linked-in share-btn">
     <span>LinkedIn</span>
 </button>
-<button data-action="share/whatsapp/share" (click)="directToSocialSite($event, 'WhatsApp', whatsAppMsg)" class="btn btn-dark whatsapp share-btn">
+<button data-action="share/whatsapp/share" (click)="shareOnWhatsApp($event)" class="btn btn-dark whatsapp share-btn">
     <span>WhatsApp</span>
 </button>

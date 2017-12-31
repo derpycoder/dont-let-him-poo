@@ -27,7 +27,6 @@ export class AppComponent {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         ga("set", "page", event.urlAfterRedirects);
-        // ga("set", "transport", "beacon");
         ga("send", "pageview");
       }
     });

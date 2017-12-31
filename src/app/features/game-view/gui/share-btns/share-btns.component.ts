@@ -10,10 +10,7 @@ import { GoogleAnalyticsService } from "../../../../shared/";
 })
 export class ShareBtnsComponent {
   tweetIntent: string = "https://twitter.com/intent/tweet/";
-
-  private _whatsAppMsg: string = "whatsapp://send?text=";
-  whatsAppMsg: SafeUrl;
-
+  whatsAppMsg: string = "whatsapp://send?text=";
   facebookMsg: string = "https://www.facebook.com/sharer/sharer.php?u=";
   googleMsg: string = "https://plus.google.com/share?url=";
   pinterestMsg: string = "http://pinterest.com/pin/create/button/?";
@@ -28,10 +25,7 @@ export class ShareBtnsComponent {
   ) {
     this.constructTweetIntent();
 
-    this._whatsAppMsg += encodeURIComponent(this.urlToBeShared);
-    this.whatsAppMsg = this.domSanitizer.bypassSecurityTrustUrl(
-      this._whatsAppMsg
-    );
+    this.whatsAppMsg += encodeURIComponent(this.urlToBeShared);
 
     this.facebookMsg += encodeURIComponent(this.urlToBeShared);
     this.googleMsg += encodeURIComponent(this.urlToBeShared);
@@ -44,6 +38,13 @@ export class ShareBtnsComponent {
     event.preventDefault();
     this.googleAnalyticsService.emitEvent("Social", siteName, $ => {
       window.open(url, "_blank");
+    });
+  }
+
+  shareOnWhatsApp(event: Event) {
+    event.preventDefault();
+    this.googleAnalyticsService.emitEvent("Social", "WhatsApp", $ => {
+      window.location.href = this.whatsAppMsg;
     });
   }
 
