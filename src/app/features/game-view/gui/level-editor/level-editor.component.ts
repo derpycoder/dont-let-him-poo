@@ -34,6 +34,7 @@ export class LevelEditorComponent implements OnInit, OnDestroy {
             this.showHelpers = false;
             this.helperBtnText = "Edit";
             this.showLevelEditBtn = false;
+            break;
           case GAME_STATES.START:
             this.showHelpers = false;
             this.helperBtnText = "Edit";

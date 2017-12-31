@@ -44,7 +44,7 @@ export class ChoreographerService {
     private pathFindingService: PathFindingService
   ) {
     this.gridService.onGridReady.subscribe(status => {
-      if(status) {
+      if (status) {
         this.currentGameState = GAME_STATES.START;
         this.cleverlyPlacePlayerLooAndPoo();
       } else {
