@@ -3,6 +3,7 @@
   background-color: #333;
   border-radius: 50%;
   display: inline-block;
+  cursor: pointer;
   height: 50px;
   width: 50px;
   position: relative;

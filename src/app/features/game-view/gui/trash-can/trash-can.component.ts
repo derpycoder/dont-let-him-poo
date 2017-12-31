@@ -31,10 +31,15 @@ export class TrashCanComponent implements OnInit, OnDestroy {
       (state: GAME_STATES) => {
         this.deactivateImage = state !== GAME_STATES.RUNNING;
 
-        if (state === GAME_STATES.LOAD) {
-          this.interactionService.remainingQuantity.money = this.interactionService.remainingQuantity.pizza = 5;
-          this.salaryService.salary = 0;
-          this.interactionService.selectedTileType = TILE_TYPES.NONE;
+        switch (state) {
+          case GAME_STATES.LOAD:
+            this.interactionService.remainingQuantity.money = this.interactionService.remainingQuantity.pizza = 5;
+            this.salaryService.salary = 0;
+            this.interactionService.selectedTileType = TILE_TYPES.NONE;
+            break;
+          case GAME_STATES.GAME_OVER:
+            this.interactionService.selectedTileType = TILE_TYPES.NONE;
+            break;
         }
       }
     );
@@ -46,7 +51,9 @@ export class TrashCanComponent implements OnInit, OnDestroy {
   }
 
   selectMoney() {
-    if (
+    if (this.interactionService.selectedTileType === TILE_TYPES.MONEY) {
+      this.interactionService.selectedTileType = TILE_TYPES.NONE;
+    } else if (
       this.choreographerService.currentGameState === GAME_STATES.RUNNING &&
       this.interactionService.remainingQuantity[TILE_TYPES.MONEY] > 0
     ) {
@@ -55,7 +62,9 @@ export class TrashCanComponent implements OnInit, OnDestroy {
   }
 
   selectPizza() {
-    if (
+    if (this.interactionService.selectedTileType === TILE_TYPES.PIZZA) {
+      this.interactionService.selectedTileType = TILE_TYPES.NONE;
+    } else if (
       this.choreographerService.currentGameState === GAME_STATES.RUNNING &&
       this.interactionService.remainingQuantity[TILE_TYPES.PIZZA] > 0
     ) {
