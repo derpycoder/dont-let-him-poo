@@ -1,18 +1,18 @@
-<a class="btn btn-dark tweet share-btn" target="_blank" href="{{tweetIntent}}">
+<button (click)="fireShareBtnClickEvent($event, 'Twitter', tweetIntent)" class="btn btn-dark tweet share-btn" target="_blank">
     <span>Twitter</span>
-</a>
-<a href="{{facebookMsg}}" class="btn btn-dark facebook share-btn" target="_blank">
+</button>
+<button (click)="fireShareBtnClickEvent($event, 'Facebook', facebookMsg)" class="btn btn-dark facebook share-btn" target="_blank">
     <span>Facebook</span>
-</a>
-<a href="{{googleMsg}}" class="btn btn-dark google share-btn" target="_blank">
+</button>
+<button (click)="fireShareBtnClickEvent($event, 'Google', googleMsg)" class="btn btn-dark google share-btn" target="_blank">
     <span>Google</span>
-</a>
-<a href="{{pinterestMsg}}" class="btn btn-dark pinterest share-btn" target="_blank">
+</button>
+<button (click)="fireShareBtnClickEvent($event, 'Pinterest', pinterestMsg)" class="btn btn-dark pinterest share-btn" target="_blank">
     <span>Pinterest</span>
-</a>
-<a href="{{linkedInMsg}}" class="btn btn-dark linked-in share-btn" target="_blank">
+</button>
+<button (click)="fireShareBtnClickEvent($event, 'LinkedIn', linkedInMsg)" class="btn btn-dark linked-in share-btn" target="_blank">
     <span>LinkedIn</span>
-</a>
-<a [href]="whatsAppMsg" data-action="share/whatsapp/share" class="btn btn-dark whatsapp share-btn">
+</button>
+<button data-action="share/whatsapp/share" (click)="fireShareBtnClickEvent($event, 'WhatsApp', whatsAppMsg)" class="btn btn-dark whatsapp share-btn">
     <span>WhatsApp</span>
-</a>
+</button>

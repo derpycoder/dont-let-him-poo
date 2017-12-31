@@ -58,6 +58,7 @@
     "@angular/cli": "^1.6.3",
     "@angular/compiler-cli": "^5.1.2",
     "@angular/language-service": "^5.1.2",
+    "@types/google.analytics": "0.0.36",
     "@types/lodash": "^4.14.91",
     "@types/node": "~8.5.2",
     "codelyzer": "~4.0.2",

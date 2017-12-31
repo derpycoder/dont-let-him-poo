@@ -2,16 +2,16 @@
   <dlp-loader *ngIf="choreographerService.currentGameState === game_states.LOAD"></dlp-loader>
   <dlp-refresh-btn isFlat="true" *ngIf="choreographerService.currentGameState === game_states.LOAD_FAILED" (click)="choreographerService.currentGameState = game_states.LOAD"></dlp-refresh-btn>
   <dlp-start-btn *ngIf="choreographerService.currentGameState === game_states.START" (click)="startGame()"></dlp-start-btn>
-  
-  <span class="vfx" #vfx>{{countDown}}</span>
-  
+
   <dlp-game-over></dlp-game-over>
   <dlp-line-renderer></dlp-line-renderer>
   <dlp-player></dlp-player>
-  
+
   <ng-container *ngIf="showGrid">
     <div class="grid-row" *ngFor="let row of gridService.gameGrid">
       <dlp-cell-container [node]="cell" class="grid-cell" *ngFor="let cell of row"></dlp-cell-container>
     </div>
-  </ng-container>  
+  </ng-container>
+
+  <span class="vfx" #vfx>{{countDown}}</span>
 </div>

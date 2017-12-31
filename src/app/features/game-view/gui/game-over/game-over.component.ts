@@ -2,6 +2,9 @@ import { Component } from "@angular/core";
 import { ChoreographerService } from "../../services/choreographer/choreographer.service";
 import { GAME_STATES } from "../../services/choreographer/choreographer.model";
 import { SalaryService } from "../../services/salary.service";
+
+import { GoogleAnalyticsService } from "../../../../shared/";
+
 @Component({
   selector: "dlp-game-over",
   templateUrl: "./game-over.component.html",
@@ -12,10 +15,12 @@ export class GameOverComponent {
 
   constructor(
     public choreographerService: ChoreographerService,
-    public salaryService: SalaryService
+    public salaryService: SalaryService,
+    private googleAnalyticsService: GoogleAnalyticsService
   ) {}
 
   restartGame() {
     this.choreographerService.currentGameState = GAME_STATES.LOAD;
+    this.googleAnalyticsService.emitEvent("Game Play", "Reload");
   }
 }

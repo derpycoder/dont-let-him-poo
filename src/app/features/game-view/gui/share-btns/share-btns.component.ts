@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 
+import { GoogleAnalyticsService } from "../../../../shared/";
+
 @Component({
   selector: "dlp-share-btns",
   templateUrl: "./share-btns.component.html",
@@ -8,8 +10,10 @@ import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 })
 export class ShareBtnsComponent {
   tweetIntent: string = "https://twitter.com/intent/tweet/";
+
   private _whatsAppMsg: string = "whatsapp://send?text=";
   whatsAppMsg: SafeUrl;
+
   facebookMsg: string = "https://www.facebook.com/sharer/sharer.php?u=";
   googleMsg: string = "https://plus.google.com/share?url=";
   pinterestMsg: string = "http://pinterest.com/pin/create/button/?";
@@ -18,7 +22,10 @@ export class ShareBtnsComponent {
   private urlToBeShared: string = "http://www.abhijit-kar.com/dont-let-him-poo/";
   private msgToBeShared: string = "Prevent the pesky emoji from going to loo. Coz, it's a game revolving around poo!";
 
-  constructor(private domSanitizer: DomSanitizer) {
+  constructor(
+    private domSanitizer: DomSanitizer,
+    private googleAnalyticsService: GoogleAnalyticsService
+  ) {
     this.constructTweetIntent();
 
     this._whatsAppMsg += encodeURIComponent(this.urlToBeShared);
@@ -31,6 +38,13 @@ export class ShareBtnsComponent {
 
     this.constructPinterestMsg();
     this.constructLinkedInMsg();
+  }
+
+  fireShareBtnClickEvent(event: Event, siteName: string, url: string) {
+    event.preventDefault();
+    this.googleAnalyticsService.emitEvent("Social", siteName, $ => {
+      window.open(url, "_blank");
+    });
   }
 
   private constructTweetIntent() {
