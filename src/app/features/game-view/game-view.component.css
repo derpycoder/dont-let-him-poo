@@ -96,9 +96,17 @@ p.author {
 }
 
 @media screen and (max-width: 520px) {
+  .label {
+    font-size: 12px;
+  }
+  p.author {
+    font-size: 12px;
+  }
+  .links {
+    font-size: 12px;
+  }
   .social-header {
-    font-size: 15px;
-    text-align: left;
+    font-size: 12px;
   }
   .img-icon {
     width: 20px;

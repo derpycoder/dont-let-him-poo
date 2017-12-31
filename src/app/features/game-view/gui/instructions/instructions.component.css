@@ -7,18 +7,16 @@ ol {
   font-size: 15px;
 }
 
-.img-icon {
-  width: 28px;
-  height: 28px;
-  vertical-align: text-bottom;
-}
-
 @media screen and (max-width: 520px) {
+  ol {
+    font-size: 12px;
+  }
   .img-icon {
     width: 20px;
     height: 20px;
   }
-  .instructions p {
+  p {
     text-align: center;
+    font-size: 12px;
   }
 }
