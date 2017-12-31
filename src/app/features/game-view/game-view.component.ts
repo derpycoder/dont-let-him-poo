@@ -5,6 +5,7 @@ import { environment } from "../../../environments/environment";
 
 import { ChoreographerService } from "./services/choreographer/choreographer.service";
 import { GAME_STATES } from "./services/choreographer/choreographer.model";
+import { GoogleAnalyticsService } from "../../shared/";
 
 @Component({
   selector: "dlp-game-view",
@@ -17,11 +18,19 @@ export class GameViewComponent {
 
   constructor(
     public choreographerService: ChoreographerService,
-    private router: Router
+    private router: Router,
+    private googleAnalyticsService: GoogleAnalyticsService
   ) {}
 
   showRankingsPage() {
     this.choreographerService.currentGameState = GAME_STATES.LOAD;
     this.router.navigate(["./rankings"]);
+  }
+
+  directToPayPal(event: Event) {
+    event.preventDefault();
+    this.googleAnalyticsService.emitEvent("Donation", "PayPal", $ => {
+      window.open("http://paypal.me/abhijitkar", "_blank");
+    });
   }
 }
