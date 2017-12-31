@@ -10,15 +10,15 @@ declare var ga;
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  @HostListener("window:focus", ["$event"])
-  onFocus(event) {
-    // this.googleAnalyticsService.emitEvent("Focus", "Acquired");
-  }
+  // @HostListener("window:focus", ["$event"])
+  // onFocus(event) {
+  //   // TODO: UNPAUSE GAME
+  // }
 
-  @HostListener("window:blur", ["$event"])
-  onBlur(event) {
-    // this.googleAnalyticsService.emitEvent("Focus", "Lost");
-  }
+  // @HostListener("window:blur", ["$event"])
+  // onBlur(event) {
+  //   // TODO: PAUSE GAME
+  // }
 
   constructor(
     public router: Router,
