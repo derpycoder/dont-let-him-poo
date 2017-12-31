@@ -12,7 +12,7 @@ export class ShareBtnsComponent {
   whatsAppMsg: SafeUrl;
   facebookMsg: string = "https://www.facebook.com/sharer/sharer.php?u=";
   googleMsg: string = "https://plus.google.com/share?url=";
-  pinterestMsg: string = "http://pinterest.com/pin/create/button/?url=";
+  pinterestMsg: string = "http://pinterest.com/pin/create/button/?";
   linkedInMsg: string = "http://www.linkedin.com/shareArticle?mini=true&";
 
   private urlToBeShared: string = "http://www.abhijit-kar.com/dont-let-him-poo/";
@@ -29,10 +29,7 @@ export class ShareBtnsComponent {
     this.facebookMsg += encodeURIComponent(this.urlToBeShared);
     this.googleMsg += encodeURIComponent(this.urlToBeShared);
 
-    this.pinterestMsg += encodeURIComponent(this.urlToBeShared);
-    this.pinterestMsg +=
-      "&description=" + encodeURIComponent(this.msgToBeShared);
-
+    this.constructPinterestMsg();
     this.constructLinkedInMsg();
   }
 
@@ -60,6 +57,19 @@ export class ShareBtnsComponent {
 
     Object.keys(attributes).forEach(key => {
       this.linkedInMsg += key + "=" + encodeURIComponent(attributes[key]);
+    });
+  }
+
+  private constructPinterestMsg() {
+    const attributes = {
+      url: this.urlToBeShared,
+      "&description": "Don't Let Him Poo",
+      "&media":
+        "http://www.abhijit-kar.com/dont-let-him-poo/assets/meta/screenshot.png"
+    };
+
+    Object.keys(attributes).forEach(key => {
+      this.pinterestMsg += key + "=" + encodeURIComponent(attributes[key]);
     });
   }
 }
