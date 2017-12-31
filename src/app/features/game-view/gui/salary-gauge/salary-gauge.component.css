@@ -66,7 +66,7 @@
     font-size: 3.5em;
   }
   .score {
-    margin-top: 6%;
+    margin-top: 10%;
   }
   .usd {
     width: 20px;
@@ -78,7 +78,7 @@
 
   .high-score {
     right: 10px;
-    top: -23px;
-    font-size: 15px;
+    top: -17px;
+    font-size: 12px;
   }
 }

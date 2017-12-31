@@ -5,6 +5,7 @@ ol {
   font-weight: bold;
   font-family: "Roboto Mono", monospace;
   font-size: 15px;
+  text-align: left;
 }
 
 @media screen and (max-width: 520px) {
@@ -16,7 +17,8 @@ ol {
     height: 20px;
   }
   p {
-    text-align: center;
+    text-align: left;
     font-size: 12px;
+    padding-left: 3%;
   }
 }

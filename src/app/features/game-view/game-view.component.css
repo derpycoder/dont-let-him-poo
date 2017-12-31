@@ -49,14 +49,17 @@ dlp-salary-gauge {
 .author {
   float: left;
 }
+
+.author, .label, .links a, #instructions, .social-header {
+  color: #5ac8fa;
+}
+
 .author,
 .links a {
-  color: #f3c215;
   font-family: "Roboto Mono", monospace;
   font-weight: bold;
 }
 .label {
-  color: #ff38ff;
   font-size: 15px;
   font-weight: bold;
 
@@ -77,25 +80,54 @@ p.author {
   text-decoration: none;
   outline: none;
 }
-.links a:first-child {
-  color: #5ac8fa;
-}
 .links a:last-child {
-  color: #89fa5a;
   margin-left: 10px;
 }
 
 .social-header {
-  color: #5ac8fa;
   font-size: 15px;
   font-weight: bold;
+  text-align: center;
 }
 
 .breakpoint {
   display: none;
 }
 
+.paypal {
+  float: none;
+  margin: 0 0 0 33%;
+  width: 30%;
+  padding: 2%;
+  font-weight: bold;
+  text-align: center;
+  font-size: 15px;
+}
+
+#instructions {
+  color: #5ac8fa;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+.paypal-msg {
+  color: #5ac8fc;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
 @media screen and (max-width: 520px) {
+  .paypal-msg {
+    font-size: 12px;
+  }
+  #instructions {
+    font-size: 14px;
+  }
+  .paypal {
+    font-size: 12px;
+  }
   .label {
     font-size: 12px;
   }
