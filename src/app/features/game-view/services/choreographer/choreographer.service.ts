@@ -93,8 +93,6 @@ export class ChoreographerService {
         1
       );
     }
-
-    console.log(this.gridService.gridEmptySpaces);
   }
 
   getRandomEmptyNode(): Node {
@@ -107,8 +105,6 @@ export class ChoreographerService {
 
       emptySpace.x = this.utilsService.getRandomNumber(0, 10);
 
-      console.log(emptySpace.x, this.gridService.gridEmptySpaces);
-
       if (this.gridService.gridEmptySpaces[emptySpace.x].length > 0) {
         emptySpace.y = this.utilsService.getRandomNumber(
           0,
@@ -119,7 +115,6 @@ export class ChoreographerService {
           this.gridService.gridEmptySpaces[emptySpace.x][emptySpace.y]
             .tileType !== TILE_TYPES.NONE
         ) {
-          console.log("Continue");
           continue;
         }
 
@@ -188,7 +183,6 @@ export class ChoreographerService {
         tmpPoo = this.getRandomEmptyNode();
 
         if (!tmpPoo || this.path.indexOf(tmpPoo) !== -1) {
-          console.log("Empty Poo");
           continue;
         }
 

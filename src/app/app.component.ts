@@ -20,6 +20,12 @@ export class AppComponent {
   //   // TODO: PAUSE GAME
   // }
 
+  @HostListener("window:onerror", ["$event"])
+  onAnyError(event) {
+    // TODO: PAUSE GAME
+    console.log(event);
+  }
+
   constructor(
     public router: Router,
     private googleAnalyticsService: GoogleAnalyticsService
@@ -29,6 +35,10 @@ export class AppComponent {
         ga("set", "page", event.urlAfterRedirects);
         ga("send", "pageview");
       }
+    });
+    
+    setTimeout($ => {
+      throw new Error("Something Bad Happened");
     });
   }
 }

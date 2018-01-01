@@ -17,6 +17,8 @@ const MAX_LEVELS = 18;
 
 @Injectable()
 export class GridService {
+  debugGridService: boolean;
+
   fileNumber: number;
 
   gameGridBackup: Node[][];
@@ -33,6 +35,8 @@ export class GridService {
   ) {}
 
   initGrid() {
+    if (!environment.production && this.debugGridService) debugger;
+
     this.fileNumber = environment.randomizeLevel
       ? this.utilsService.getRandomNumber(1, MAX_LEVELS)
       : 0;

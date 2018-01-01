@@ -239,7 +239,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
         break;
       case TILE_TYPES.POOP:
         this.salaryService.updateSalary(100);
-        this.choreographerService.onPlayerAtePoo.emit(true);
+        setTimeout($ => this.choreographerService.onPlayerAtePoo.emit(true));
         this.playerType = PLAYER_TYPES.NAUSEATED;
         break;
     }
