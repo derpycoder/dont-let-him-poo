@@ -21,6 +21,8 @@ export class ChoreographerService {
 
   onPlayerMove: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  onTilePlaced: EventEmitter<Node> = new EventEmitter<Node>();
+
   onPlayerAtePoo: EventEmitter<boolean> = new EventEmitter<boolean>();
   onDistractionOver: EventEmitter<Node> = new EventEmitter<Node>();
 
@@ -61,6 +63,32 @@ export class ChoreographerService {
     this.onDistractionOver.subscribe((distraction: Node) => {
       this.distractionOver(distraction);
     });
+
+    this.onTilePlaced.subscribe((node: Node) => {
+      switch (node.tileType) {
+        case TILE_TYPES.MONEY:
+        case TILE_TYPES.PIZZA:
+          this.updateEmptySpaces(node);
+          this.distractionPlaced(node);
+          break;
+        case TILE_TYPES.WALL:
+          this.updateEmptySpaces(node);
+          this.checkPathCollision(node);
+          break;
+        case TILE_TYPES.NONE:
+        case TILE_TYPES.WALL:
+          this.updateEmptySpaces(node);
+          break;
+      }
+      this.updateEmptySpaces(node);
+    });
+  }
+
+  private updateEmptySpaces(node: Node) {
+    // TODO: Remove from grid service empty space
+    // Or add
+    // Rows will be maintained
+    // But columns will change
   }
 
   private cleverlyPlacePlayerLooAndPoo() {

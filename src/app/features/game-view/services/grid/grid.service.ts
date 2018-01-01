@@ -17,11 +17,12 @@ const MAX_LEVELS = 18;
 
 @Injectable()
 export class GridService {
-  levelsRandomized: boolean = true;
   fileNumber: number;
 
   gameGridBackup: Node[][];
   gameGrid: Node[][];
+
+  gridEmptySpaces: Node[][];
 
   onGridReady: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -36,9 +37,8 @@ export class GridService {
       ? this.utilsService.getRandomNumber(1, MAX_LEVELS)
       : 0;
 
-    this.httpClient
-      .get(`./assets/levels/${this.fileNumber}.json`)
-      .subscribe((data: any) => {
+    this.httpClient.get(`./assets/levels/${this.fileNumber}.json`).subscribe(
+      (data: any) => {
         this.gameGrid = [];
         let row: Node[];
 
@@ -58,10 +58,24 @@ export class GridService {
           this.gameGridBackup = _.cloneDeep(this.gameGrid);
         }
 
+        this.findEmptySpacesInGrid();
+
         this.onGridReady.emit(true);
-      }, err => {
+      },
+      err => {
         this.onGridReady.emit(false);
+      }
+    );
+  }
+
+  findEmptySpacesInGrid() {
+    this.gridEmptySpaces = this.gameGrid.map((row: Node[]) => {
+      return row.filter((node: Node) => {
+        return node.tileType === TILE_TYPES.NONE;
       });
+    });
+
+    console.log(this.gridEmptySpaces);
   }
 
   resetGrid() {
