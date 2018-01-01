@@ -74,8 +74,6 @@ export class GridService {
         return node.tileType === TILE_TYPES.NONE;
       });
     });
-
-    console.log(this.gridEmptySpaces);
   }
 
   resetGrid() {

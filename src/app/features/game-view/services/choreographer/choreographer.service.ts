@@ -88,9 +88,10 @@ export class ChoreographerService {
     if (node.tileType === TILE_TYPES.NONE) {
       this.gridService.gridEmptySpaces[node.x].push(node);
     } else {
-      this.gridService.gridEmptySpaces.forEach((row: Node[]) => {
-        row.splice(row.indexOf(node), 1);
-      });
+      this.gridService.gridEmptySpaces[node.x].splice(
+        this.gridService.gridEmptySpaces[node.x].indexOf(node),
+        1
+      );
     }
 
     console.log(this.gridService.gridEmptySpaces);
@@ -106,6 +107,8 @@ export class ChoreographerService {
 
       emptySpace.x = this.utilsService.getRandomNumber(0, 10);
 
+      console.log(emptySpace.x, this.gridService.gridEmptySpaces);
+
       if (this.gridService.gridEmptySpaces[emptySpace.x].length > 0) {
         emptySpace.y = this.utilsService.getRandomNumber(
           0,
@@ -116,6 +119,7 @@ export class ChoreographerService {
           this.gridService.gridEmptySpaces[emptySpace.x][emptySpace.y]
             .tileType !== TILE_TYPES.NONE
         ) {
+          console.log("Continue");
           continue;
         }
 
@@ -135,7 +139,7 @@ export class ChoreographerService {
     let count = 0;
 
     while (count < 10) {
-      console.log(`Loo: ${count++}`);
+      console.log(`Player & Loo: ${count++}`);
 
       if (!playerPlaced) {
         tmpPlayer = this.getRandomEmptyNode();
@@ -160,6 +164,9 @@ export class ChoreographerService {
           this.onPlayerPlaced.emit(this.player);
           this.onPathChange.emit(this.path);
 
+          this.updateEmptySpaces(this.player);
+          this.updateEmptySpaces(this.targets[this.targets.length - 1]);
+
           return;
         }
         playerPlaced = looPlaced = false;
@@ -180,7 +187,8 @@ export class ChoreographerService {
       if (!pooPlaced) {
         tmpPoo = this.getRandomEmptyNode();
 
-        if (this.path.indexOf(tmpPoo) !== -1) {
+        if (!tmpPoo || this.path.indexOf(tmpPoo) !== -1) {
+          console.log("Empty Poo");
           continue;
         }
 
@@ -190,14 +198,21 @@ export class ChoreographerService {
           this.poo = tmpPoo;
           pooPlaced = true;
           this.poo.tileType = TILE_TYPES.POOP;
+
+          this.updateEmptySpaces(this.poo);
           return;
         }
       }
+    }
+
+    if (count === 10) {
+      this.currentGameState = GAME_STATES.GAME_OVER;
     }
   }
 
   distractionPlaced(target: Node) {
     this.targets.push(target);
+    this.updateEmptySpaces(this.targets[this.targets.length - 1]);
 
     this.path = this.pathFindingService.findPath(
       this.player,

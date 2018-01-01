@@ -9,6 +9,11 @@ export class HeuristicService {
   constructor(private interactionService: InteractionService) {}
 
   heuristic(source: Node, destination: Node): number {
+    if(!source || !destination) {
+      console.log("Failed at heuristic");
+      return;
+    }
+
     const dx = Math.abs(source.x - destination.x);
     const dy = Math.abs(source.y - destination.y);
 
