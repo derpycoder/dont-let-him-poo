@@ -56,13 +56,13 @@ export class CellContainerComponent {
             this.interactionService.selectedTileType
           );
 
-          this.choreographerService.onTilePlaced.emit(this.node);
+          this.choreographerService.onDistractionPlaced.emit(this.node);
         }
         this.interactionService.selectedTileType = TILE_TYPES.NONE;
       } else {
         this.interactionService.selectedTileType = this.node.tileType =
           TILE_TYPES.WALL;
-        this.choreographerService.onTilePlaced.emit(this.node);
+        this.choreographerService.onRoadBlockPlaced.emit(this.node);
       }
     } else if (this.node.tileType === TILE_TYPES.WALL) {
       if (
@@ -74,8 +74,10 @@ export class CellContainerComponent {
 
         // TODO: For updating path even when the new block placed isn't on the current path
         // This will be enabled on HARD Mode
-        // this.choreographerService.onTilePlaced.emit(this.node);
+        // this.choreographerService.onRoadBlockPlaced.emit(this.node);
       }
     }
+
+    this.choreographerService.onTilePlaced.emit(this.node);
   }
 }

@@ -7,6 +7,7 @@ import { Node, TILE_TYPES } from "../grid/grid.model";
 import { UtilsService } from "../utils.service";
 import { PathFindingService } from "../path-finding/path-finding.service";
 import { GoogleAnalyticsService } from "../../../../shared/";
+import { Vector } from "./choreographer.model";
 
 @Injectable()
 export class ChoreographerService {
@@ -21,6 +22,8 @@ export class ChoreographerService {
 
   onPlayerMove: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  onDistractionPlaced: EventEmitter<Node> = new EventEmitter<Node>();
+  onRoadBlockPlaced: EventEmitter<Node> = new EventEmitter<Node>();
   onTilePlaced: EventEmitter<Node> = new EventEmitter<Node>();
 
   onPlayerAtePoo: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -50,7 +53,7 @@ export class ChoreographerService {
     this.gridService.onGridReady.subscribe(status => {
       if (status) {
         this.currentGameState = GAME_STATES.START;
-        this.cleverlyPlacePlayerLooAndPoo();
+        this.cleverlyPlacePlayerAndLoo();
       } else {
         this.currentGameState = GAME_STATES.LOAD_FAILED;
       }
@@ -60,110 +63,106 @@ export class ChoreographerService {
       this.generatePoo();
     });
 
+    this.onDistractionPlaced.subscribe((distraction: Node) => {
+      this.distractionPlaced(distraction);
+    });
+
     this.onDistractionOver.subscribe((distraction: Node) => {
       this.distractionOver(distraction);
     });
 
+    this.onRoadBlockPlaced.subscribe((roadblock: Node) => {
+      this.checkPathCollision(roadblock);
+    });
+
     this.onTilePlaced.subscribe((node: Node) => {
-      switch (node.tileType) {
-        case TILE_TYPES.MONEY:
-        case TILE_TYPES.PIZZA:
-          this.updateEmptySpaces(node);
-          this.distractionPlaced(node);
-          break;
-        case TILE_TYPES.WALL:
-          this.updateEmptySpaces(node);
-          this.checkPathCollision(node);
-          break;
-        case TILE_TYPES.NONE:
-        case TILE_TYPES.WALL:
-          this.updateEmptySpaces(node);
-          break;
-      }
       this.updateEmptySpaces(node);
+    });
+
+    this.onPlayerPlaced.subscribe((node: Node) => {
+      this.generatePoo();
     });
   }
 
   private updateEmptySpaces(node: Node) {
-    // TODO: Remove from grid service empty space
-    // Or add
-    // Rows will be maintained
-    // But columns will change
+    if (node.tileType === TILE_TYPES.NONE) {
+      this.gridService.gridEmptySpaces[node.x].push(node);
+    } else {
+      this.gridService.gridEmptySpaces.forEach((row: Node[]) => {
+        row.splice(row.indexOf(node), 1);
+      });
+    }
+
+    console.log(this.gridService.gridEmptySpaces);
   }
 
-  private cleverlyPlacePlayerLooAndPoo() {
-    this.targets = [];
-
-    let playerPlaced: boolean, looPlaced: boolean, pooPlaced: boolean;
-    let tmpPlayer: Node, tmpLoo: Node, tmpPoo: Node;
-
-    let i, j, x, y, p, q;
+  getRandomEmptyNode(): Node {
+    let emptySpace: Vector = new Vector();
 
     let count = 0;
 
-    while (count < 100) {
-      console.log(`Tries: ${count++}`);
+    while (count < 10) {
+      console.log(`Random: ${count++}`);
+
+      emptySpace.x = this.utilsService.getRandomNumber(0, 10);
+
+      if (this.gridService.gridEmptySpaces[emptySpace.x].length > 0) {
+        emptySpace.y = this.utilsService.getRandomNumber(
+          0,
+          this.gridService.gridEmptySpaces[emptySpace.x].length - 1
+        );
+
+        if (
+          this.gridService.gridEmptySpaces[emptySpace.x][emptySpace.y]
+            .tileType !== TILE_TYPES.NONE
+        ) {
+          continue;
+        }
+
+        break;
+      }
+    }
+
+    return this.gridService.gridEmptySpaces[emptySpace.x][emptySpace.y];
+  }
+
+  private cleverlyPlacePlayerAndLoo() {
+    this.targets = [];
+
+    let playerPlaced: boolean, looPlaced: boolean;
+    let tmpPlayer: Node, tmpLoo: Node;
+
+    let count = 0;
+
+    while (count < 10) {
+      console.log(`Loo: ${count++}`);
 
       if (!playerPlaced) {
-        i = this.utilsService.getRandomNumber(0, 10);
-        j = this.utilsService.getRandomNumber(0, 10);
-      }
-      if (!looPlaced) {
-        x = this.utilsService.getRandomNumber(0, 10);
-        y = this.utilsService.getRandomNumber(0, 10);
-      }
-      if (!pooPlaced) {
-        p = this.utilsService.getRandomNumber(0, 10);
-        q = this.utilsService.getRandomNumber(0, 10);
-      }
-
-      if (
-        !playerPlaced &&
-        this.gridService.gameGrid[i][j].tileType === TILE_TYPES.NONE
-      ) {
-        tmpPlayer = this.gridService.gameGrid[i][j];
+        tmpPlayer = this.getRandomEmptyNode();
         playerPlaced = true;
       }
 
-      if (
-        !looPlaced &&
-        this.gridService.gameGrid[x][y].tileType === TILE_TYPES.NONE
-      ) {
-        tmpLoo = this.gridService.gameGrid[x][y];
+      if (!looPlaced) {
+        tmpLoo = this.getRandomEmptyNode();
         looPlaced = true;
       }
 
-      if (
-        !pooPlaced &&
-        this.gridService.gameGrid[p][q].tileType === TILE_TYPES.NONE
-      ) {
-        tmpPoo = this.gridService.gameGrid[p][q];
-        pooPlaced = true;
-      }
-
-      if (playerPlaced && looPlaced && pooPlaced) {
+      if (playerPlaced && looPlaced) {
         this.path = this.pathFindingService.findPath(tmpPlayer, tmpLoo);
 
-        if (
-          this.path &&
-          this.path.length > 5 &&
-          this.path.indexOf(tmpPoo) === -1
-        ) {
+        if (this.path && this.path.length > 5) {
           this.player = tmpPlayer;
           this.player.tileType = TILE_TYPES.PLAYER;
 
           tmpLoo.tileType = TILE_TYPES.LOO;
           this.targets.push(tmpLoo);
 
-          this.poo = tmpPoo;
-          this.poo.tileType = TILE_TYPES.POOP;
-
           this.onPlayerPlaced.emit(this.player);
           this.onPathChange.emit(this.path);
 
           return;
         }
-        playerPlaced = looPlaced = pooPlaced = false;
+        playerPlaced = looPlaced = false;
       }
     }
   }
@@ -175,17 +174,11 @@ export class ChoreographerService {
 
     let count = 0;
 
-    while (count < 50) {
-      console.log(`Poo Tries: ${count++}`);
+    while (count < 10) {
+      console.log(`Poo: ${count++}`);
 
-      p = this.utilsService.getRandomNumber(0, 10);
-      q = this.utilsService.getRandomNumber(0, 10);
-
-      if (
-        !pooPlaced &&
-        this.gridService.gameGrid[p][q].tileType === TILE_TYPES.NONE
-      ) {
-        tmpPoo = this.gridService.gameGrid[p][q];
+      if (!pooPlaced) {
+        tmpPoo = this.getRandomEmptyNode();
 
         if (this.path.indexOf(tmpPoo) !== -1) {
           continue;
