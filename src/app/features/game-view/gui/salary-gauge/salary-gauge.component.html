@@ -8,5 +8,5 @@
 
     <div class="high-score">{{salaryService.getHighestSalary()}}</div>
     <div class="score">{{salaryService.getSalary()}}</div>
-    <span class="vfx" #vfx>+{{updatedSalary}}</span>
+    <span class="vfx" [ngClass]="{'negative': !isSalaryPositive}" #vfx>{{updatedSalary}}</span>
 </div>

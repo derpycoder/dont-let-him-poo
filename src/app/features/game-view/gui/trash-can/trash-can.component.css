@@ -17,7 +17,7 @@
   box-shadow: none;
   box-shadow: inset 0 1px 0 rgba(130, 130, 130, 0.5),
     0px 0px 13px 3px rgba(0, 0, 0, 0.19);
-  cursor: default;
+  cursor: cursor;
 }
 
 img.trash-image {
@@ -29,6 +29,7 @@ img.trash-image {
 
 img.trash-image.deactive {
   opacity: 0.6;
+  cursor: default;
 }
 
 .trash-badge {

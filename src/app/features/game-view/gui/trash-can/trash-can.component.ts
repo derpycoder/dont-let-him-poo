@@ -33,8 +33,6 @@ export class TrashCanComponent implements OnInit, OnDestroy {
 
         switch (state) {
           case GAME_STATES.LOAD:
-            this.interactionService.remainingQuantity.money = this.interactionService.remainingQuantity.pizza = 5;
-            this.salaryService.salary = 0;
             this.interactionService.selectedTileType = TILE_TYPES.NONE;
             break;
           case GAME_STATES.GAME_OVER:

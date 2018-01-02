@@ -19,7 +19,8 @@
   margin-top: 5%;
 }
 
-.gauge-container:focus, .gauge-container:active {
+.gauge-container:focus,
+.gauge-container:active {
   outline: none !important;
 }
 
@@ -39,7 +40,6 @@
   color: #66c9fa;
   font-weight: bold;
   position: absolute;
-
 }
 
 .usd {
@@ -58,6 +58,11 @@
   text-shadow: 0px 4px 3px rgb(44, 47, 47), 0 -1px 0px #91a29e;
   pointer-events: none;
   left: 10%;
+}
+
+.vfx.negative {
+  color: deeppink;
+  text-shadow: 0px 4px 3px rgb(44, 47, 47), 0 -1px 0px #bd92a9;
 }
 
 @media screen and (max-width: 520px) {

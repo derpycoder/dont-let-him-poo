@@ -55,6 +55,9 @@ export class CellContainerComponent {
           this.interactionService.updateQuantity(
             this.interactionService.selectedTileType
           );
+          this.salaryService.recalculateSalary(
+            this.interactionService.selectedTileType
+          );
 
           this.choreographerService.onDistractionPlaced.emit(this.node);
         }

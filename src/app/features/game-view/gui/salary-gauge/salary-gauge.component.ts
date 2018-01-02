@@ -20,6 +20,8 @@ export class SalaryGaugeComponent implements OnInit, OnDestroy {
   @ViewChild("vfx") vfx: ElementRef;
   updatedSalary: string;
 
+  isSalaryPositive: boolean;
+
   // Subscription
   private salarySubscription: Subscription;
 
@@ -28,7 +30,9 @@ export class SalaryGaugeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.salarySubscription = this.salaryService.salaryUpdate.subscribe(
       (salary: number) => {
-        this.updatedSalary = salary.toLocaleString();
+        this.isSalaryPositive = salary > 0;
+        this.updatedSalary = this.isSalaryPositive ? "+" : "";
+        this.updatedSalary += salary.toLocaleString();
         this.updateView();
       }
     );

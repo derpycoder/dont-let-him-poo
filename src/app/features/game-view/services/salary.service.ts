@@ -1,5 +1,7 @@
 import { Injectable, EventEmitter, Inject, PLATFORM_ID } from "@angular/core";
 import { isPlatformBrowser, isPlatformServer } from "@angular/common";
+import { TILE_TYPES } from "../services/grid/grid.model";
+import { InteractionService } from "./interaction.service";
 
 @Injectable()
 export class SalaryService {
@@ -8,6 +10,8 @@ export class SalaryService {
   private _salary: number = 0;
   set salary(value: number) {
     this._salary = value;
+
+    this.recalculateRemainingQuantity();
 
     if (this._salary > this.highestSalary) {
       this.highestSalary = this._salary;
@@ -35,11 +39,35 @@ export class SalaryService {
     return this._highestSalary;
   }
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private interactionService: InteractionService
+  ) {}
 
   updateSalary(salary: number) {
     this.salary += salary;
     this.salaryUpdate.emit(salary);
+  }
+
+  recalculateSalary(tileType: string) {
+    switch (tileType) {
+      case TILE_TYPES.PIZZA:
+        this.updateSalary(-25);
+        break;
+      case TILE_TYPES.MONEY:
+        this.updateSalary(-75);
+    }
+
+    this.recalculateRemainingQuantity();
+  }
+
+  recalculateRemainingQuantity() {
+    this.interactionService.remainingQuantity.pizza = Math.floor(
+      this.salary / 25
+    );
+    this.interactionService.remainingQuantity.money = Math.floor(
+      this.salary / 75
+    );
   }
 
   getSalary() {

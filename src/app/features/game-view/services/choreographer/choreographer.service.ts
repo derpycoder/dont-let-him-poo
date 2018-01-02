@@ -8,6 +8,8 @@ import { UtilsService } from "../utils.service";
 import { PathFindingService } from "../path-finding/path-finding.service";
 import { GoogleAnalyticsService } from "../../../../shared/";
 import { Vector } from "./choreographer.model";
+import { SalaryService } from "../salary.service";
+import { InteractionService } from "../interaction.service";
 
 @Injectable()
 export class ChoreographerService {
@@ -42,13 +44,17 @@ export class ChoreographerService {
   set currentGameState(value: GAME_STATES) {
     this._currentGameState = value;
     this.onGameStateChange.emit(value);
+
+    this.onStateChange();
   }
 
   constructor(
     private gridService: GridService,
     private utilsService: UtilsService,
     private pathFindingService: PathFindingService,
-    private googleAnalyticsService: GoogleAnalyticsService
+    private googleAnalyticsService: GoogleAnalyticsService,
+    private salaryService: SalaryService,
+    private interactionService: InteractionService
   ) {
     this.gridService.onGridReady.subscribe(status => {
       if (status) {
@@ -82,6 +88,13 @@ export class ChoreographerService {
     this.onPlayerPlaced.subscribe((node: Node) => {
       this.generatePoo();
     });
+  }
+
+  private onStateChange() {
+    switch (this.currentGameState) {
+      case GAME_STATES.LOAD:
+        this.salaryService.salary = 0;
+    }
   }
 
   private updateEmptySpaces(node: Node) {
