@@ -1,10 +1,15 @@
-.play {
-  margin: 5px 0 5px 45%;
+.fa-play {
+  color: #5ac8fa;
+  font-size: 50px;
+  width: 100%;
+  text-align: center;
   cursor: pointer;
+  margin: 1px auto;
 }
 
 @media screen and (max-width: 520px) {
-  .play {
-    width: 30px;
+  .fa-play {
+    font-size: 25px;
+    margin: 7px auto;
   }
 }

@@ -53,7 +53,9 @@ img {
 
 .fa-refresh {
   color: #5ac8fa;
-  margin: 5px 0 5px 43%;
+  text-align: center;
+  margin: 5px auto;
+  width: 100%;
 }
 
 @media screen and (max-width: 520px) {
