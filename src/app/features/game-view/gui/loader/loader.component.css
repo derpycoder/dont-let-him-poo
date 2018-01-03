@@ -3,3 +3,8 @@
   height: 50px;
   margin-left: 42%;
 }
+
+.fa-spin {
+  -webkit-animation: fa-spin 1.2s infinite linear;
+  animation: fa-spin 1.2s infinite linear;
+}

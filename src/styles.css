@@ -51,6 +51,11 @@ img {
   margin-right: 10px;
 }
 
+.fa-refresh {
+  color: #5ac8fa;
+  margin: 5px 0 5px 43%;
+}
+
 @media screen and (max-width: 520px) {
   .btn-dark {
     margin-top: 20px;
