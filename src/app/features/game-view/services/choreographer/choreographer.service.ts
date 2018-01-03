@@ -185,7 +185,6 @@ export class ChoreographerService {
   generatePoo() {
     let pooPlaced: boolean;
     let tmpPoo: Node;
-    const p, q;
 
     let count = 0;
 
