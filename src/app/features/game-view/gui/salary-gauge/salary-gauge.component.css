@@ -42,12 +42,18 @@
   position: absolute;
 }
 
-.usd {
+.fa.fa-usd {
+  color: #66c9fa;
+  font-size: 0.7em;
+  text-shadow: 0 1px 0 rgba(133, 221, 255, 0.4);
+
   border-right: 1px solid #646363;
-  padding-right: 2%;
   float: left;
-  margin-top: 6%;
+  margin-top: 7%;
+
+  padding: 1px 7% 2px 0;
 }
+
 
 .vfx {
   color: #66fabd;
@@ -73,8 +79,9 @@
   .score {
     margin-top: 10%;
   }
-  .usd {
-    width: 20px;
+  .fa.fa-usd {
+    margin-top: 12%;
+    font-size: 0.4em;
   }
   .score,
   .vfx {
