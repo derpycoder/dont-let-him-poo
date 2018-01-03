@@ -40,6 +40,7 @@
 
 dlp-refresh-btn {
   display: block;
+  margin: 10% 0;
 }
 
 @media screen and (max-width: 520px) {

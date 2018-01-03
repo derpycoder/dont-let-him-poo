@@ -5,6 +5,7 @@
   text-align: center;
   cursor: pointer;
   margin: 1px auto;
+  text-shadow: 0 1px 0 rgba(133, 221, 255, 0.4);
 }
 
 @media screen and (max-width: 520px) {
