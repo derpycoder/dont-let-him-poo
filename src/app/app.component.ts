@@ -32,7 +32,7 @@ export class AppComponent {
         ga("send", "pageview");
       }
     });
-    
+
     this.ngZone.onError.subscribe(err => {
       this.googleAnalyticsService.emitEvent("Error", err.message);
     });

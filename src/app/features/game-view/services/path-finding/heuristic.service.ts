@@ -9,7 +9,7 @@ export class HeuristicService {
   constructor(private interactionService: InteractionService) {}
 
   heuristic(source: Node, destination: Node): number {
-    if(!source || !destination) {
+    if (!source || !destination) {
       console.log("Failed at heuristic");
       return;
     }

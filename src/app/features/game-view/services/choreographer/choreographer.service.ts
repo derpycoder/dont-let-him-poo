@@ -109,7 +109,7 @@ export class ChoreographerService {
   }
 
   getRandomEmptyNode(): Node {
-    let emptySpace: Vector = new Vector();
+    const emptySpace: Vector = new Vector();
 
     let count = 0;
 
@@ -185,7 +185,7 @@ export class ChoreographerService {
   generatePoo() {
     let pooPlaced: boolean;
     let tmpPoo: Node;
-    let p, q;
+    const p, q;
 
     let count = 0;
 
