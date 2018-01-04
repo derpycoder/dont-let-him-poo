@@ -66,7 +66,7 @@ export class ChoreographerService {
     });
 
     this.onPlayerAtePoo.subscribe($ => {
-      this.generatePoo();
+      setTimeout($ => this.generatePoo());
     });
 
     this.onDistractionPlaced.subscribe((distraction: Node) => {
@@ -197,17 +197,13 @@ export class ChoreographerService {
         if (!tmpPoo || this.path.indexOf(tmpPoo) !== -1) {
           continue;
         }
+        
+        this.poo = tmpPoo;
+        pooPlaced = true;
+        this.poo.tileType = TILE_TYPES.POOP;
 
-        const path = this.pathFindingService.findPath(this.player, tmpPoo);
-
-        if (path && path.length > 5) {
-          this.poo = tmpPoo;
-          pooPlaced = true;
-          this.poo.tileType = TILE_TYPES.POOP;
-
-          this.updateEmptySpaces(this.poo);
-          return;
-        }
+        this.updateEmptySpaces(this.poo);
+        return;
       }
     }
 

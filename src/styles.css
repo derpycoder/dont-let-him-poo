@@ -59,6 +59,14 @@ img {
   text-shadow: 0 1px 0 rgba(133, 221, 255, 0.4);
 }
 
+.translucent-bg {
+  position: absolute;
+  top: 20px;
+  bottom: 21px;
+  padding: 42.3%;
+  background-color: rgba(46, 46, 46, 0.5);
+}
+
 @media screen and (max-width: 520px) {
   .btn-dark {
     margin-top: 20px;
@@ -69,5 +77,13 @@ img {
   .grid-tile {
     width: 24px;
     height: 24px;
+  }
+
+  .translucent-bg {
+    position: absolute;
+    top: 9px;
+    bottom: 11px;
+    padding: 44%;
+    background-color: rgba(46, 46, 46, 0.5);
   }
 }

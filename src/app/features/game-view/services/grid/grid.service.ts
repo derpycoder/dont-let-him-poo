@@ -30,7 +30,30 @@ export class GridService {
     private httpClient: HttpClient,
     private interactionService: InteractionService,
     private utilsService: UtilsService
-  ) {}
+  ) {
+    this.doGridFirstPaint();
+  }
+
+  private doGridFirstPaint() {
+    this.gameGrid = [];
+    let row: Node[];
+
+    for (let i = 0; i < 11; i++) {
+      row = [];
+      for (let j = 0; j < 11; j++) {
+        row.push({
+          x: i,
+          y: j,
+          tileType: TILE_TYPES.NONE
+        });
+      }
+      this.gameGrid.push(row);
+    }
+
+    // console.log("Yay");
+
+    this.onGridReady.emit(true);
+  }
 
   initGrid() {
     this.fileNumber = environment.randomizeLevel
@@ -39,19 +62,13 @@ export class GridService {
 
     this.httpClient.get(`./assets/levels/${this.fileNumber}.json`).subscribe(
       (data: any) => {
-        this.gameGrid = [];
-        let row: Node[];
+
+        console.log(this.gameGrid);
 
         for (let i = 0; i < data.gameGrid.length; i++) {
-          row = [];
           for (let j = 0; j < data.gameGrid[i].length; j++) {
-            row.push({
-              x: i,
-              y: j,
-              tileType: data.gameGrid[i][j]
-            });
+            this.gameGrid[i][j].tileType = data.gameGrid[i][j];
           }
-          this.gameGrid.push(row);
         }
 
         if (!environment.production) {
