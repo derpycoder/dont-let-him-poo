@@ -40,12 +40,12 @@
   .fa.fa-power-off {
     left: -5px;
     top: -5px;
-    padding: 0.8% 0 0 0.2%;
+    padding: 1% 0 0 0.2%;
     width: 20px;
     height: 20px;
     font-size: 13px;
   }
   .fa.fa-power-off.active {
-    padding: 0.7% 0 0 0.2%;
+    padding: 0.9% 0 0 0.2%;
   }
 }

@@ -50,8 +50,6 @@ export class GridService {
       this.gameGrid.push(row);
     }
 
-    // console.log("Yay");
-
     this.onGridReady.emit(true);
   }
 
@@ -62,9 +60,6 @@ export class GridService {
 
     this.httpClient.get(`./assets/levels/${this.fileNumber}.json`).subscribe(
       (data: any) => {
-
-        console.log(this.gameGrid);
-
         for (let i = 0; i < data.gameGrid.length; i++) {
           for (let j = 0; j < data.gameGrid[i].length; j++) {
             this.gameGrid[i][j].tileType = data.gameGrid[i][j];
@@ -124,8 +119,6 @@ export class GridService {
         });
       })
     });
-
-    console.log(serializedGrid);
   }
 
   getNeighbors(target: Node): Node[] {

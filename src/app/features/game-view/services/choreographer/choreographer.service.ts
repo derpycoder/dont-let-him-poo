@@ -66,7 +66,7 @@ export class ChoreographerService {
     });
 
     this.onPlayerAtePoo.subscribe($ => {
-      setTimeout($ => this.generatePoo());
+      $ => this.generatePoo();
     });
 
     this.onDistractionPlaced.subscribe((distraction: Node) => {

@@ -216,11 +216,11 @@ export class PlayerComponent implements OnInit, OnDestroy {
         break;
       case TILE_TYPES.PIZZA:
         this.playerType = PLAYER_TYPES.GOT_FED;
-        setTimeout($ => this.choreographerService.onDistractionOver.emit(node));
+        requestAnimationFrame($ => this.choreographerService.onDistractionOver.emit(node));
         break;
       case TILE_TYPES.MONEY:
         this.playerType = PLAYER_TYPES.GOT_MONEY;
-        setTimeout($ => this.choreographerService.onDistractionOver.emit(node));
+        requestAnimationFrame($ => this.choreographerService.onDistractionOver.emit(node));
         break;
       case TILE_TYPES.NONE:
         switch (this.choreographerService.targets[
@@ -239,7 +239,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
         break;
       case TILE_TYPES.POOP:
         this.salaryService.updateSalary(100);
-        setTimeout($ => this.choreographerService.onPlayerAtePoo.emit(true));
+        this.choreographerService.onPlayerAtePoo.emit(true);
         this.playerType = PLAYER_TYPES.NAUSEATED;
         break;
     }
