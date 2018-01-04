@@ -66,7 +66,7 @@ export class ChoreographerService {
     });
 
     this.onPlayerAtePoo.subscribe($ => {
-      $ => this.generatePoo();
+      this.generatePoo();
     });
 
     this.onDistractionPlaced.subscribe((distraction: Node) => {
@@ -197,7 +197,7 @@ export class ChoreographerService {
         if (!tmpPoo || this.path.indexOf(tmpPoo) !== -1) {
           continue;
         }
-        
+
         this.poo = tmpPoo;
         pooPlaced = true;
         this.poo.tileType = TILE_TYPES.POOP;
