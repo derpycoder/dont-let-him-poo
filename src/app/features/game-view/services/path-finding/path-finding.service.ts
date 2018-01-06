@@ -37,6 +37,8 @@ class Grid<T> {
   }
 }
 
+declare var postMessage;
+
 @Injectable()
 export class PathFindingService {
   constructor(
@@ -46,7 +48,19 @@ export class PathFindingService {
   ) {}
 
   findPath(source: Node, destination: Node) {
+    const worker = this.run(function() {
+      postMessage("Simple Web Worker Test!");
+
+      self.close();
+    });
+
+    worker.onmessage = event => console.log(event.data);
+
     return this.aStarPathFinder(source, destination);
+  }
+
+  run(func) {
+    return new Worker(URL.createObjectURL(new Blob([`(${func})()`])));
   }
 
   private backTrack(grid: Grid<Node>, source: Node, destination: Node): Node[] {
