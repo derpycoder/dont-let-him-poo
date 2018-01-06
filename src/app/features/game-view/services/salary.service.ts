@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter, Inject, PLATFORM_ID } from "@angular/core";
-import { isPlatformBrowser, isPlatformServer } from "@angular/common";
+import { isPlatformBrowser } from "@angular/common";
 import { TILE_TYPES } from "../services/grid/grid.model";
 import { InteractionService } from "./interaction.service";
 

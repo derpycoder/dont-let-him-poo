@@ -1,4 +1,5 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Inject, PLATFORM_ID } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
 
 import * as heap from "heap";
 
@@ -44,23 +45,28 @@ export class PathFindingService {
   constructor(
     private gridService: GridService,
     private heuristicService: HeuristicService,
-    private interactionService: InteractionService
+    private interactionService: InteractionService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   findPath(source: Node, destination: Node) {
-    const worker = this.run(function() {
-      postMessage("Simple Web Worker Test!");
+    if (isPlatformBrowser(this.platformId)) {
+      const worker = this.run(function() {
+        postMessage("Simple Web Worker Test!");
 
-      self.close();
-    });
+        self.close();
+      });
 
-    worker.onmessage = event => console.log(event.data);
+      worker.onmessage = event => console.log(event.data);
+    }
 
     return this.aStarPathFinder(source, destination);
   }
 
   run(func) {
-    return new Worker(URL.createObjectURL(new Blob([`(${func})()`])));
+    if (isPlatformBrowser(this.platformId)) {
+      return new Worker(URL.createObjectURL(new Blob([`(${func})()`])));
+    }
   }
 
   private backTrack(grid: Grid<Node>, source: Node, destination: Node): Node[] {
