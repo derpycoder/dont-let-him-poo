@@ -16,7 +16,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy-to-github-pages": "ng build --prod --aot --base-href http://www.abhijit-kar.com/dont-let-him-poo/ && ngh --dir=dist/browser/",
+    "deploy:gh-pages": "ng build --prod --aot --base-href http://www.abhijit-kar.com/dont-let-him-poo/ && ngh --dir=dist/browser/",
     "build:universal": "npm run build:client-and-server-bundles && npm run webpack:server",
     "serve:http-server": "./node_modules/.bin/http-server ./dist/browser -a localhost -p 8080",
     "serve:universal": "node dist/server.js",
