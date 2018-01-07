@@ -61,7 +61,7 @@ app.use(
 
 // All regular routes use the Universal engine
 app.get("**", (req, res) => {
-  // res.set("Cache-Control", "public, max-age=1y, s-maxage=1y");
+  res.set("Cache-Control", "public, max-age=1y, s-maxage=1y");
   res.render(join(DIST_FOLDER, "browser", "index.html"), { req });
 });
 
