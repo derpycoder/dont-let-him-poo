@@ -2,7 +2,7 @@ import * as functions from "firebase-functions";
 
 import "zone.js/dist/zone-node";
 import "reflect-metadata";
-// import { renderModuleFactory } from "@angular/platform-server";
+import { renderModuleFactory } from "@angular/platform-server";
 import { enableProdMode } from "@angular/core";
 
 import * as express from "express";
@@ -60,7 +60,7 @@ app.use(
 );
 
 // All regular routes use the Universal engine
-app.get("*", (req, res) => {
+app.get("**", (req, res) => {
   // res.set("Cache-Control", "public, max-age=1y, s-maxage=1y");
   res.render(join(DIST_FOLDER, "browser", "index.html"), { req });
 });
