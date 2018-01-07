@@ -1,6 +1,6 @@
 {
   "functions": {
-    "predeploy": "npm --prefix functions run build"
+    // "predeploy": "npm --prefix functions run build"
   },
   "hosting": {
     "public": "dist",
@@ -12,7 +12,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "function": "ssr"
       }
     ]
   }
