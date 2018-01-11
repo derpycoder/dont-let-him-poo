@@ -12,6 +12,7 @@ import { InteractionService } from "../interaction.service";
 
 import { UtilsService } from "../utils.service";
 import { PLAYER_MOVES } from "../choreographer/choreographer.model";
+import { Vector } from "../choreographer/choreographer.model";
 
 const MAX_LEVELS = 18;
 
@@ -60,10 +61,19 @@ export class GridService {
 
     this.httpClient.get(`./assets/levels/${this.fileNumber}.json`).subscribe(
       (data: any) => {
-        for (let i = 0; i < data.gameGrid.length; i++) {
-          for (let j = 0; j < data.gameGrid[i].length; j++) {
-            this.gameGrid[i][j].tileType = data.gameGrid[i][j];
-          }
+        this.gameGrid.forEach((row: Node[]) => {
+          row.forEach((cell: Node) => {
+            cell.tileType = TILE_TYPES.NONE;
+          });
+        });
+        
+        let coord: string[], x: number, y: number;
+        for (let i = 0; i < data.length; i++) {
+          coord = data[i].split(',');
+          x = parseInt(coord[0], 10);
+          y = parseInt(coord[1], 10);
+
+          this.gameGrid[x][y].tileType = TILE_TYPES.WALL;
         }
 
         if (!environment.production) {
@@ -112,13 +122,21 @@ export class GridService {
       return;
     }
 
-    const serializedGrid = JSON.stringify({
-      gameGrid: this.gameGrid.map(row => {
-        return row.map((cell: any) => {
-          return cell.tileType;
-        });
-      })
-    });
+    let gameGrid: string[] = [];
+
+    for (let i = 0; i < this.gameGrid.length; i++) {
+      for (let j = 0; j < this.gameGrid[i].length; j++) {
+        if (this.gameGrid[i][j].tileType !== TILE_TYPES.WALL) {
+          continue;
+        }
+
+        gameGrid.push(`${this.gameGrid[i][j].x},${this.gameGrid[i][j].y}`);
+      }
+    }
+
+    const serializedGrid = JSON.stringify(gameGrid);
+
+    console.log(serializedGrid);
   }
 
   getNeighbors(target: Node): Node[] {
