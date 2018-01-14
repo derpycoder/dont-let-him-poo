@@ -15,12 +15,6 @@ export class AppComponent {
   //   // TODO: UNPAUSE GAME
   // }
 
-  @HostListener("window:onerror", ["$event"])
-  onAnyError(event) {
-    // TODO: PAUSE GAME
-    console.log(event);
-  }
-
   constructor(
     public router: Router,
     private googleAnalyticsService: GoogleAnalyticsService,
@@ -28,13 +22,8 @@ export class AppComponent {
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        ga("set", "page", event.urlAfterRedirects);
-        ga("send", "pageview");
+        this.googleAnalyticsService.emitPageEvent(event);
       }
-    });
-
-    this.ngZone.onError.subscribe(err => {
-      this.googleAnalyticsService.emitEvent("Error", err.message);
     });
   }
 }

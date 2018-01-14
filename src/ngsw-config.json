@@ -14,11 +14,7 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "resources": {
-        "files": [
-          "/assets/manifest.json",
-          "/assets/images/**",
-          "/assets/meta/**"
-        ],
+        "files": ["/assets/manifest.json"],
         "urls": [
           "https://fonts.googleapis.com/**",
           "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css",
