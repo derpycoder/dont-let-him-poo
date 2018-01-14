@@ -19,5 +19,7 @@ export class StartBtnComponent {
     this.choreographerService.currentGameState = GAME_STATES.RUN;
 
     this.googleAnalyticsService.emitEvent("Gameplay", "Play");
+
+    throw "Mew";
   }
 }
