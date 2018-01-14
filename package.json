@@ -10,7 +10,7 @@
     "Abhijit Kar"
   ],
   "scripts": {
-    "deploy:gcloud": "gcloud app deploy -v prod"
+    "deploy:gcloud": "gcloud app deploy -v prod",
     "start": "node dist/server.js"
   },
   "private": true,
