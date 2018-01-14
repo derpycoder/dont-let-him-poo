@@ -33,7 +33,7 @@ export class GoogleAnalyticsService {
     if (isPlatformServer(this.platformId)) {
       return;
     }
-    
+
     try {
       ga("set", "page", event.urlAfterRedirects);
       ga("send", "pageview");

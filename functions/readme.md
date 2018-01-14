@@ -1,1 +1,0 @@
-robocopy "../dist/" "dist/" /e

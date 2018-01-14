@@ -66,10 +66,10 @@ export class GridService {
             cell.tileType = TILE_TYPES.NONE;
           });
         });
-        
+
         let coord: string[], x: number, y: number;
         for (let i = 0; i < data.length; i++) {
-          coord = data[i].split(',');
+          coord = data[i].split(",");
           x = parseInt(coord[0], 10);
           y = parseInt(coord[1], 10);
 
@@ -122,7 +122,7 @@ export class GridService {
       return;
     }
 
-    let gameGrid: string[] = [];
+    const gameGrid: string[] = [];
 
     for (let i = 0; i < this.gameGrid.length; i++) {
       for (let j = 0; j < this.gameGrid[i].length; j++) {

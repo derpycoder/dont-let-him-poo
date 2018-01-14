@@ -19,10 +19,13 @@
     "build:universal":
       "npm run build:client && npm run build:server && npm run build:webpack",
 
-    "serve:universal": "node dist/server.js",
+    "start": "node dist/server.js",
 
     "deploy:dev":
-      "ng build --prod --aot --base-href http://www.abhijit-kar.com/dont-let-him-poo/ && ngh --dir=dist/browser/"
+      "ng build --prod --aot --base-href http://www.abhijit-kar.com/dont-let-him-poo/ && ngh --dir=dist/browser/",
+
+    "deploy:prod": "npm run build:universal && ngh --dir=dist/ --branch=prod",
+    "deploy:gcloud": "gcloud app deploy -v prod"
   },
   "private": true,
   "engines": {
@@ -56,6 +59,7 @@
     "zone.js": "^0.8.18"
   },
   "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "1.4.17",
     "@angular/cli": "^1.6.3",
     "@angular/compiler-cli": "^5.1.2",
     "@angular/language-service": "^5.1.2",
