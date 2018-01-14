@@ -23,9 +23,7 @@
 
     "deploy:dev":
       "ng build --prod --aot --base-href http://www.abhijit-kar.com/dont-let-him-poo/ && ngh --dir=dist/browser/",
-
-    "deploy:prod": "npm run build:universal && ngh --dir=dist/ --branch=prod",
-    "deploy:gcloud": "gcloud app deploy -v prod"
+    "deploy:prod": "npm run build:universal && ngh --dir=dist/ --branch=prod"
   },
   "private": true,
   "engines": {

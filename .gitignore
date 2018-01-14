@@ -1,11 +1,7 @@
-# Firebase
-/functions/node_modules
-/functions/dist
-/functions/lib
-firebase-debug.log
-
 # compiled output
-/dist
+/dist/browser
+/dist/server
+/dist/server.js
 /tmp
 /out-tsc
 

@@ -7,7 +7,7 @@
     {
       "root": "src",
       "outDir": "dist/browser",
-      "assets": ["assets", "favicon.ico", "app.yaml"],
+      "assets": ["assets", "favicon.ico"],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
