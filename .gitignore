@@ -1,7 +1,6 @@
 # compiled output
-/dist/browser
-/dist/server
-/dist/server.js
+/public/dist
+/public/etc
 /tmp
 /out-tsc
 

@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist/browser",
+      "outDir": "public/dist/browser",
       "assets": ["assets", "favicon.ico"],
       "index": "index.html",
       "main": "main.ts",
@@ -26,7 +26,7 @@
     },
     {
       "root": "src",
-      "outDir": "dist/server",
+      "outDir": "public/dist/server",
       "assets": ["assets", "favicon.ico"],
       "platform": "server",
       "index": "index.html",
