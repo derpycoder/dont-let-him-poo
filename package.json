@@ -1,0 +1,48 @@
+{
+  "name": "dont-let-him-poo",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abhijit-kar/dont-let-him-poo"
+  },
+  "contributors": ["Abhijit Kar"],
+  "scripts": {
+    "deploy": "gcloud app deploy -v prod",
+    "start": "node dist/server.js"
+  },
+  "private": true,
+  "engines": {
+    "node": "6.11.4",
+    "npm": "3.10.10"
+  },
+  "dependencies": {
+    "@angular/animations": "^5.1.2",
+    "@angular/common": "^5.1.2",
+    "@angular/compiler": "^5.1.2",
+    "@angular/core": "^5.1.2",
+    "@angular/forms": "^5.1.2",
+    "@angular/http": "^5.1.2",
+    "@angular/platform-browser": "^5.1.2",
+    "@angular/platform-browser-dynamic": "^5.1.2",
+    "@angular/platform-server": "^5.1.2",
+    "@angular/router": "^5.1.2",
+    "@angular/service-worker": "^5.1.2",
+    "@nguniversal/express-engine": "^5.0.0-beta.5",
+    "@nguniversal/module-map-ngfactory-loader": "^5.0.0-beta.5",
+    "compression": "^1.7.1",
+    "core-js": "^2.5.3",
+    "express": "^4.16.2",
+    "global": "^4.3.2",
+    "gsap": "^1.20.3",
+    "heap": "^0.2.6",
+    "lodash": "^4.17.4",
+    "reflect-metadata": "^0.1.10",
+    "rxjs": "^5.5.6",
+    "ts-loader": "^3.2.0",
+    "zone.js": "^0.8.18"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "1.4.17"
+  }
+}
