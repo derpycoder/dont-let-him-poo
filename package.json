@@ -1,17 +1,8 @@
 {
-  "name": "dont-let-him-poo",
-  "version": "0.0.0",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/abhijit-kar/dont-let-him-poo"
-  },
-  "contributors": ["Abhijit Kar"],
   "scripts": {
     "deploy": "gcloud app deploy -v prod",
-    "start": "node dist/server.js"
+    "start": "node server.js"
   },
-  "private": true,
   "engines": {
     "node": "6.11.4",
     "npm": "3.10.10"
