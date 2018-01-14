@@ -1,0 +1,48 @@
+{
+  "configVersion": 1,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/favicon.ico",
+        "/main.bundle.js",
+        "/styles.bundle.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/assets/manifest.json"
+      ],
+      "patterns": [
+        "https:\\/\\/fonts\\.googleapis\\.com\\/.*",
+        "https:\\/\\/maxcdn\\.bootstrapcdn\\.com\\/bootstrap\\/3\\.3\\.7\\/css\\/bootstrap\\.min\\.css",
+        "https:\\/\\/maxcdn\\.bootstrapcdn\\.com\\/font-awesome\\/4\\.7\\.0\\/css\\/font-awesome\\.min\\.css"
+      ]
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-performance",
+      "patterns": [
+        "\\/assets\\/levels\\/.*"
+      ],
+      "strategy": "performance",
+      "maxSize": 100,
+      "maxAge": 86400000,
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/main.bundle.js": "b135497e5e2934c42d1a129edb022c393d8b9a66",
+    "/assets/manifest.json": "36a8fdcb2890f7995fc0706a0fd95274719b048f",
+    "/styles.bundle.css": "c43db187439e4f0906a9722de5c5a0a9ee7790e6",
+    "/favicon.ico": "516fae91ab403e6cefac8896168d7b7801ebec1a"
+  }
+}
