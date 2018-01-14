@@ -1,8 +1,19 @@
 {
-  "scripts": {
-    "deploy": "gcloud app deploy -v prod",
-    "start": "node server.js"
+  "name": "dont-let-him-poo",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abhijit-kar/dont-let-him-poo"
   },
+  "contributors": [
+    "Abhijit Kar"
+  ],
+  "scripts": {
+    "deploy:gcloud": "gcloud app deploy -v prod"
+    "start": "node dist/server.js"
+  },
+  "private": true,
   "engines": {
     "node": "6.11.4",
     "npm": "3.10.10"
@@ -24,13 +35,13 @@
     "compression": "^1.7.1",
     "core-js": "^2.5.3",
     "express": "^4.16.2",
-    "global": "^4.3.2",
     "gsap": "^1.20.3",
     "heap": "^0.2.6",
     "lodash": "^4.17.4",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.5.6",
     "ts-loader": "^3.2.0",
+    "typescript": "^2.5.3",
     "zone.js": "^0.8.18"
   },
   "devDependencies": {

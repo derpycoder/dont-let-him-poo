@@ -1,0 +1,1 @@
+robocopy "../dont-letim/dist" "./dist/" /e
