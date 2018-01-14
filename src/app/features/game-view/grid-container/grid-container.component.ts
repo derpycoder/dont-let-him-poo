@@ -118,8 +118,4 @@ export class GridContainerComponent implements OnInit, OnDestroy {
 
     this.tl.play();
   }
-
-  startGame() {
-    this.choreographerService.currentGameState = GAME_STATES.RUN;
-  }
 }
