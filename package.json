@@ -1,6 +1,6 @@
 {
   "name": "dont-let-him-poo",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -25,22 +25,18 @@
       "ng build --prod --aot --base-href http://www.abhijit-kar.com/dont-let-him-poo/ && ngh --dir=public/dist/browser/",
     "deploy:prod": "npm run build:universal && ngh --dir=public/ --branch=prod"
   },
-  "engines": {
-    "node": "6.11.4",
-    "npm": "3.10.10"
-  },
   "dependencies": {
-    "@angular/animations": "^5.1.2",
-    "@angular/common": "^5.1.2",
-    "@angular/compiler": "^5.1.2",
-    "@angular/core": "^5.1.2",
-    "@angular/forms": "^5.1.2",
-    "@angular/http": "^5.1.2",
-    "@angular/platform-browser": "^5.1.2",
-    "@angular/platform-browser-dynamic": "^5.1.2",
-    "@angular/platform-server": "^5.1.2",
-    "@angular/router": "^5.1.2",
-    "@angular/service-worker": "^5.1.2",
+    "@angular/animations": "^5.2.4",
+    "@angular/common": "^5.2.4",
+    "@angular/compiler": "^5.2.4",
+    "@angular/core": "^5.2.4",
+    "@angular/forms": "^5.2.4",
+    "@angular/http": "^5.2.4",
+    "@angular/platform-browser": "^5.2.4",
+    "@angular/platform-browser-dynamic": "^5.2.4",
+    "@angular/platform-server": "^5.2.4",
+    "@angular/router": "^5.2.4",
+    "@angular/service-worker": "^5.2.4",
     "@nguniversal/express-engine": "^5.0.0-beta.5",
     "@nguniversal/module-map-ngfactory-loader": "^5.0.0-beta.5",
     "compression": "^1.7.1",
@@ -49,22 +45,22 @@
     "global": "^4.3.2",
     "gsap": "^1.20.3",
     "heap": "^0.2.6",
-    "lodash": "^4.17.4",
-    "reflect-metadata": "^0.1.10",
+    "lodash": "^4.17.5",
+    "reflect-metadata": "^0.1.12",
     "rxjs": "^5.5.6",
-    "ts-loader": "^3.2.0",
-    "zone.js": "^0.8.18"
+    "ts-loader": "^3.5.0",
+    "zone.js": "^0.8.20"
   },
   "devDependencies": {
-    "@angular/cli": "^1.6.3",
-    "@angular/compiler-cli": "^5.1.2",
-    "@angular/language-service": "^5.1.2",
-    "@types/google.analytics": "0.0.36",
-    "@types/lodash": "^4.14.91",
-    "@types/node": "~8.5.2",
-    "codelyzer": "~4.0.2",
+    "@angular/cli": "^1.6.8",
+    "@angular/compiler-cli": "^5.2.4",
+    "@angular/language-service": "^5.2.4",
+    "@types/google.analytics": "0.0.37",
+    "@types/lodash": "^4.14.102",
+    "@types/node": "~9.4.5",
+    "codelyzer": "~4.1.0",
     "ts-node": "~4.1.0",
-    "tslint": "~5.8.0",
-    "typescript": "^2.5.3"
+    "tslint": "~5.9.1",
+    "typescript": "^2.7.1"
   }
 }
