@@ -6,23 +6,19 @@
     "type": "git",
     "url": "https://github.com/abhijit-kar/dont-let-him-poo"
   },
-  "contributors": ["Abhijit Kar"],
+  "contributors": [
+    "Abhijit Kar"
+  ],
   "scripts": {
     "ng": "Node ./node_modules/@angular/cli/bin/ng",
     "lint": "ng lint",
     "serve": "ng serve",
-
     "build:client": "ng build --prod --aot",
     "build:server": "ng build --prod --aot --app 1 --output-hashing=false",
-    "build:webpack":
-      "webpack --config webpack.server.config.js --progress --colors",
-    "build:universal":
-      "npm run build:client && npm run build:server && npm run build:webpack",
-
+    "build:webpack": "webpack --config webpack.server.config.js --progress --colors",
+    "build:universal": "npm run build:client && npm run build:server && npm run build:webpack",
     "serve:universal": "npm start --prefix ./public/",
-
-    "deploy:dev":
-      "ng build --prod --aot --base-href http://www.abhijit-kar.com/dont-let-him-poo/ && ngh --dir=public/dist/browser/",
+    "deploy:dev": "ng build --prod --aot --base-href https://www.abhijit-kar.com/dont-let-him-poo/ && ngh --dir=public/dist/browser/",
     "deploy:prod": "npm run build:universal && ngh --dir=public/ --branch=prod"
   },
   "dependencies": {

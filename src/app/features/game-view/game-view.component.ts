@@ -30,7 +30,7 @@ export class GameViewComponent {
   directToPayPal(event: Event) {
     event.preventDefault();
     this.googleAnalyticsService.emitEvent("Donation", "PayPal", $ => {
-      window.open("http://paypal.me/abhijitkar", "_blank");
+      window.open("https://www.paypal.me/abhijitkar", "_blank");
     });
   }
   directToPortfolio(event: Event, site: string, url: string) {

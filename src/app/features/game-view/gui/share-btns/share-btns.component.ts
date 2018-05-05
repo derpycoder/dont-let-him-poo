@@ -16,7 +16,7 @@ export class ShareBtnsComponent {
   pinterestMsg: string = "http://pinterest.com/pin/create/button/?";
   linkedInMsg: string = "http://www.linkedin.com/shareArticle?mini=true&";
 
-  private urlToBeShared: string = "http://www.abhijit-kar.com/dont-let-him-poo/";
+  private urlToBeShared: string = "https://www.abhijit-kar.com/dont-let-him-poo/";
   private msgToBeShared: string = "Prevent the pesky emoji from going to loo. Coz, it's a game revolving around poo!";
 
   constructor(
@@ -50,7 +50,7 @@ export class ShareBtnsComponent {
 
   private constructTweetIntent() {
     const attributes = {
-      "?original_referer": "http://www.abhijit-kar.com",
+      "?original_referer": "https://www.abhijit-kar.com",
       "&text": this.msgToBeShared,
       "&hashtags": "dontletim",
       "&url": this.urlToBeShared,
@@ -80,7 +80,7 @@ export class ShareBtnsComponent {
       url: this.urlToBeShared,
       "&description": "Don't Let Him Poo",
       "&media":
-        "http://www.abhijit-kar.com/dont-let-him-poo/assets/meta/screenshot.png"
+        "https://www.abhijit-kar.com/dont-let-him-poo/assets/meta/screenshot.png"
     };
 
     Object.keys(attributes).forEach(key => {

@@ -4,8 +4,8 @@
   "theme_color": "#333333",
   "background_color": "#333333",
   "display": "fullscreen",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "/dont-let-him-poo",
+  "start_url": "/dont-let-him-poo",
   "orientation": "portrait",
   "icons": [
     {
