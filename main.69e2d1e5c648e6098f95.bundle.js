@@ -32160,10 +32160,10 @@ webpackJsonp(
             (t.prototype.directToPayPal = function (t) {
               t.preventDefault(),
                 this.googleAnalyticsService.emitEvent(
-                  "Donation",
-                  "PayPal",
+                  "DerpyCoder",
+                  "Yay",
                   function (t) {
-                    window.open("https://www.paypal.me/abhijitkar", "_blank");
+                    window.open("https://github.com/derpycoder", "_blank");
                   }
                 );
             }),
@@ -32594,7 +32594,7 @@ webpackJsonp(
               null
             )),
             (t()(), r._17(-1, null, ["@Author: "])),
-            (t()(), r._17(-1, null, ["Abhijit Kumar Kar"])),
+            (t()(), r._17(-1, null, ["Abhijit"])),
             (t()(), r._17(-1, null, ["\n    "])),
             (t()(),
             r._2(
@@ -32621,7 +32621,7 @@ webpackJsonp(
               1,
               "a",
               [
-                ["href", "https://derpycoder.github.io/dont-let-him-poo//"],
+                ["href", "https://derpycoder.github.io/dont-let-him-poo/"],
                 ["target", "_blank"],
               ],
               null,
@@ -32635,7 +32635,7 @@ webpackJsonp(
                         t.component.directToPortfolio(
                           n,
                           "Website",
-                          "https://derpycoder.github.io/dont-let-him-poo//"
+                          "https://github.com/derpycoder"
                         ) && r),
                   r
                 );
@@ -32756,7 +32756,7 @@ webpackJsonp(
               null,
               null
             )),
-            (t()(), r._17(-1, null, ["Paypal Me"])),
+            (t()(), r._17(-1, null, ["Hire Me"])),
             (t()(), r._17(-1, null, ["\n  "])),
             (t()(), r._17(-1, null, ["\n"])),
             (t()(), r._17(-1, null, ["\n\n"])),
