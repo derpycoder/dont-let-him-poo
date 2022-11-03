@@ -1,19 +1,19 @@
 {
   "configVersion": 1,
-  "index": "https://www.abhijit-kar.com/dont-let-him-poo/index.html",
+  "index": "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/index.html",
   "assetGroups": [
     {
       "name": "app",
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "https://www.abhijit-kar.com/dont-let-him-poo/favicon.ico",
-        "https://www.abhijit-kar.com/dont-let-him-poo/index.html",
-        "https://www.abhijit-kar.com/dont-let-him-poo/0.83114e46d82579dfb74b.chunk.js",
-        "https://www.abhijit-kar.com/dont-let-him-poo/inline.dba9e27ec06454b36111.bundle.js",
-        "https://www.abhijit-kar.com/dont-let-him-poo/main.69e2d1e5c648e6098f95.bundle.js",
-        "https://www.abhijit-kar.com/dont-let-him-poo/polyfills.54fe5a553fcbd1c14f96.bundle.js",
-        "https://www.abhijit-kar.com/dont-let-him-poo/styles.ba7a95a82a8e41706505.bundle.css"
+        "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/favicon.ico",
+        "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/index.html",
+        "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/0.83114e46d82579dfb74b.chunk.js",
+        "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/inline.dba9e27ec06454b36111.bundle.js",
+        "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/main.69e2d1e5c648e6098f95.bundle.js",
+        "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/polyfills.54fe5a553fcbd1c14f96.bundle.js",
+        "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/styles.ba7a95a82a8e41706505.bundle.css"
       ],
       "patterns": []
     },
@@ -22,7 +22,7 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
-        "https://www.abhijit-kar.com/dont-let-him-poo/assets/manifest.json"
+        "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/assets/manifest.json"
       ],
       "patterns": [
         "https:\\/\\/fonts\\.googleapis\\.com\\/.*",
@@ -44,13 +44,13 @@
     }
   ],
   "hashTable": {
-    "https://www.abhijit-kar.com/dont-let-him-poo/0.83114e46d82579dfb74b.chunk.js": "03b9d7066b5b474f7df5c702f9da6a6c2e132b22",
-    "https://www.abhijit-kar.com/dont-let-him-poo/assets/manifest.json": "d329f47145346b94409e4acf33cb977611e8fad1",
-    "https://www.abhijit-kar.com/dont-let-him-poo/inline.dba9e27ec06454b36111.bundle.js": "204ea0dc749ac367fc92460e61b9ff790aad71f1",
-    "https://www.abhijit-kar.com/dont-let-him-poo/main.69e2d1e5c648e6098f95.bundle.js": "8e2dcfce10547739395e0d84f471b1f6ced099bc",
-    "https://www.abhijit-kar.com/dont-let-him-poo/polyfills.54fe5a553fcbd1c14f96.bundle.js": "6acc8dd6f5d60f4dcf313c2e98349886b304f590",
-    "https://www.abhijit-kar.com/dont-let-him-poo/styles.ba7a95a82a8e41706505.bundle.css": "80ee087c09e00883de2f4f48da42a1c1e6365e06",
-    "https://www.abhijit-kar.com/dont-let-him-poo/favicon.ico": "516fae91ab403e6cefac8896168d7b7801ebec1a",
-    "https://www.abhijit-kar.com/dont-let-him-poo/index.html": "2f221ecc81842602b6c0b6a3bd90d1a3b285500d"
+    "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/0.83114e46d82579dfb74b.chunk.js": "03b9d7066b5b474f7df5c702f9da6a6c2e132b22",
+    "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/assets/manifest.json": "d329f47145346b94409e4acf33cb977611e8fad1",
+    "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/inline.dba9e27ec06454b36111.bundle.js": "204ea0dc749ac367fc92460e61b9ff790aad71f1",
+    "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/main.69e2d1e5c648e6098f95.bundle.js": "8e2dcfce10547739395e0d84f471b1f6ced099bc",
+    "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/polyfills.54fe5a553fcbd1c14f96.bundle.js": "6acc8dd6f5d60f4dcf313c2e98349886b304f590",
+    "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/styles.ba7a95a82a8e41706505.bundle.css": "80ee087c09e00883de2f4f48da42a1c1e6365e06",
+    "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/favicon.ico": "516fae91ab403e6cefac8896168d7b7801ebec1a",
+    "https://derpycoder.github.io/dont-let-him-poo//dont-let-him-poo/index.html": "2f221ecc81842602b6c0b6a3bd90d1a3b285500d"
   }
 }
